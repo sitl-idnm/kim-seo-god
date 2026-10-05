@@ -1,0 +1,187 @@
+@use "@styles/func";
+@use "@styles/mixins" as *;
+@use "@styles/variables";
+
+.root {
+  max-width: 1312px;
+  margin: 0 auto;
+  padding: 0;
+
+  @include tablet {
+    padding: 0 12px;
+  }
+
+  @include tablet-small {
+    padding: 0 8px;
+  }
+
+  &_topPadding {
+    margin-top: 80px;
+
+    @include tablet {
+      margin-top: 40px;
+    }
+
+    @include tablet-small {
+      margin-top: 32px;
+    }
+  }
+
+  &_bottomPadding {
+    margin-bottom: 80px;
+
+    @include tablet {
+      margin-bottom: 40px;
+    }
+
+    @include tablet-small {
+      margin-bottom: 32px;
+    }
+  }
+}
+
+.container {
+  width: 100%;
+}
+
+.title {
+	font-family: var(--font-inter);
+  font-size: 48px;
+  font-weight: 500;
+  margin-bottom: 48px;
+  text-align: left;
+
+  @include tablet {
+    font-size: 32px;
+    line-height: 120%;
+    margin-bottom: 0px;
+  }
+}
+
+.steps {
+  display: grid;
+  gap: 24px;
+  margin-top: 48px;
+}
+
+// Для 5 элементов - оригинальная сетка
+.steps_5 {
+  grid-template-columns: repeat(6, 1fr);
+
+  > *:nth-child(1) { grid-column: span 2; }
+  > *:nth-child(2) { grid-column: span 2; }
+  > *:nth-child(3) { grid-column: span 2; }
+  > *:nth-child(4) { grid-column: span 3; }
+  > *:nth-child(5) { grid-column: span 3; }
+}
+
+// Для 8 элементов - стандартная сетка
+.steps_8 {
+  grid-template-columns: repeat(5, 1fr);
+}
+
+// Для 4, 6, 7, 9 элементов - элементы занимают 2 колонки
+.steps_4,
+.steps_6,
+.steps_7,
+.steps_9 {
+  grid-template-columns: repeat(6, 1fr);
+
+  .step {
+    grid-column: span 2;
+  }
+}
+
+// Адаптив для всех вариантов
+@include tablet {
+  .steps {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
+
+    > *:nth-child(n) {
+      grid-column: span 2;
+    }
+  }
+}
+
+@include tablet-small {
+  .steps {
+    grid-template-columns: 1fr;
+    gap: 16px;
+
+    > *:nth-child(n) {
+      grid-column: span 1;
+    }
+  }
+}
+
+.step {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  gap: 20px;
+  padding: 32px;
+  background: #F9F9F9;
+  border-radius: 24px;
+  min-height: 221px;
+  transition: transform 0.3s ease;
+
+  &:hover {
+    transform: translateY(-20px) !important;
+  }
+
+  @include tablet {
+    padding: 24px;
+    gap: 0px;
+    min-height: 140px;
+  }
+}
+
+.number {
+  position: absolute;
+  left: 32px;
+  bottom: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  background: #CB172C;
+  color: #FFFFFF;
+  border-radius: 50%;
+  font-size: 16px;
+  font-weight: 500;
+
+  @include tablet {
+    left: 24px;
+    bottom: 24px;
+  }
+}
+
+.stepTitle {
+	font-family: var(--font-inter);
+  font-size: 26px;
+  font-weight: 500;
+  line-height: 130%;
+  margin: 0;
+
+  @include tablet {
+    font-size: 20px;
+  }
+}
+
+.stepDescription {
+  font-family: var(--font-inter);
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 120%;
+
+  @include tablet {
+    font-size: 14px;
+  }
+
+  @include tablet-small {
+    font-size: 12px;
+  }
+}

@@ -1,0 +1,30 @@
+@use "@styles/func";
+@use "@styles/mixins";
+@use "@styles/variables";
+
+.root {
+	display: flex;
+}
+
+.awesome {
+	color: var(--color-red-gradient-start);
+}
+
+.cursor {
+  display: inline-block;  /* Убедитесь, что курсор занимает место */
+  width: 4px;            /* Установите ширину курсора */
+  height: 0.8em;         /* Установите высоту курсора */
+  margin-left: 5px;
+	background-color: var(--color-red-gradient-start); /* Цвет курсора */
+  animation: blink 1s infinite; /* Добавьте анимацию мигания */
+}
+
+@keyframes blink {
+  0%, 100% {
+    opacity: 1; /* Полная видимость */
+  }
+
+  50% {
+    opacity: 0; /* Полная прозрачность */
+  }
+}

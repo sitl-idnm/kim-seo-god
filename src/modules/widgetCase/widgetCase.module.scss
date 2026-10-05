@@ -1,0 +1,262 @@
+@use "@styles/func";
+@use "@styles/mixins" as *;
+@use "@styles/variables";
+
+.root {
+	display: flex;
+	justify-content: space-between;
+
+	max-width: 1440px;
+	width: 100%;
+
+	position: fixed;
+	bottom: 20px;
+	left: 50%;
+  right: 50%;
+  transform: translateX(-50%);
+
+	z-index: 100000;
+
+	@include tablet {
+		bottom: 12px;
+	}
+
+	.wrapper {
+		max-width: 1408px;
+		width: 100%;
+
+		padding: 52px 48px;
+
+		margin: 0 16px;
+
+		background-color: var(--color-black);
+
+		border-radius: 28px;
+
+		@include tablet {
+			display: flex;
+
+			flex-direction: column;
+
+			justify-content: center;
+			align-items: center;
+			gap: 40px;
+
+			margin: 0 12px;
+
+			padding: 52px 43.5px;
+		}
+
+		@include tablet-small {
+			padding: 32px 12px;
+		}
+
+		.close {
+			position: absolute;
+			top: 20px;
+			right: 35px;
+
+			cursor: pointer;
+		}
+
+		.container {
+			display: flex;
+			justify-content: space-between;
+
+			width: 100%;
+
+			@include tablet {
+				flex-direction: column;
+
+				max-width: 657px;
+			}
+
+			@include tablet-small {
+				max-width: 312px;
+			}
+
+			.content {
+				display: flex;
+				gap: 32px;
+
+				align-items: center;
+
+				@include tablet-small {
+					flex-direction: column;
+					gap: 4px;
+
+					align-items: start;
+				}
+
+				&__title {
+					font-family: var(--font-inter);
+					font-weight: 500;
+					font-size: 42px;
+					line-height: 150%;
+					color: var(--color-white-default);
+
+					@include tablet-small {
+						font-size: 32px;
+					}
+				}
+
+				&__description {
+					font-family: var(--font-inter);
+					font-weight: 400;
+					font-size: 16px;
+
+					max-width: 275px;
+
+					color: rgba(255, 255, 255, 0.6);
+				}
+
+			}
+
+			.forms {
+				display: flex;
+				flex-direction: column;
+				gap: 12px;
+
+				.form__description {
+					font-family: var(--font-inter);
+					font-weight: 400;
+					font-size: 12px;
+					color: var(--color-white-default);
+
+					text-align: end;
+
+					@include tablet {
+						text-align: start;
+					}
+
+					a {
+						color: var(--color-red-gradient-start);
+					}
+				}
+			}
+
+			.form {
+				&__wrapper {
+					display: flex;
+					gap: 12px;
+					position: relative;
+
+					justify-content: center;
+
+					@include tablet {
+						justify-content: flex-start;
+					}
+
+					@include tablet-small {
+						align-items: center;
+
+						flex-direction: column;
+					}
+
+					&__input {
+						width: 366px;
+
+						position: relative;
+
+						@include desktop {
+							max-width: 366px;
+							width: 100%;
+						}
+
+						@include tablet {
+							width: 366px;
+						}
+
+						@include tablet-small {
+							width: 312px;
+						}
+
+						input {
+							width: 100%;
+
+							color: white;
+							padding: 20px;
+						}
+					}
+
+					&__button {
+						max-width: 227px;
+						width: 100%;
+
+						@include tablet-small {
+							max-width: none;
+							width: 312px;
+						}
+
+						input {
+							width: 100%;
+						}
+					}
+
+					.placeholder {
+						position: absolute;
+						display: inline-block;
+						top: 20px;
+						left: 20px;
+						color: rgba(255, 255, 255, 0.35);
+						font-family: var(--font-manrope);
+						font-weight: 500;
+						pointer-events: none;
+						transition: .5s;
+						z-index: 1;
+					}
+
+					input {
+						min-height: 65px;
+						height: 100%;
+						border-radius: 10px;
+
+						background-color: #0E0F10;
+
+						border: 1px solid #2C2C2C;
+						transition: 3s;
+
+						cursor: pointer;
+
+						transform: translateY(0);
+
+						&::placeholder {
+							color: transparent;
+						}
+
+						&:focus ~ .placeholder,
+						&:not(:placeholder-shown) ~ .placeholder {
+							transform: translateY(-20px);
+							font-size: 12px;
+						}
+
+						&[type='submit'] {
+							font-family: var(--font-inter);
+							font-weight: 500;
+							font-size: 16px;
+							line-height: 150%;
+							border: 1px solid var(--color-red-gradient-start);
+							transition: all 1.5s;
+
+							width: 100%;
+
+							background: linear-gradient(315deg, var(--color-red-gradient-start), var(--color-red-gradient-end));
+
+							color: var(--color-white-default);
+						}
+					}
+
+					input[type="number"] {
+						-moz-appearance: textfield;
+					}
+
+					input[type="number"]::-webkit-outer-spin-button,
+					input[type="number"]::-webkit-inner-spin-button {
+						-webkit-appearance: none;
+						margin: 0;
+					}
+				}
+			}
+		}
+	}
+}

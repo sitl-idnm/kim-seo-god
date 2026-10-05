@@ -1,0 +1,119 @@
+@use "@styles/func";
+@use "@styles/mixins" as *;
+@use "@styles/variables";
+
+.root {
+	display: flex;
+	flex-direction: column;
+	max-width: 1312px;
+	width: 100%;
+	margin: 0 auto 128px;
+
+	gap: 12px;
+
+	@include desktop {
+		margin: 0 12px 128px;
+	}
+
+	@include tablet {
+		padding: 0 12px;
+	}
+
+	@include tablet-small {
+		margin: 0 auto 33px;
+	}
+
+	&__title {
+		font-family: var(--font-inter);
+		font-weight: 500;
+		font-size: 54px;
+		line-height: 120%;
+		color: #121212;
+
+		@include tablet {
+			font-size: 52px;
+		}
+
+		@include tablet-small {
+			font-size: 32px;
+		}
+	}
+
+	.buttons {
+		display: flex;
+		gap: 16px;
+
+		@include tablet {
+			flex-wrap: wrap;
+		}
+
+		@include tablet-small {
+			flex-wrap: nowrap;
+			overflow-x: auto;
+			scroll-behavior: smooth;
+			-ms-overflow-style: none; /* Скрыть скроллбар в IE и Edge */
+  		scrollbar-width: none; /* Скрыть скроллбар в Firefox */
+		}
+
+		&::-webkit-scrollbar {
+			@include tablet-small {
+				display: none;
+			}
+		}
+
+		&__filter {
+			display: flex;
+			align-items: center;
+			justify-content: center;
+
+			padding: 16px 20px;
+
+			font-size: 16px;
+			font-family: var(--font-inter);
+			font-weight: 500;
+			line-height: 150%;
+			color: #16181B;
+
+			background-color: #FEFEFE;
+
+			border: 1px solid #EEE;
+
+			border-radius: 46px;
+
+			min-width: 120px;
+
+			transition: all 1s ease;
+
+			@include tablet-small {
+				flex-shrink: 0;
+				margin: 30px 0 80px;
+			}
+
+			&:active,
+			&:focus {
+				background-color: #292929;
+
+				border: 1px solid #292929;
+
+				color: var(--color-gray-border);
+
+				transition: all 1s ease;
+			}
+		}
+	}
+
+	&__cases {
+		display: flex;
+		flex-wrap: wrap;
+		gap: 32px;
+
+		@include tablet {
+			flex-direction: column;
+			gap: 180px;
+		}
+
+		@include tablet-small {
+			gap: 80px;
+		}
+	}
+}

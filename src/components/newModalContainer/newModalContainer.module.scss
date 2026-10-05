@@ -1,0 +1,11 @@
+.marketingModal,
+.designModal,
+.developModal,
+.supportModal,
+.detailsModal,
+.countModal {
+  // Общие стили для всех модальных окон
+  :global(.content) {
+    box-shadow: 0 0 10px rgba(0, 0, 0, 25%);
+  }
+}

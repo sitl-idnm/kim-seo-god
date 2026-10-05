@@ -1,0 +1,1 @@
+export { default as DefaultTextCase } from './defaultTextCase'

@@ -1,0 +1,156 @@
+@use "@styles/func";
+@use "@styles/mixins" as *;
+@use "@styles/variables";
+
+.root {
+  width: 100%;
+  max-width: 1312px;
+  margin: 0 auto;
+
+  @include tablet {
+    padding: 0 12px;
+  }
+
+  @include tablet-small {
+    padding: 0 8px;
+  }
+
+  &--margin {
+    margin-bottom: 80px;
+
+    @include tablet {
+      margin-bottom: 64px;
+    }
+
+    @include tablet-small {
+      margin-bottom: 28px;
+    }
+  }
+
+  &--margin-top {
+    margin-top: 50px;
+
+    @include tablet-small {
+      margin-top: 28px;
+    }
+  }
+}
+
+.title {
+  font-family: var(--font-inter);
+  font-size: 54px;
+  font-weight: 500;
+  line-height: 150%;
+  margin-bottom: 32px;
+  color: #16181B;
+  margin: 0 0 24px;
+  padding: 0;
+  box-sizing: border-box;
+
+  @include tablet {
+    font-size: 48px;
+  }
+
+  @include tablet-small {
+    font-size: 20px;
+    line-height: 1.3;
+    margin-bottom: 10px;
+  }
+}
+
+.text {
+  font-size: 22px;
+  line-height: 160%;
+  color: #16181B;
+  opacity: 0.6;
+  margin: 0 0 24px;
+
+  &:last-child {
+    margin-bottom: 0;
+  }
+
+  @include tablet {
+    font-size: 16px;
+    margin: 0 0 16px;
+  }
+
+  @include tablet-small {
+    font-size: 11px;
+    margin: 0 0 10px;
+  }
+
+  a {
+    color: inherit;
+    text-decoration: underline;
+    text-underline-offset: 3px;
+
+    &:hover {
+      opacity: 1;
+    }
+  }
+}
+
+.listSection {
+  margin-top: 8px;
+}
+
+.divider {
+  width: 100%;
+  height: 0;
+  border: none;
+  border-top: 1px solid #d0d1d1;
+  margin: 32px 0;
+
+  @include tablet-small {
+    margin: 20px 0;
+  }
+}
+
+.listTitle {
+  font-size: 22px;
+  line-height: 160%;
+  color: #16181b;
+  opacity: 0.6;
+  margin: 0 0 16px;
+
+  @include tablet {
+    font-size: 16px;
+    margin-bottom: 12px;
+  }
+
+  @include tablet-small {
+    font-size: 11px;
+    margin-bottom: 8px;
+  }
+}
+
+.list {
+  margin: 0;
+  padding-left: 28px;
+  list-style: disc;
+
+  @include tablet-small {
+    padding-left: 18px;
+  }
+}
+
+.listItem {
+  font-size: 22px;
+  line-height: 160%;
+  color: #16181b;
+  opacity: 0.6;
+  margin-bottom: 8px;
+
+  &:last-child {
+    margin-bottom: 0;
+  }
+
+  @include tablet {
+    font-size: 16px;
+  }
+
+  @include tablet-small {
+    font-size: 11px;
+    margin-bottom: 4px;
+  }
+}

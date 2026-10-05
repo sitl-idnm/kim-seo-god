@@ -1,0 +1,125 @@
+ /* stylelint-disable */
+
+@use "@styles/func";
+@use "@styles/mixins" as *;
+@use "@styles/variables";
+
+.wrapper,
+.root {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+}
+
+.borderTop,
+.borderRight,
+.borderBottom,
+.borderLeft {
+  position: absolute;
+  background-color: white;
+	opacity: 0.28;
+}
+
+.borderTop {
+  top: 36px;
+  left: 0;
+  right: 0;
+  height: 1px; // Толщина линии
+
+  @include tablet-small {
+    top: 18px;
+  }
+}
+
+.borderRight {
+  top: 0;
+  right: 36px;
+  bottom: 0;
+  width: 1px; // Толщина линии
+
+  @include tablet-small {
+    right: 18px;
+  }
+}
+
+.borderBottom {
+  bottom: 36px;
+  left: 0;
+  right: 0;
+  height: 1px; // Толщина линии
+
+  @include tablet-small {
+    bottom: 18px;
+  }
+}
+
+.borderLeft {
+  top: 0;
+  left: 36px;
+  bottom: 0;
+  width: 1px; // Толщина линии
+
+  @include tablet-small {
+    left: 18px;
+  }
+}
+
+.cross {
+  position: absolute;
+  width: var(--width-cross);
+  height: var(--width-cross);
+
+  &::before,
+  &::after {
+    content: '';
+    position: absolute;
+    width: 1px;
+    height: 100%;
+    background-color: white;
+    opacity: 0.38;
+  }
+
+  &::before {
+    transform: rotate(90deg);
+  }
+
+  &TopLeft {
+    top: calc(36px - var(--width-cross)/2 + 1px);
+    left: calc(36px);
+
+    @include tablet-small {
+      top: calc(18px - var(--width-cross)/2 + 1px);
+      left: calc(18px);
+    }
+  }
+
+  &TopRight {
+    top: calc(36px - var(--width-cross)/2 + 1px);
+    right: calc(36px - var(--width-cross) + 1px);
+
+    @include tablet-small {
+      top: calc(18px - var(--width-cross)/2 + 1px);
+      right: calc(18px - var(--width-cross) + 1px);
+    }
+  }
+
+  &BottomLeft {
+    bottom: calc(36px - var(--width-cross)/2);
+    left: calc(36px);
+
+    @include tablet-small {
+      bottom: calc(18px - var(--width-cross)/2);
+      left: calc(18px);
+    }
+  }
+
+  &BottomRight {
+    bottom: calc(36px - var(--width-cross)/2);
+    right: calc(36px - var(--width-cross) + 1px);
+
+    @include tablet-small {
+      bottom: calc(18px - var(--width-cross)/2);
+      right: calc(18px - var(--width-cross) + 1px);
+    }
+  }
+}

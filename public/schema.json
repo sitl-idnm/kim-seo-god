@@ -1,0 +1,611 @@
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Organization",
+      "@id": "https://kim-agency.ru/#organization",
+      "name": "KIM Agency",
+      "url": "https://kim-agency.ru"
+    },
+    {
+      "@type": "WebSite",
+      "@id": "https://kim-agency.ru/#website",
+      "url": "https://kim-agency.ru",
+      "name": "KIM Agency",
+      "publisher": {
+        "@id": "https://kim-agency.ru/#organization"
+      }
+    },
+    {
+      "@type": "WebPage",
+      "@id": "https://kim-agency.ru#webpage",
+      "url": "https://kim-agency.ru",
+      "name": "Главная",
+      "isPartOf": {
+        "@id": "https://kim-agency.ru/#website"
+      },
+      "about": {
+        "@id": "https://kim-agency.ru/#organization"
+      }
+    },
+    {
+      "@type": "WebPage",
+      "@id": "https://kim-agency.ru/approve#webpage",
+      "url": "https://kim-agency.ru/approve",
+      "name": "Approve",
+      "isPartOf": {
+        "@id": "https://kim-agency.ru/#website"
+      },
+      "about": {
+        "@id": "https://kim-agency.ru/#organization"
+      }
+    },
+    {
+      "@type": "WebPage",
+      "@id": "https://kim-agency.ru/blog#webpage",
+      "url": "https://kim-agency.ru/blog",
+      "name": "Blog",
+      "isPartOf": {
+        "@id": "https://kim-agency.ru/#website"
+      },
+      "about": {
+        "@id": "https://kim-agency.ru/#organization"
+      }
+    },
+    {
+      "@type": "WebPage",
+      "@id": "https://kim-agency.ru/blogpage#webpage",
+      "url": "https://kim-agency.ru/blogpage",
+      "name": "Blogpage",
+      "isPartOf": {
+        "@id": "https://kim-agency.ru/#website"
+      },
+      "about": {
+        "@id": "https://kim-agency.ru/#organization"
+      }
+    },
+    {
+      "@type": "WebPage",
+      "@id": "https://kim-agency.ru/blogs#webpage",
+      "url": "https://kim-agency.ru/blogs",
+      "name": "Blogs",
+      "isPartOf": {
+        "@id": "https://kim-agency.ru/#website"
+      },
+      "about": {
+        "@id": "https://kim-agency.ru/#organization"
+      }
+    },
+    {
+      "@type": "WebPage",
+      "@id": "https://kim-agency.ru/blogs/chem-ii-agent-otlichaetsya-ot-chat-bota#webpage",
+      "url": "https://kim-agency.ru/blogs/chem-ii-agent-otlichaetsya-ot-chat-bota",
+      "name": "Чем ИИ-агент отличается от чат-бота: простое объяснение",
+      "description": "Чем ИИ-агент отличается от чат-бота: чат-бот работает по сценариям, ИИ-агент понимает контекст, работает с данными и выполняет цепочки действий. Таблица сравнения и матрица автономности.",
+      "isPartOf": {
+        "@id": "https://kim-agency.ru/#website"
+      },
+      "about": {
+        "@id": "https://kim-agency.ru/#organization"
+      }
+    },
+    {
+      "@type": "WebPage",
+      "@id": "https://kim-agency.ru/blogs/kak-vnedrit-ii-v-biznes#webpage",
+      "url": "https://kim-agency.ru/blogs/kak-vnedrit-ii-v-biznes",
+      "name": "Как внедрить ИИ в бизнес: с чего начать в 2026 году",
+      "description": "Как внедрить ИИ в бизнес: начинать не с выбора нейросети, а с процесса. Пошаговый план пилота, какие процессы брать первыми, красные флаги и как считать окупаемость.",
+      "isPartOf": {
+        "@id": "https://kim-agency.ru/#website"
+      },
+      "about": {
+        "@id": "https://kim-agency.ru/#organization"
+      }
+    },
+    {
+      "@type": "WebPage",
+      "@id": "https://kim-agency.ru/blogs/pochemu-lidov-mnogo-a-prodazh-net#webpage",
+      "url": "https://kim-agency.ru/blogs/pochemu-lidov-mnogo-a-prodazh-net",
+      "name": "Почему лидов много, а продаж нет: где ломается связка маркетинга и продаж",
+      "description": "Почему заявок много, а выручки нет: лид сам по себе ничего не значит. Где теряются деньги после лида, какие метрики смотреть вместе и что починить в первый месяц.",
+      "isPartOf": {
+        "@id": "https://kim-agency.ru/#website"
+      },
+      "about": {
+        "@id": "https://kim-agency.ru/#organization"
+      }
+    },
+    {
+      "@type": "WebPage",
+      "@id": "https://kim-agency.ru/blogs/razrabotka-interaktivnogo-saita#webpage",
+      "url": "https://kim-agency.ru/blogs/razrabotka-interaktivnogo-saita",
+      "name": "Разработка интерактивного сайта: что это и чем полезно для бизнеса",
+      "description": "Разработка интерактивного сайта — проектирование пути пользователя к заявке: квизы, калькуляторы, конфигураторы и другие механики для бизнеса.",
+      "isPartOf": {
+        "@id": "https://kim-agency.ru/#website"
+      },
+      "about": {
+        "@id": "https://kim-agency.ru/#organization"
+      }
+    },
+    {
+      "@type": "WebPage",
+      "@id": "https://kim-agency.ru/blogs/seo-i-kontekstnaya-reklama#webpage",
+      "url": "https://kim-agency.ru/blogs/seo-i-kontekstnaya-reklama",
+      "name": "SEO и контекстная реклама, что лучше для продвижения - маркетинговое агентство K.KIM",
+      "description": "✅ SEO и контекстная реклама — что лучше для продвижения сайта и привлечения клиентов? Продвижение агентством: аудит, оптимизация сайта, Яндекс Директ, стратегии, сроки, бюджет, стоимость, заявки и продажи. Digital-агентство К КИМ. Оказываем техподдержку, ведение, сопровождение и развитие интернет ресурса.",
+      "isPartOf": {
+        "@id": "https://kim-agency.ru/#website"
+      },
+      "about": {
+        "@id": "https://kim-agency.ru/#organization"
+      }
+    },
+    {
+      "@type": "WebPage",
+      "@id": "https://kim-agency.ru/cases#webpage",
+      "url": "https://kim-agency.ru/cases",
+      "name": "Cases",
+      "isPartOf": {
+        "@id": "https://kim-agency.ru/#website"
+      },
+      "about": {
+        "@id": "https://kim-agency.ru/#organization"
+      }
+    },
+    {
+      "@type": "WebPage",
+      "@id": "https://kim-agency.ru/cases/best-wave#webpage",
+      "url": "https://kim-agency.ru/cases/best-wave",
+      "name": "Кейс: Best Wave",
+      "isPartOf": {
+        "@id": "https://kim-agency.ru/#website"
+      },
+      "about": {
+        "@id": "https://kim-agency.ru/#organization"
+      }
+    },
+    {
+      "@type": "WebPage",
+      "@id": "https://kim-agency.ru/cases/clientpulse#webpage",
+      "url": "https://kim-agency.ru/cases/clientpulse",
+      "name": "Кейс: Clientpulse",
+      "isPartOf": {
+        "@id": "https://kim-agency.ru/#website"
+      },
+      "about": {
+        "@id": "https://kim-agency.ru/#organization"
+      }
+    },
+    {
+      "@type": "WebPage",
+      "@id": "https://kim-agency.ru/cases/gloid#webpage",
+      "url": "https://kim-agency.ru/cases/gloid",
+      "name": "Кейс: Gloid",
+      "isPartOf": {
+        "@id": "https://kim-agency.ru/#website"
+      },
+      "about": {
+        "@id": "https://kim-agency.ru/#organization"
+      }
+    },
+    {
+      "@type": "WebPage",
+      "@id": "https://kim-agency.ru/cases/magiya-vkusa#webpage",
+      "url": "https://kim-agency.ru/cases/magiya-vkusa",
+      "name": "Кейс: Magiya Vkusa",
+      "isPartOf": {
+        "@id": "https://kim-agency.ru/#website"
+      },
+      "about": {
+        "@id": "https://kim-agency.ru/#organization"
+      }
+    },
+    {
+      "@type": "WebPage",
+      "@id": "https://kim-agency.ru/cases/rovnaya-spina#webpage",
+      "url": "https://kim-agency.ru/cases/rovnaya-spina",
+      "name": "Кейс: Rovnaya Spina",
+      "isPartOf": {
+        "@id": "https://kim-agency.ru/#website"
+      },
+      "about": {
+        "@id": "https://kim-agency.ru/#organization"
+      }
+    },
+    {
+      "@type": "WebPage",
+      "@id": "https://kim-agency.ru/cases/sweetcorp#webpage",
+      "url": "https://kim-agency.ru/cases/sweetcorp",
+      "name": "Кейс: Sweetcorp",
+      "isPartOf": {
+        "@id": "https://kim-agency.ru/#website"
+      },
+      "about": {
+        "@id": "https://kim-agency.ru/#organization"
+      }
+    },
+    {
+      "@type": "WebPage",
+      "@id": "https://kim-agency.ru/company#webpage",
+      "url": "https://kim-agency.ru/company",
+      "name": "Company",
+      "isPartOf": {
+        "@id": "https://kim-agency.ru/#website"
+      },
+      "about": {
+        "@id": "https://kim-agency.ru/#organization"
+      }
+    },
+    {
+      "@type": "WebPage",
+      "@id": "https://kim-agency.ru/contacts#webpage",
+      "url": "https://kim-agency.ru/contacts",
+      "name": "Contacts",
+      "isPartOf": {
+        "@id": "https://kim-agency.ru/#website"
+      },
+      "about": {
+        "@id": "https://kim-agency.ru/#organization"
+      }
+    },
+    {
+      "@type": "WebPage",
+      "@id": "https://kim-agency.ru/kalkulyatory#webpage",
+      "url": "https://kim-agency.ru/kalkulyatory",
+      "name": "Kalkulyatory",
+      "isPartOf": {
+        "@id": "https://kim-agency.ru/#website"
+      },
+      "about": {
+        "@id": "https://kim-agency.ru/#organization"
+      }
+    },
+    {
+      "@type": "WebPage",
+      "@id": "https://kim-agency.ru/lidogeneraciya#webpage",
+      "url": "https://kim-agency.ru/lidogeneraciya",
+      "name": "Lidogeneraciya",
+      "isPartOf": {
+        "@id": "https://kim-agency.ru/#website"
+      },
+      "about": {
+        "@id": "https://kim-agency.ru/#organization"
+      }
+    },
+    {
+      "@type": "WebPage",
+      "@id": "https://kim-agency.ru/privacy-policy#webpage",
+      "url": "https://kim-agency.ru/privacy-policy",
+      "name": "Privacy Policy",
+      "isPartOf": {
+        "@id": "https://kim-agency.ru/#website"
+      },
+      "about": {
+        "@id": "https://kim-agency.ru/#organization"
+      }
+    },
+    {
+      "@type": "WebPage",
+      "@id": "https://kim-agency.ru/reviews#webpage",
+      "url": "https://kim-agency.ru/reviews",
+      "name": "Reviews",
+      "isPartOf": {
+        "@id": "https://kim-agency.ru/#website"
+      },
+      "about": {
+        "@id": "https://kim-agency.ru/#organization"
+      }
+    },
+    {
+      "@type": "WebPage",
+      "@id": "https://kim-agency.ru/services#webpage",
+      "url": "https://kim-agency.ru/services",
+      "name": "Services",
+      "isPartOf": {
+        "@id": "https://kim-agency.ru/#website"
+      },
+      "about": {
+        "@id": "https://kim-agency.ru/#organization"
+      }
+    },
+    {
+      "@type": "WebPage",
+      "@id": "https://kim-agency.ru/services/audit-internet-marketinga#webpage",
+      "url": "https://kim-agency.ru/services/audit-internet-marketinga",
+      "name": "Аудит интернет-маркетинга",
+      "description": "Комплексный аудит каналов продвижения, сайта, аналитики и воронки продаж",
+      "isPartOf": {
+        "@id": "https://kim-agency.ru/#website"
+      },
+      "about": {
+        "@id": "https://kim-agency.ru/#organization"
+      }
+    },
+    {
+      "@type": "WebPage",
+      "@id": "https://kim-agency.ru/services/firmenniy-stil#webpage",
+      "url": "https://kim-agency.ru/services/firmenniy-stil",
+      "name": "Фирменный стиль и брендбук",
+      "description": "Разработка фирменного стиля и брендбука: логотип, цвета, типографика, носители и правила применения",
+      "isPartOf": {
+        "@id": "https://kim-agency.ru/#website"
+      },
+      "about": {
+        "@id": "https://kim-agency.ru/#organization"
+      }
+    },
+    {
+      "@type": "WebPage",
+      "@id": "https://kim-agency.ru/services/kontekstnaya-reklama#webpage",
+      "url": "https://kim-agency.ru/services/kontekstnaya-reklama",
+      "name": "Настройка контекстной рекламы",
+      "description": "Настройка контекстной рекламы помогает получать заявки в момент, когда человек уже ищет товар или услугу.",
+      "isPartOf": {
+        "@id": "https://kim-agency.ru/#website"
+      },
+      "about": {
+        "@id": "https://kim-agency.ru/#organization"
+      }
+    },
+    {
+      "@type": "WebPage",
+      "@id": "https://kim-agency.ru/services/lidogeneraciya#webpage",
+      "url": "https://kim-agency.ru/services/lidogeneraciya",
+      "name": "Лидогенерация",
+      "description": "Живые лиды без переплаты за клики. Найдём клиентов там, где конкуренты сливают бюджеты на контекст. Гарантируем — ваши данные не уйдут конкурентам.",
+      "isPartOf": {
+        "@id": "https://kim-agency.ru/#website"
+      },
+      "about": {
+        "@id": "https://kim-agency.ru/#organization"
+      }
+    },
+    {
+      "@type": "WebPage",
+      "@id": "https://kim-agency.ru/services/razrabotka-chat-botov#webpage",
+      "url": "https://kim-agency.ru/services/razrabotka-chat-botov",
+      "name": "Разработка чат-ботов",
+      "description": "Разрабатываем чат-ботов под задачи бизнеса: автоматизируем обращения, поддерживаем клиентов и помогаем увеличивать заявки через сайт и мессенджеры.",
+      "isPartOf": {
+        "@id": "https://kim-agency.ru/#website"
+      },
+      "about": {
+        "@id": "https://kim-agency.ru/#organization"
+      }
+    },
+    {
+      "@type": "WebPage",
+      "@id": "https://kim-agency.ru/services/razrabotka-mobilnogo-prilozheniya#webpage",
+      "url": "https://kim-agency.ru/services/razrabotka-mobilnogo-prilozheniya",
+      "name": "Разработка мобильного приложения",
+      "description": "KIM Agency помогает бизнесу сделать удобное приложение без разработки с нуля. Если нужно создать мобильное приложение для сайта, мы оцениваем задачи, аудиторию, интеграции и подбираем формат: нативная разработка, PWA или конструктор.",
+      "isPartOf": {
+        "@id": "https://kim-agency.ru/#website"
+      },
+      "about": {
+        "@id": "https://kim-agency.ru/#organization"
+      }
+    },
+    {
+      "@type": "WebPage",
+      "@id": "https://kim-agency.ru/services/seo#webpage",
+      "url": "https://kim-agency.ru/services/seo",
+      "name": "SEO оптимизация",
+      "description": "Комплексное продвижение сайта в Яндексе и Google: технический аудит, семантика, on-page оптимизация и контент. Работаем на рост органического трафика и заявок, а не на разовый всплеск позиций.",
+      "isPartOf": {
+        "@id": "https://kim-agency.ru/#website"
+      },
+      "about": {
+        "@id": "https://kim-agency.ru/#organization"
+      }
+    },
+    {
+      "@type": "WebPage",
+      "@id": "https://kim-agency.ru/services/serm#webpage",
+      "url": "https://kim-agency.ru/services/serm",
+      "name": "SERM",
+      "description": "Управляем репутацией бренда в поиске: отслеживаем упоминания, работаем с негативом и формируем позитивную выдачу по брендовым запросам, чтобы клиент видел объективную картину о компании",
+      "isPartOf": {
+        "@id": "https://kim-agency.ru/#website"
+      },
+      "about": {
+        "@id": "https://kim-agency.ru/#organization"
+      }
+    },
+    {
+      "@type": "WebPage",
+      "@id": "https://kim-agency.ru/services/smm#webpage",
+      "url": "https://kim-agency.ru/services/smm",
+      "name": "SMM продвижение",
+      "description": "Продвижение бренда в социальных сетях под задачу бизнеса: контент-стратегия, упаковка сообществ, таргетированная реклама и аналитика. Выстраиваем системное ведение соцсетей, которое приводит подписчиков, заявки и продажи.",
+      "isPartOf": {
+        "@id": "https://kim-agency.ru/#website"
+      },
+      "about": {
+        "@id": "https://kim-agency.ru/#organization"
+      }
+    },
+    {
+      "@type": "WebPage",
+      "@id": "https://kim-agency.ru/services/sozdanie-saytov#webpage",
+      "url": "https://kim-agency.ru/services/sozdanie-saytov",
+      "name": "Разработка сайтов",
+      "description": "Создание современных веб-решений для бизнеса: от аналитики и проектирования до запуска и SEO-подготовки",
+      "isPartOf": {
+        "@id": "https://kim-agency.ru/#website"
+      },
+      "about": {
+        "@id": "https://kim-agency.ru/#organization"
+      }
+    },
+    {
+      "@type": "WebPage",
+      "@id": "https://kim-agency.ru/services/tekhpodderzhka#webpage",
+      "url": "https://kim-agency.ru/services/tekhpodderzhka",
+      "name": "Услуги технической поддержки",
+      "description": "Услуги технической поддержки сайта нужны тогда, когда проект уже запущен, но его работа требует постоянного контроля. Для бизнеса это не второстепенная задача, а часть стабильной digital-инфраструктуры.",
+      "isPartOf": {
+        "@id": "https://kim-agency.ru/#website"
+      },
+      "about": {
+        "@id": "https://kim-agency.ru/#organization"
+      }
+    },
+    {
+      "@type": "WebPage",
+      "@id": "https://kim-agency.ru/services/ux-ui#webpage",
+      "url": "https://kim-agency.ru/services/ux-ui",
+      "name": "UI/UX дизайн",
+      "description": "Проектируем интерфейсы, которые помогают пользователям быстрее принимать решения и повышают конверсию бизнеса.",
+      "isPartOf": {
+        "@id": "https://kim-agency.ru/#website"
+      },
+      "about": {
+        "@id": "https://kim-agency.ru/#organization"
+      }
+    },
+    {
+      "@type": "WebPage",
+      "@id": "https://kim-agency.ru/services/vnedrenie-ii#webpage",
+      "url": "https://kim-agency.ru/services/vnedrenie-ii",
+      "name": "Внедрение ИИ и ИИ-агентов в бизнес",
+      "description": "Внедряем искусственный интеллект там, где он приносит деньги: автоматизируем повторяющиеся процессы, собираем ИИ-агентов под задачу и считаем эффект до старта",
+      "isPartOf": {
+        "@id": "https://kim-agency.ru/#website"
+      },
+      "about": {
+        "@id": "https://kim-agency.ru/#organization"
+      }
+    },
+    {
+      "@type": "WebPage",
+      "@id": "https://kim-agency.ru/services/web-design#webpage",
+      "url": "https://kim-agency.ru/services/web-design",
+      "name": "Веб-дизайн",
+      "description": "Проектируем дизайн сайтов под задачи бизнеса: UX-исследование, прототип, UI-макеты и адаптив под все устройства. Делаем сайт, который понятен пользователю и приводит заявки",
+      "isPartOf": {
+        "@id": "https://kim-agency.ru/#website"
+      },
+      "about": {
+        "@id": "https://kim-agency.ru/#organization"
+      }
+    },
+    {
+      "@type": "WebPage",
+      "@id": "https://kim-agency.ru/ux-ui#webpage",
+      "url": "https://kim-agency.ru/ux-ui",
+      "name": "Ux Ui",
+      "isPartOf": {
+        "@id": "https://kim-agency.ru/#website"
+      },
+      "about": {
+        "@id": "https://kim-agency.ru/#organization"
+      }
+    },
+    {
+      "@type": "WebPage",
+      "@id": "https://kim-agency.ru/vacancies#webpage",
+      "url": "https://kim-agency.ru/vacancies",
+      "name": "Vacancies",
+      "isPartOf": {
+        "@id": "https://kim-agency.ru/#website"
+      },
+      "about": {
+        "@id": "https://kim-agency.ru/#organization"
+      }
+    },
+    {
+      "@type": "WebPage",
+      "@id": "https://kim-agency.ru/work#webpage",
+      "url": "https://kim-agency.ru/work",
+      "name": "Work",
+      "isPartOf": {
+        "@id": "https://kim-agency.ru/#website"
+      },
+      "about": {
+        "@id": "https://kim-agency.ru/#organization"
+      }
+    },
+    {
+      "@type": "BlogPosting",
+      "@id": "https://kim-agency.ru/blogs/pochemu-lidov-mnogo-a-prodazh-net#blogposting",
+      "mainEntityOfPage": {
+        "@id": "https://kim-agency.ru/blogs/pochemu-lidov-mnogo-a-prodazh-net#webpage"
+      },
+      "headline": "Почему лидов много, а продаж нет: где ломается связка маркетинга и продаж",
+      "description": "Почему заявок много, а выручки нет: лид сам по себе ничего не значит. Где теряются деньги после лида, какие метрики смотреть вместе и что починить в первый месяц.",
+      "datePublished": "2026-10-05",
+      "author": {
+        "@id": "https://kim-agency.ru/#organization"
+      },
+      "publisher": {
+        "@id": "https://kim-agency.ru/#organization"
+      }
+    },
+    {
+      "@type": "BlogPosting",
+      "@id": "https://kim-agency.ru/blogs/chem-ii-agent-otlichaetsya-ot-chat-bota#blogposting",
+      "mainEntityOfPage": {
+        "@id": "https://kim-agency.ru/blogs/chem-ii-agent-otlichaetsya-ot-chat-bota#webpage"
+      },
+      "headline": "Чем ИИ-агент отличается от чат-бота: простое объяснение",
+      "description": "Чем ИИ-агент отличается от чат-бота: чат-бот работает по сценариям, ИИ-агент понимает контекст, работает с данными и выполняет цепочки действий. Таблица сравнения и матрица автономности.",
+      "datePublished": "2026-10-05",
+      "author": {
+        "@id": "https://kim-agency.ru/#organization"
+      },
+      "publisher": {
+        "@id": "https://kim-agency.ru/#organization"
+      }
+    },
+    {
+      "@type": "BlogPosting",
+      "@id": "https://kim-agency.ru/blogs/kak-vnedrit-ii-v-biznes#blogposting",
+      "mainEntityOfPage": {
+        "@id": "https://kim-agency.ru/blogs/kak-vnedrit-ii-v-biznes#webpage"
+      },
+      "headline": "Как внедрить ИИ в бизнес: с чего начать в 2026 году",
+      "description": "Как внедрить ИИ в бизнес: начинать не с выбора нейросети, а с процесса. Пошаговый план пилота, какие процессы брать первыми, красные флаги и как считать окупаемость.",
+      "datePublished": "2026-10-05",
+      "author": {
+        "@id": "https://kim-agency.ru/#organization"
+      },
+      "publisher": {
+        "@id": "https://kim-agency.ru/#organization"
+      }
+    },
+    {
+      "@type": "BlogPosting",
+      "@id": "https://kim-agency.ru/blogs/razrabotka-interaktivnogo-saita#blogposting",
+      "mainEntityOfPage": {
+        "@id": "https://kim-agency.ru/blogs/razrabotka-interaktivnogo-saita#webpage"
+      },
+      "headline": "Разработка интерактивного сайта: что это и чем полезно для бизнеса",
+      "description": "Разработка интерактивного сайта — проектирование пути пользователя к заявке: квизы, калькуляторы, конфигураторы и другие механики для бизнеса.",
+      "datePublished": "2026-05-27",
+      "author": {
+        "@id": "https://kim-agency.ru/#organization"
+      },
+      "publisher": {
+        "@id": "https://kim-agency.ru/#organization"
+      }
+    },
+    {
+      "@type": "BlogPosting",
+      "@id": "https://kim-agency.ru/blogs/seo-i-kontekstnaya-reklama#blogposting",
+      "mainEntityOfPage": {
+        "@id": "https://kim-agency.ru/blogs/seo-i-kontekstnaya-reklama#webpage"
+      },
+      "headline": "SEO и контекстная реклама, что лучше для продвижения - маркетинговое агентство K.KIM",
+      "description": "✅ SEO и контекстная реклама — что лучше для продвижения сайта и привлечения клиентов? Продвижение агентством: аудит, оптимизация сайта, Яндекс Директ, стратегии, сроки, бюджет, стоимость, заявки и продажи. Digital-агентство К КИМ. Оказываем техподдержку, ведение, сопровождение и развитие интернет ресурса.",
+      "datePublished": "2026-03-18",
+      "author": {
+        "@id": "https://kim-agency.ru/#organization"
+      },
+      "publisher": {
+        "@id": "https://kim-agency.ru/#organization"
+      }
+    }
+  ]
+}

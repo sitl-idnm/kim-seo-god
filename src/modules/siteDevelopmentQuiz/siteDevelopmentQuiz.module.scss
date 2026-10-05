@@ -1,0 +1,309 @@
+@use '@styles/mixins' as *;
+@use '../shared/quizStepper.mobile' as quizMobile;
+
+.root {
+  @include quizMobile.quiz-stepper-mobile;
+  max-width: 1312px;
+  margin: 0 auto;
+  padding: 56px 0 80px;
+
+  @include tablet {
+    padding: 40px 12px;
+  }
+
+  @include tablet-small {
+    padding: 32px 8px;
+  }
+}
+
+.container {
+  width: 100%;
+  display: flex;
+  gap: 48px;
+  padding: 40px 48px;
+  border-radius: 20px;
+  background-color: var(--color-black, #16181b);
+  box-sizing: border-box;
+
+  @include tablet {
+    flex-direction: column;
+    gap: 32px;
+    padding: 32px 24px;
+  }
+
+  @include tablet-small {
+    padding: 24px 16px;
+    border-radius: 16px;
+  }
+}
+
+.header {
+  flex: 1;
+  text-align: left;
+}
+
+.title {
+  font-family: var(--font-inter);
+  font-size: 48px;
+  font-weight: 500;
+  line-height: 130%;
+  margin: 0 0 24px;
+  color: var(--color-white-default, #fff);
+
+  @include tablet {
+    font-size: 32px;
+    margin-bottom: 16px;
+  }
+
+  @include tablet-small {
+    font-size: 24px;
+  }
+}
+
+.subtitle {
+  font-family: var(--font-manrope);
+  font-size: 16px;
+  line-height: 160%;
+  color: rgba(255, 255, 255, 0.72);
+  margin: 0;
+  max-width: 420px;
+
+  @include tablet-small {
+    font-size: 14px;
+  }
+}
+
+.content {
+  flex: 1;
+  min-height: 400px;
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+
+  @include tablet {
+    min-height: 300px;
+    gap: 24px;
+  }
+}
+
+.progress {
+  position: relative;
+  height: 10px;
+  background: rgba(255, 255, 255, 0.18);
+  border-radius: 10px;
+  margin-top: 26px;
+  margin-bottom: 8px;
+}
+
+.progressBar {
+  position: absolute;
+  left: 0;
+  top: 0;
+  height: 100%;
+  background: #cb172c;
+  border-radius: 10px;
+  transition: width 0.3s ease;
+}
+
+.stepCount {
+  position: absolute;
+  right: 0;
+  top: -25px;
+  font-size: 14px;
+  color: rgba(255, 255, 255, 0.55);
+}
+
+.form {
+  margin-bottom: 24px;
+}
+
+.step {
+  opacity: 0;
+  transform: translateX(20px);
+  transition: all 0.3s ease;
+
+  &.active {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+.question {
+  font-family: var(--font-inter);
+  font-size: 22px;
+  font-weight: 600;
+  line-height: 140%;
+  margin: 0 0 24px;
+  color: var(--color-white-default, #fff);
+
+  @include tablet-small {
+    font-size: 18px;
+    margin-bottom: 16px;
+  }
+}
+
+.options {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.option {
+  position: relative;
+  display: flex;
+  align-items: flex-start;
+  padding: 16px;
+  background: #fff;
+  border: 1px solid #e5e7eb;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+
+  &:hover {
+    border-color: #cb172c;
+  }
+}
+
+.radio {
+  position: absolute;
+  opacity: 0;
+  cursor: pointer;
+  height: 0;
+  width: 0;
+
+  &:checked + .checkmark {
+    border-color: #cb172c;
+    background: #cb172c;
+
+    &:after {
+      display: block;
+    }
+  }
+}
+
+.checkmark {
+  position: relative;
+  height: 20px;
+  width: 20px;
+  min-width: 20px;
+  border: 2px solid #d1d5db;
+  border-radius: 50%;
+  margin-right: 12px;
+  margin-top: 2px;
+  transition: all 0.2s ease;
+
+  &:after {
+    content: '';
+    position: absolute;
+    display: none;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: #fff;
+  }
+}
+
+.text {
+  font-family: var(--font-manrope);
+  font-size: 16px;
+  line-height: 150%;
+  color: #111827;
+
+  @include tablet-small {
+    font-size: 14px;
+  }
+}
+
+.controls {
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.backButton,
+.nextButton {
+  padding: 12px 24px;
+  border-radius: 8px;
+  font-size: 16px;
+  font-weight: 500;
+  transition: all 0.2s ease;
+  min-width: 120px;
+  cursor: pointer;
+}
+
+.backButton {
+  background: transparent;
+  border: 1px solid rgba(255, 255, 255, 0.35);
+  color: rgba(255, 255, 255, 0.85);
+
+  &:hover:not(:disabled) {
+    border-color: #cb172c;
+    color: #fff;
+  }
+
+  &:disabled {
+    opacity: 0.4;
+    cursor: not-allowed;
+  }
+}
+
+.nextButton {
+  background: #cb172c;
+  color: #fff;
+  border: none;
+
+  &:hover:not(:disabled) {
+    filter: brightness(0.95);
+  }
+
+  &:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+  }
+}
+
+.formStep {
+  .question {
+    margin-bottom: 24px;
+  }
+}
+
+.quizForm {
+  width: 100%;
+
+  :global(input:not([type='submit']):not([type='checkbox'])) {
+    background-color: #fafafa;
+    color: #16181b;
+    border-color: #e7e8ea;
+  }
+
+  /* Плавающие подписи полей — тёмные на светлом фоне инпутов */
+  :global([class*='form_wrapper']:not([class*='checkbox']) [class*='placeholder']) {
+    color: rgba(22, 24, 27, 0.45);
+  }
+
+  :global(
+      input:not([type='submit']):not([type='checkbox']):focus
+        ~ [class*='placeholder']
+    ),
+  :global(
+      input:not([type='submit']):not([type='checkbox']):not(:placeholder-shown)
+        ~ [class*='placeholder']
+    ) {
+    color: #16181b;
+    opacity: 0.7;
+  }
+
+  /* Чекбокс согласия — на тёмной подложке */
+  :global([class*='form_wrapper_checkbox']) label {
+    color: rgba(255, 255, 255, 0.9);
+  }
+
+  :global([class*='policyLink']) {
+    color: #f87171;
+  }
+}
+

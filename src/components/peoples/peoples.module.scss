@@ -1,0 +1,193 @@
+/* stylelint-disable selector-class-pattern */
+@use "@styles/func";
+@use "@styles/mixins" as *;
+@use "@styles/variables";
+
+.root {
+	display: flex;
+}
+
+.peoples {
+	position: relative;
+	display: flex;
+	flex-direction: column;
+	gap: 42px;
+	max-width: 1230px;
+	margin: 0 auto;
+	align-items: center;
+	text-align: center;
+
+	@include desktop {
+		max-width: 1050px;
+	}
+
+	@include tablet {
+		font-size: 42px;
+	}
+
+	@include tablet-small {
+		text-align: left;
+		padding: 0 12px;
+	}
+
+	&__title {
+		font-size: 54px;
+		line-height: 120%;
+		font-weight: 500;
+
+		@include tablet {
+			font-size: 42px;
+		}
+
+		@include tablet-small {
+			font-size: 28px;
+		}
+	}
+
+	&__image {
+		@include desktop {
+			width: 765px;
+			height: 470px;
+		}
+
+		@include tablet {
+			width: 560px;
+			height: 350px;
+		}
+
+		@include tablet-small {
+			width: 340px;
+			height: 205px;
+		}
+
+		transition: opacity 0.3s ease;
+		margin-bottom: -6px;
+
+		&_container {
+			position: relative;
+			cursor: pointer;
+
+			// &:hover {
+			// 	.peoples__image:not(.peoples__image_absolute) {
+			// 		opacity: 0;
+			// 	}
+
+			// 	.peoples__image_absolute {
+			// 		opacity: 1;
+			// 	}
+			// }
+		}
+
+		&_absolute {
+			position: absolute;
+			bottom: 0;
+			max-width: 92%;
+			height: auto;
+			left: 50%;
+			transform: translateX(-50%);
+			opacity: 0;
+			pointer-events: none;
+			transition: opacity 0.3s ease;
+		}
+	}
+
+	&__card {
+		display: flex;
+		flex-direction: column;
+		gap: 24px;
+		position: absolute;
+		z-index: 10;
+
+		@include tablet {
+			gap: 16px;
+		}
+
+		@include tablet-small {
+			position: static;
+		}
+
+		&__button {
+			width: 228px;
+
+			@include tablet {
+				width: 160px;
+
+				font-size: 12px;
+			}
+		}
+
+		&__button_2 {
+			width: 304px;
+
+			@include tablet {
+				width: 160px;
+
+				font-size: 12px;
+			}
+		}
+
+		button {
+			@include tablet {
+				width: 160px;
+				height: 46px;
+
+				padding: 14px 18px;
+				font-weight: 600;
+				font-size: 12px;
+			}
+		}
+
+		&__left {
+			text-align: right;
+			left: 0;
+			bottom: 90px;
+
+			@include tablet-small {
+				align-self: flex-start;
+				text-align: left;
+			}
+		}
+
+		&__right {
+			text-align: left;
+			right: 0;
+			bottom: 90px;
+
+			@include tablet-small {
+				align-self: flex-end;
+				text-align: right;
+			}
+		}
+
+		&__title {
+			font-size: 22px;
+			line-height: 150%;
+			font-weight: 600;
+			color: black;
+
+			@include desktop {
+				font-size: 18px;
+			}
+
+			@include tablet {
+				font-size: 16px;
+			}
+		}
+
+		&__text {
+			font-size: 18px;
+			line-height: 150%;
+			font-weight: 500;
+			color: black;
+			opacity: 0.5;
+
+			@include desktop {
+				font-size: 16px;
+			}
+
+			@include tablet {
+				font-size: 14px;
+			}
+		}
+	}
+}

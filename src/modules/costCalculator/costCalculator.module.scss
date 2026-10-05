@@ -1,0 +1,81 @@
+@use '@styles/func';
+@use '@styles/mixins' as *;
+@use '@styles/variables';
+
+.root {
+  margin-top: 24px;
+  margin-bottom: 56px;
+  background: #F7F7F8;
+  border-radius: 24px;
+  padding: 28px 24px;
+
+  @include tablet {
+    padding: 22px 16px;
+    border-radius: 18px;
+  }
+
+  @include tablet-small {
+    margin-top: 24px;
+    margin-bottom: 32px;
+    padding: 18px 12px;
+  }
+}
+
+.title {
+  margin-top: 0;
+  margin-bottom: 12px;
+}
+
+.text {
+  margin: 0 0 16px;
+  font-family: var(--font-manrope);
+  font-size: 16px;
+  line-height: 1.6;
+  color: #373737;
+
+  @include tablet-small {
+    font-size: 14px;
+    margin-bottom: 10px;
+  }
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 12px;
+  margin-bottom: 14px;
+
+  @include tablet-small {
+    grid-template-columns: 1fr;
+    gap: 10px;
+    margin-bottom: 10px;
+  }
+}
+
+.card {
+  background: #FFFFFF;
+  border: 1px solid #E7E8EA;
+  border-radius: 14px;
+  padding: 16px 14px;
+}
+
+.cardTitle {
+  margin: 0 0 10px 0;
+  font-family: var(--font-inter);
+  font-weight: 600;
+  font-size: 16px;
+  color: #121212;
+}
+
+.list {
+  margin: 0;
+  padding-left: 18px;
+  list-style: disc;
+}
+
+.list li {
+  font-family: var(--font-manrope);
+  font-size: 14px;
+  line-height: 1.6;
+  color: #373737;
+}

@@ -1,0 +1,111 @@
+@use "@styles/func";
+@use "@styles/mixins" as *;
+@use "@styles/variables";
+
+.root {
+  max-width: 1312px;
+  margin: 0 auto;
+
+  @include tablet {
+    margin: 0 10px;
+  }
+}
+
+.container {
+  width: 100%;
+}
+
+.header {
+  display: flex;
+  justify-content: flex-start;
+  gap: 32px;
+  align-items: center;
+  margin-bottom: 48px;
+
+  @include tablet {
+    margin-bottom: 32px;
+  }
+}
+
+.title {
+  font-family: var(--font-inter);
+  font-size: 54px;
+  font-weight: 500;
+  line-height: 130%;
+  margin: 0;
+  color: var(--color-black);
+
+  @include tablet {
+    font-size: 32px;
+  }
+}
+
+.controls {
+  display: flex;
+  gap: 12px;
+}
+
+.control {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background: #FFFFFF;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  padding: 0;
+
+  &:hover {
+    opacity: 0.8;
+    background: #FEF2F2;
+
+    svg path {
+      stroke: #FFFFFF;
+    }
+  }
+
+  &:active {
+    background: #FEE2E2;
+  }
+
+  svg {
+    width: 48px;
+    height: 48px;
+
+    path {
+      stroke: #FFFFFF;
+      transition: stroke 0.2s ease;
+    }
+  }
+}
+
+.reviews {
+  display: flex;
+  gap: 28px;
+  overflow-x: auto;
+  scroll-behavior: smooth;
+  scroll-snap-type: x mandatory;
+  scroll-padding-left: 4px;
+  padding: 4px 4px 80px;
+  margin: 0 -4px;
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+
+  @include tablet {
+    padding: 4px 4px 40px;
+  }
+
+  @include tablet-small {
+    padding: 4px 4px 24px;
+  }
+
+  &::-webkit-scrollbar {
+    display: none;
+  }
+
+  > * {
+    scroll-snap-align: start;
+  }
+}

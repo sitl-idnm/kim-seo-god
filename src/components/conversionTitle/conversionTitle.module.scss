@@ -1,0 +1,89 @@
+@use "@styles/func";
+@use "@styles/mixins" as *;
+@use "@styles/variables";
+
+.root {
+	display: flex;
+	position: relative;
+	margin-bottom: 115px;
+
+	@include tablet-small {
+		margin-bottom: 50px;
+	}
+
+	&__img {
+		position: absolute;
+		left: -30px;
+		top: 40px;
+
+		@include tablet {
+			top: 20px;
+		}
+
+		@include tablet-small {
+			top: 10px;
+			left: -10px;
+		}
+
+		svg {
+			width: 170px;
+			height: 170px;
+
+			@include tablet {
+				width: 120px;
+				height: 120px;
+			}
+
+			@include tablet-small {
+				width: 70px;
+				height: 70px;
+			}
+		}
+	}
+
+	&__title {
+		font-family: var(--font-inter);
+		font-size: 52px;
+		font-weight: 500;
+		line-height: 120%;
+
+		display: flex;
+		flex-direction: column;
+		gap: 15px;
+
+		@include tablet {
+			font-size: 40px;
+			gap: 2px;
+		}
+
+		@include tablet-small {
+			font-size: 22px;
+			gap: 2px;
+		}
+	}
+}
+
+.center {
+	margin-left: 78px;
+
+	@include tablet {
+		margin-left: 40px;
+	}
+
+	@include tablet-small {
+		margin-left: 30px;
+	}
+}
+
+.bottom {
+	margin-left: 165px;
+	color: #CB172C;
+
+	@include tablet {
+		margin-left: 100px;
+	}
+
+	@include tablet-small {
+		margin-left: 65px;
+	}
+}

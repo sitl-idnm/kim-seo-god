@@ -1,0 +1,120 @@
+@use "@styles/func";
+@use "@styles/mixins" as *;
+@use "@styles/variables" as *;
+
+.root {
+  background-color: #FAFAFA;
+  padding: 24px;
+  border-radius: 10px;
+  border: 1px solid var(--color-gray-border);
+  margin-bottom: 20px;
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 24px;
+}
+
+.title {
+  font-size: 38px;
+  line-height: auto;
+  font-weight: 500;
+
+	@include tablet {
+		font-size: 28px;
+	}
+
+	@include tablet-small {
+		font-size: 22px;
+	}
+}
+
+.applyButton {
+  // Стили для кнопки, если нужно переопределить стандартные
+}
+
+.accordionItem {
+  border-top: 1px solid var(--color-gray-border);
+  padding-top: 16px;
+  margin-top: 16px;
+
+  &:first-of-type {
+    // Можно убрать верхнюю границу у первого элемента, если header уже создает отступ
+  }
+}
+
+.accordionHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  background: none;
+  border: none;
+  padding: 8px 0; // Добавляем немного отступа
+  cursor: pointer;
+  text-align: left;
+	font-size: 26px;
+  font-weight: 500;
+
+	@include tablet {
+		font-size: 22px;
+	}
+
+	@include tablet-small {
+		font-size: 20px;
+	}
+}
+
+.icon {
+  width: 20px; // Размер иконки
+  height: 20px;
+  transition: transform 0.3s ease;
+  transform: rotate(0deg);
+}
+
+.iconOpen {
+  transform: rotate(180deg);
+}
+
+.accordionContent {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.4s ease-out, padding 0.4s ease-out;
+  padding: 0 16px; // Отступы для контента
+
+	font-size: 22px;
+	line-height: 1.7;
+	font-weight: 400;
+
+	@include tablet {
+		font-size: 20px;
+	}
+
+	@include tablet-small {
+		font-size: 18px;
+	}
+
+
+
+  ul {
+    list-style: disc; // Или none, если не нужны маркеры
+    padding-left: 20px; // Отступ для стандартных маркеров
+    margin: 0;
+  }
+
+  li {
+    margin-bottom: 8px;
+    line-height: 1.6;
+
+    &:last-child {
+      margin-bottom: 0;
+    }
+  }
+}
+
+.contentOpen {
+  max-height: 500px; // Примерная максимальная высота, должна быть больше ожидаемой высоты контента
+  padding: 16px; // Отступы для открытого контента
+}

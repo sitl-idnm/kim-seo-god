@@ -1,0 +1,134 @@
+@use "@styles/func";
+@use "@styles/mixins" as *; // Возвращаем импорт миксинов
+@use "@styles/variables" as *;
+
+.root {
+  max-width: 1320px; // Ограничиваем максимальную ширину
+  margin: 0 auto 60px; // Центрируем и добавляем отступ снизу
+
+  @include tablet { // Замена @media (max-width: 1024px)
+    padding: 0 20px;
+    margin-bottom: 40px;
+  }
+
+  @include tablet-small { // Замена @media (max-width: 767px)
+    padding: 0 10px;
+  }
+}
+
+.mainTitle {
+  // Стили для опционального заголовка модуля
+  font-size: 48px; // Пример для h2
+  font-weight: 600; // Пример для h2
+  line-height: 1.2; // Пример для h2
+  margin: 0 0 32px; // Добавили margin-bottom, убрали остальные
+}
+
+.categoriesContainer {
+  display: flex;
+  flex-wrap: wrap; // Позволяем кнопкам переноситься
+  gap: 12px; // Промежуток между кнопками
+  margin-bottom: 24px; // Отступ под категориями
+
+  @include tablet-small { // Замена @media (max-width: 767px)
+    gap: 8px;
+    margin-bottom: 16px;
+  }
+}
+
+.categoryButton {
+  padding: 10px 20px;
+  border-radius: 30px; // Сильно скругленные углы
+  border: 1px solid #e5e7eb; // Замена var(--color-gray-border)
+  background-color: #ffffff; // Замена var(--color-white-default)
+  color: #111827; // Замена var(--color-black) - предположим темно-серый
+  cursor: pointer;
+  transition: background-color 0.2s ease, color 0.2s ease, border-color 0.2s ease;
+  font-size: 16px; // Пример для text
+  line-height: 1.6; // Пример для text
+  font-weight: 500;
+
+  &:hover {
+    background-color: #f0f0f0; // Легкий фон при наведении
+    border-color: #d1d1d1;
+  }
+
+  &.active {
+    background-color: #111827; // Замена var(--color-black)
+    color: #ffffff; // Замена var(--color-white-default)
+    border-color: #111827; // Замена var(--color-black)
+  }
+
+  @include tablet-small { // Замена @media (max-width: 767px)
+    padding: 8px 16px;
+    font-size: 14px;
+  }
+}
+
+.themesContainer {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px; // Меньший промежуток
+  margin-bottom: 24px; // Отступ как у категорий
+
+  @include tablet-small { // Замена @media (max-width: 767px)
+    gap: 6px;
+    margin-bottom: 16px;
+  }
+}
+
+.themeButton {
+  padding: 6px 16px; // Меньшие отступы
+  border-radius: 20px; // Чуть менее скругленные
+  border: 1px solid #e5e7eb; // Замена var(--color-gray-border)
+  background-color: #ffffff; // Замена var(--color-white-default)
+  color: #111827; // Замена var(--color-black)
+  cursor: pointer;
+  transition: background-color 0.2s ease, color 0.2s ease, border-color 0.2s ease;
+  font-size: 14px; // Пример для text-small
+  line-height: 1.5; // Пример для text-small
+  font-weight: 500;
+
+  &:hover {
+    background-color: #f0f0f0;
+    border-color: #d1d1d1;
+  }
+
+  &.active {
+    background-color: #111827; // Замена var(--color-black)
+    color: #ffffff; // Замена var(--color-white-default)
+    border-color: #111827; // Замена var(--color-black)
+  }
+
+  @include tablet-small { // Замена @media (max-width: 767px)
+    padding: 5px 12px;
+    font-size: 13px;
+  }
+}
+
+.description {
+  font-size: 16px; // Пример для text
+  line-height: 1.6; // Пример для text
+  color: #6b7280; // Замена var(--color-gray-text)
+  max-width: 800px; // Ограничиваем ширину описания
+  margin-bottom: 40px; // Отступ под описанием
+
+  @include tablet-small { // Замена @media (max-width: 767px)
+    margin-bottom: 24px;
+  }
+}
+
+.reviewsGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 416px)); // Адаптивная сетка отзывов
+  gap: 24px;
+
+  > div {
+    max-width: 416px;
+  }
+
+  @include tablet-small { // Замена @media (max-width: 767px)
+    grid-template-columns: 1fr; // Один отзыв в ряд на мобильных
+    gap: 16px;
+  }
+}

@@ -1,0 +1,38 @@
+@use "@styles/func";
+@use "@styles/mixins" as *;
+@use "@styles/variables";
+
+.root {
+	display: flex;
+	flex-direction: column;
+	gap: 56px;
+	max-width: 1312px;
+	width: 100%;
+	margin: 0 auto;
+	position: relative;
+
+	padding-top: 70px;
+
+	& div:nth-child(2) > div > div > div:first-child {
+		max-width: 600px;
+		margin-top: -64px;
+
+		@include desktop {
+			margin-top: 0;
+		}
+	}
+
+	@include desktop {
+		overflow-x: hidden;
+		overflow-y: visible;
+		padding: 70px 36px;
+	}
+
+	@include tablet {
+		padding: 70px 12px;
+	}
+
+	@include tablet-small {
+		gap: 32px;
+	}
+}

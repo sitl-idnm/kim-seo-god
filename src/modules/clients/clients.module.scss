@@ -1,0 +1,87 @@
+@use "@styles/func";
+@use "@styles/mixins" as *;
+@use "@styles/variables";
+
+.root {
+  max-width: 1312px;
+  margin: 0 auto;
+  padding: 80px 0;
+
+  @include tablet {
+    padding: 40px 12px;
+  }
+
+  @include tablet-small {
+    padding: 32px 8px;
+  }
+}
+
+.container {
+  width: 100%;
+}
+
+.title {
+  font-size: 54px;
+  font-family: var(--font-inter);
+  font-weight: 500;
+  line-height: 120%;
+  margin-bottom: 16px;
+  text-align: left;
+
+  @include tablet {
+    font-size: 32px;
+    margin-bottom: 12px;
+  }
+}
+
+.description {
+  font-size: 20px;
+  line-height: 150%;
+  color: #666;
+  margin-bottom: 48px;
+
+  @include tablet {
+    font-size: 16px;
+    margin-bottom: 32px;
+
+    br {
+      display: none;
+    }
+  }
+}
+
+.clientsList {
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  gap: 24px;
+  align-items: center;
+
+  @include tablet {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+  }
+
+  @include tablet-small {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 16px;
+  }
+}
+
+.clientItem {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 12px;
+  transition: transform 0.3s ease;
+
+  &:hover {
+    transform: translateY(-4px);
+  }
+}
+
+.clientLogo {
+  width: 100%;
+  height: auto;
+  max-height: 112px;
+  object-fit: contain;
+}

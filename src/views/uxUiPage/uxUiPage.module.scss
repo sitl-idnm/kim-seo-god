@@ -1,0 +1,306 @@
+@use '@styles/mixins' as *;
+@use '@styles/spacing-system' as spacing;
+
+.root {
+  max-width: 1312px;
+  margin: 0 auto;
+}
+
+.introBlock {
+  margin-bottom: spacing.$section-gap-desktop !important;
+
+  :global([class*='box']) {
+    gap: 10px;
+  }
+
+  :global([class*='box__text']) {
+    margin-bottom: 2px;
+    text-align: center;
+  }
+}
+
+.introButtonsWrap {
+  display: flex;
+  justify-content: center;
+  margin-top: 4px;
+}
+
+.introHeroButton {
+  width: 100%;
+
+  &::before,
+  &::after {
+    white-space: normal !important;
+    text-align: center;
+    height: 56px;
+    line-height: 1.2;
+  }
+}
+
+
+.sectionTextBlock {
+  margin-bottom: spacing.$section-gap-desktop !important;
+
+  :global([class*='title']) {
+    margin: 0 0 spacing.$text-gap-desktop;
+  }
+
+  :global([class*='text']) {
+    margin: 0;
+  }
+
+  :global([class*='text'] + [class*='text']) {
+    margin-top: 16px;
+  }
+}
+
+.introTitleSmall {
+  max-width: 1100px;
+  text-align: center;
+  font-size: 60px !important;
+  padding-left: 16px;
+  padding-right: 16px;
+  box-sizing: border-box;
+
+  @include tablet {
+    font-size: 48px !important;
+  }
+
+  @include tablet-small {
+    font-size: 24px !important;
+    line-height: 1.25 !important;
+  }
+}
+
+.formBlock {
+  margin-top: 0;
+  margin-bottom: spacing.$section-gap-desktop;
+
+  :global([class*='form']) {
+    @include tablet {
+      min-width: 0;
+      width: 100%;
+      margin-left: 0;
+      margin-right: 0;
+    }
+  }
+}
+
+.orderFormBlock {
+  @include tablet-small {
+    margin-left: 8px;
+    margin-right: 8px;
+  }
+}
+
+.afterOrderFormText {
+  margin-top: 0 !important;
+}
+
+.alsoServicesWrap {
+  margin: 0 0 spacing.$section-gap-desktop;
+
+  :global([class*='container']) {
+    padding-left: 0;
+    padding-right: 0;
+    margin-bottom: 0;
+    gap: 24px;
+  }
+
+  :global([class*='services__description']) {
+    display: none;
+  }
+}
+
+.faqBlock {
+  @include tablet-small {
+    :global([class*='root']) {
+      padding-left: 8px;
+      padding-right: 8px;
+    }
+  }
+}
+
+.finalFormBlock {
+  margin-bottom: 44px;
+
+  @include tablet-small {
+    margin-left: 8px;
+    margin-right: 8px;
+  }
+}
+
+.caseBlock {
+  margin-left: 0;
+  margin-right: 0;
+}
+
+.workIncludesCards {
+  margin-bottom: spacing.$section-gap-desktop;
+
+  :global([class*='container']) {
+    padding-bottom: 0 !important;
+  }
+
+  :global([class*='advantageItem']) {
+    padding: 20px !important;
+    gap: 16px !important;
+  }
+
+  @include tablet-small {
+    :global([class*='container']) {
+      padding-left: 8px;
+      padding-right: 8px;
+    }
+
+    :global([class*='advantageTitle']) {
+      display: -webkit-box;
+      -webkit-line-clamp: 3;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+    }
+  }
+}
+
+.benefitsCards {
+  margin-bottom: spacing.$section-gap-desktop;
+
+  :global([class*='advantageItem']) {
+    padding: 20px !important;
+    gap: 16px !important;
+  }
+
+  @include tablet-small {
+    :global([class*='container']) {
+      padding-left: 8px;
+      padding-right: 8px;
+    }
+
+    :global([class*='titleWrapper']) {
+      justify-content: flex-start;
+    }
+
+    :global([class*='title']) {
+      text-align: left;
+      padding-left: 0;
+      padding-right: 0;
+    }
+  }
+}
+
+.tech {
+  margin-top: 0;
+  margin-bottom: spacing.$section-gap-desktop;
+  background: #f7f7f8;
+  border-radius: 24px;
+  padding: 28px 24px;
+}
+
+.techTitle {
+  margin-top: 0;
+  margin-bottom: 12px;
+}
+
+.techGrid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 12px;
+  margin-bottom: 14px;
+}
+
+.techText {
+  margin: 0 0 16px;
+  font-family: var(--font-manrope);
+  font-size: 16px;
+  line-height: 1.6;
+  color: #373737;
+}
+
+.techCard {
+  background: #fff;
+  border: 1px solid #e7e8ea;
+  border-radius: 14px;
+  padding: 16px 14px;
+}
+
+.techCardTitle {
+  margin: 0 0 10px;
+  font-family: var(--font-inter);
+  font-weight: 600;
+  font-size: 16px;
+  color: #121212;
+}
+
+.techList {
+  margin: 0;
+  padding-left: 18px;
+  list-style: disc;
+}
+
+.techList li {
+  font-family: var(--font-manrope);
+  font-size: 14px;
+  line-height: 1.6;
+  color: #373737;
+}
+
+@include tablet-small {
+  .sectionTextBlock {
+    margin-bottom: spacing.$section-gap-mobile !important;
+
+    :global([class*='title']) {
+      margin-bottom: spacing.$text-gap-mobile;
+    }
+  }
+
+  .introBlock,
+  .formBlock,
+  .workIncludesCards,
+  .benefitsCards,
+  .tech,
+  .alsoServicesWrap {
+    margin-bottom: spacing.$section-gap-mobile;
+  }
+
+  .afterOrderFormText {
+    margin-top: 0 !important;
+  }
+
+  .alsoServicesWrap {
+    margin: 10px 8px 24px;
+
+    :global([class*='container']) {
+      padding-left: 0;
+      padding-right: 0;
+    }
+
+    :global([class*='root']) {
+      display: flex;
+      flex-direction: column;
+    }
+
+    :global([class*='service']) {
+      width: 100% !important;
+      max-width: 100% !important;
+    }
+
+    :global([class*='service__content__description']) {
+      display: -webkit-box;
+      -webkit-line-clamp: 5;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+    }
+  }
+
+  .tech {
+    padding: 18px 12px;
+    border-radius: 18px;
+    margin-left: 8px;
+    margin-right: 8px;
+  }
+
+  .techText {
+    font-size: 14px;
+    margin-bottom: 10px;
+  }
+}

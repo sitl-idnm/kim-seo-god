@@ -1,0 +1,1 @@
+export { default as MarketingModal } from './marketingModal'

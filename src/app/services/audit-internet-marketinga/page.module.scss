@@ -1,0 +1,277 @@
+@use '@styles/func';
+@use '@styles/mixins' as *;
+@use '@styles/variables';
+
+.root {
+  max-width: 1312px;
+  margin: 0 auto;
+
+  @include tablet {
+    padding: 0 8px;
+    box-sizing: border-box;
+
+    :global([class*='standartText_root']) {
+      padding-left: 0;
+      padding-right: 0;
+    }
+
+    :global([class*='why_root']) :global([class*='container']) {
+      padding-left: 0;
+      padding-right: 0;
+    }
+  }
+}
+
+.introBlock {
+  margin-bottom: 50px !important;
+
+  :global([class*='box']) {
+    gap: 10px;
+  }
+
+  :global([class*='box__text']) {
+    margin-bottom: 2px;
+  }
+}
+
+.introButtonsWrap {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  gap: 12px;
+  justify-content: center;
+  align-items: center;
+  margin-top: 4px;
+
+  & > * {
+    width: auto !important;
+    max-width: 320px;
+    flex: 0 0 auto;
+  }
+}
+
+.introHeroButton {
+  width: 100%;
+
+  &::before,
+  &::after {
+    white-space: normal !important;
+    text-align: center;
+    height: 56px;
+    line-height: 1.2;
+  }
+}
+
+.introTitleSmall {
+  max-width: 1100px;
+  text-align: center;
+  font-size: 60px !important;
+  padding-left: 16px;
+  padding-right: 16px;
+  box-sizing: border-box;
+
+  @include tablet {
+    font-size: 48px !important;
+  }
+
+  @include tablet-small {
+    font-size: 24px !important;
+    line-height: 1.25 !important;
+  }
+}
+
+.solutions {
+  margin: 0 auto 40px;
+  max-width: 1312px;
+}
+
+.solutionsTitle {
+  margin: 0 0 18px;
+  font-family: var(--font-inter);
+  font-size: 54px;
+  font-weight: 500;
+  line-height: 1.2;
+  color: #16181B;
+}
+
+.solutionsText {
+  margin: 0 0 20px;
+  font-family: var(--font-manrope);
+  font-size: 16px;
+  line-height: 1.55;
+  color: rgba(22, 24, 27, 0.62);
+  max-width: 1200px;
+}
+
+.solutionsCards {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 20px;
+}
+
+.solutionsCard {
+  background: #F7F7F8;
+  border-radius: 20px;
+  padding: 24px;
+}
+
+.solutionsCard:first-child {
+  background: #18181B;
+}
+
+.solutionsCard:last-child {
+  background: #CB172C;
+}
+
+.solutionsCardTitle {
+  margin: 0 0 14px;
+  font-family: var(--font-inter);
+  font-size: 32px;
+  font-weight: 500;
+  line-height: 1.25;
+  color: #16181B;
+}
+
+.solutionsCard:first-child .solutionsCardTitle,
+.solutionsCard:last-child .solutionsCardTitle {
+  color: #FFFFFF;
+}
+
+.solutionsList {
+  margin: 0;
+  padding-left: 24px;
+
+  li {
+    margin: 0 0 10px;
+    font-family: var(--font-manrope);
+    font-size: 16px;
+    line-height: 1.5;
+    color: rgba(22, 24, 27, 0.72);
+  }
+}
+
+.solutionsCard:first-child .solutionsList li,
+.solutionsCard:last-child .solutionsList li {
+  color: rgba(255, 255, 255, 0.9);
+}
+
+.solutionsCardText {
+  margin: 0;
+  font-family: var(--font-manrope);
+  font-size: 16px;
+  line-height: 1.6;
+  color: rgba(22, 24, 27, 0.72);
+}
+
+.solutionsCard:first-child .solutionsCardText,
+.solutionsCard:last-child .solutionsCardText {
+  color: rgba(255, 255, 255, 0.9);
+}
+
+.formBlock {
+  margin-top: 8px;
+}
+
+.freeConsultSection {
+  margin-bottom: 56px;
+
+  @include tablet {
+    margin-bottom: 40px;
+  }
+
+  @include tablet-small {
+    margin-bottom: 28px;
+  }
+}
+
+.casesSection {
+  margin-top: 56px;
+
+  @include tablet {
+    margin-top: 40px;
+  }
+
+  @include tablet-small {
+    margin-top: 28px;
+  }
+}
+
+.servicesSection {
+  :global([class*='container']) {
+    padding-left: 0;
+    padding-right: 0;
+
+    @include tablet {
+      padding-left: 0;
+      padding-right: 0;
+    }
+  }
+}
+
+.thirdCardsCompact {
+  :global([class*='container']) {
+    padding-bottom: 40px;
+  }
+
+  :global([class*='advantageItem']) {
+    padding: 44px 24px 16px;
+    gap: 12px;
+  }
+
+  @include tablet {
+    :global([class*='container']) {
+      padding-bottom: 24px;
+    }
+  }
+
+  @include tablet-small {
+    :global([class*='advantageItem']) {
+      width: 100%;
+      padding: 16px 14px;
+    }
+  }
+}
+
+@include tablet-small {
+  .solutions {
+    margin-bottom: 28px;
+  }
+
+  .solutionsTitle {
+    font-size: 42px;
+    margin-bottom: 14px;
+  }
+
+  .solutionsText {
+    font-size: 15px;
+    margin-bottom: 16px;
+  }
+
+  .solutionsCards {
+    grid-template-columns: 1fr;
+    gap: 12px;
+  }
+
+  .solutionsCard {
+    padding: 16px 14px;
+    border-radius: 14px;
+  }
+
+  .solutionsCardTitle {
+    font-size: 22px;
+    margin-bottom: 10px;
+  }
+
+  .solutionsList {
+    padding-left: 20px;
+
+    li {
+      font-size: 15px;
+      margin-bottom: 8px;
+    }
+  }
+
+  .solutionsCardText {
+    font-size: 15px;
+  }
+}

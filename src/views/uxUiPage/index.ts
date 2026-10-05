@@ -1,0 +1,1 @@
+export { UxUiPageView } from './uxUiPage'

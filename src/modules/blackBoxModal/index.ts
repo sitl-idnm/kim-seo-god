@@ -1,0 +1,1 @@
+export { default as BlackBoxModal } from './blackBoxModal'

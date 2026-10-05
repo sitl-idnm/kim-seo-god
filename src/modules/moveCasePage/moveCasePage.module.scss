@@ -1,0 +1,121 @@
+@use "@styles/func";
+@use "@styles/mixins" as *;
+@use "@styles/variables";
+
+.root {
+	display: flex;
+	gap: 32px;
+
+	position: sticky;
+	top: 56px;
+
+	max-width: max-content;
+	width: 100%;
+
+	padding: 20px 20px 20px 32px;
+
+	border-radius: 77px;
+
+	filter: drop-shadow(0px 0px 5px rgba(190, 190, 190, 0.25));
+
+	background-color: rgba(255, 255, 255);
+
+	@include tablet {
+		flex-direction: column;
+
+		padding: 0;
+		border-radius: 0;
+		filter: none;
+	}
+
+	@include tablet-small {
+		max-width: 336px;
+		position: static;
+
+		gap: 16px;
+
+		top: auto;
+	}
+
+	&__title {
+		font-family: var(--font-inter);
+		font-size: 42px;
+		font-weight: 500;
+		line-height: 150%;
+		letter-spacing: 0;
+		color: var(--color-black);
+
+		@include tablet-small {
+			font-size: 32px;
+		}
+	}
+
+	.content {
+		display: flex;
+
+		gap: 5px;
+
+		border-radius: 100px;
+
+		background-color: rgba(248, 248, 248);
+
+
+
+		@include tablet-small {
+			flex-direction: column;
+
+			border-radius: 47px;
+
+		}
+
+		&__item {
+			display: flex;
+			align-items: center;
+			justify-content: center;
+			padding: 21px 28px;
+
+			border-radius: 48px;
+
+			border: 1px solid rgba(248, 248, 248);
+
+			background-color: rgba(248, 248, 248);
+
+			transition: all 1s ease;
+
+			color: rgba(22, 24, 27, 0.8);
+
+			font-family: var(--font-inter);
+			font-size: 18px;
+			font-weight: 500;
+			line-height: 150%;
+			letter-spacing: 0;
+			cursor: pointer;
+
+			a {
+				text-decoration: none;
+				color: inherit;
+			}
+
+			@include tablet {
+				font-size: 16px;
+			}
+
+			@include tablet-small {
+				font-size: 16px;
+
+				padding: 20px auto;
+
+				width: 100%;
+			}
+
+			&:hover,
+			&:focus,
+			&.active {
+				background-color: var(--color-red-accent);
+				color: white;
+				border: 1px solid var(--color-red-accent);
+				opacity: 1;
+			}
+		}
+	}
+}

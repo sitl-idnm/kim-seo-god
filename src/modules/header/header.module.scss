@@ -1,0 +1,425 @@
+@use '@styles/func';
+@use '@styles/mixins' as *;
+
+/* stylelint-disable */
+
+.root {
+  position: relative;
+  width: 100%;
+  background-color: var(--color-white-default);
+
+  strong {
+    font-weight: 500;
+  }
+}
+
+.wrapper {
+  padding: 0 24px;
+
+  @include tablet-small {
+    padding: 0 16px;
+  }
+}
+
+.desktopHeader {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  width: 100%;
+  max-width: 1312px;
+  margin: 0 auto;
+  height: 208px;
+  box-sizing: border-box;
+  padding: 0;
+
+  @include tablet {
+    display: none;
+  }
+}
+
+.topRowFull {
+  width: 100vw;
+  margin-left: calc(50% - 50vw);
+  background: #f7f7f7;
+  padding: 12px 0;
+}
+
+.topRow {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+  min-height: 56px;
+  max-width: 1312px;
+  margin: 0 auto;
+}
+
+.socials {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+
+  &__item {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    transition: transform 0.2s ease;
+
+    &:hover {
+      transform: translateY(-1px);
+    }
+
+    svg {
+      width: 40px;
+      height: 40px;
+    }
+  }
+}
+
+.topActions {
+  display: flex;
+  align-items: center;
+  width: 396px;
+  gap: 12px;
+}
+
+.cityButton {
+  @include reset-btn;
+  height: 56px;
+  width: 192px;
+  padding: 0 20px;
+  border-radius: 12px;
+  border: 1px solid #e8e8e8;
+  background: #fafafa;
+  color: var(--color-black);
+  font-size: 18px;
+  font-weight: 500;
+  line-height: 1;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+
+  &::after {
+    content: '';
+    width: 9px;
+    height: 9px;
+    border-right: 1.5px solid var(--color-black);
+    border-bottom: 1.5px solid var(--color-black);
+    transform: rotate(45deg) translateY(-2px);
+  }
+}
+
+.workButton {
+  max-width: 192px !important;
+}
+
+.middleRow {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+  min-height: 42px;
+  width: 100%;
+}
+
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+
+  &__text {
+    max-width: 175px;
+    color: #9aa0a5;
+    font-size: 14px;
+    line-height: 1.2;
+  }
+}
+
+.contacts {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 32px;
+  font-family: var(--font-inter);
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 17px;
+  letter-spacing: 0;
+  color: var(--color-black);
+  margin-left: auto;
+  width: min(100%, 530px);
+
+  &__address,
+  &__time,
+  &__phones {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+  }
+
+  &__phones {
+    width: max-content;
+    align-items: flex-end;
+    text-align: right;
+  }
+
+  &__phones a {
+    text-decoration: none;
+    width: max-content;
+  }
+
+  p,
+  a {
+    font: inherit;
+    color: inherit;
+  }
+
+  &__address {
+    width: max-content;
+    min-width: max-content;
+    flex: 0 0 auto;
+  }
+
+  &__time {
+    min-width: 82px;
+  }
+}
+
+.bottomRow {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  min-height: 24px;
+  width: 100%;
+}
+
+.mobileBar {
+  display: none;
+
+  @include tablet {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    width: 100%;
+    min-height: auto;
+    gap: 16px;
+    padding-top: 16px;
+    margin-bottom: 24px;
+  }
+
+  &__brand {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 6px;
+    max-width: 219px;
+  }
+
+  &__text {
+    max-width: 219px;
+    font-size: 14px;
+    line-height: 1.07;
+    color: #9aa0a5;
+  }
+}
+
+.buttons__wrapper {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+
+  @include tablet {
+    align-self: flex-start;
+  }
+}
+
+.mobileActions {
+  display: none;
+
+  @include tablet {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    width: 100%;
+    margin-top: 0;
+    margin-bottom: 0;
+  }
+
+  .cityButton {
+    width: 100%;
+  }
+}
+
+.workButtonMobile {
+  width: 100% !important;
+  max-width: 100% !important;
+}
+
+.burgerbutton {
+  display: none;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #d32f2f, #e53935);
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  position: relative;
+  z-index: 1001;
+  border: 2px solid transparent;
+  transition: all 0.3s ease;
+
+  @include tablet {
+    display: flex;
+    align-self: flex-start;
+  }
+
+  &:hover {
+    background: var(--color-white-default);
+    border-color: #e53935;
+
+    .burgericon {
+      background-color: #e53935;
+
+      &__before,
+      &__after {
+        background-color: #e53935;
+      }
+    }
+  }
+}
+
+.burgericon {
+  width: 20px;
+  height: 2px;
+  background-color: white;
+  position: relative;
+  transition: all 0.3s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  .burgerbutton[data-open="true"] & {
+    background-color: transparent;
+  }
+
+  &__before,
+  &__after {
+    content: '';
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background-color: white;
+    left: 0;
+    transform-origin: center;
+    transition: all 0.3s ease;
+  }
+
+  &__before {
+    top: -6px;
+  }
+
+  &__after {
+    top: 6px;
+  }
+}
+
+.mobilemenu {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  max-width: none;
+  background-color: var(--color-grey-light);
+  z-index: 1000;
+  padding: 16px 16px 24px;
+  border-radius: 0;
+  box-shadow: none;
+  transform-origin: top center;
+  opacity: 0;
+  transform: scale(0.95);
+  pointer-events: none;
+  overflow-y: auto;
+
+  @include tablet {
+    display: block;
+  }
+
+  @include tablet-small {
+    width: 100vw;
+  }
+
+  &__header {
+    display: flex;
+    align-items: flex-start;
+    margin-bottom: 12px;
+  }
+
+  &__brand {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 6px;
+    max-width: 219px;
+  }
+
+  &__text {
+    max-width: 219px;
+    font-size: 14px;
+    line-height: 1.07;
+    color: #9aa0a5;
+  }
+}
+
+.mobileContacts {
+  display: none;
+
+  @include tablet {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 12px;
+    margin-top: 18px;
+    font-size: 14px;
+    line-height: 17px;
+    color: var(--color-black);
+    font-weight: 500;
+    font-family: var(--font-inter);
+  }
+
+  &__address,
+  &__time,
+  &__phones {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+  }
+
+  &__phones a {
+    color: inherit;
+    text-decoration: underline;
+  }
+
+  &__socials {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-top: 4px;
+
+    .socials__item {
+      width: 32px;
+      height: 32px;
+    }
+
+    .socials__item svg {
+      width: 32px;
+      height: 32px;
+    }
+  }
+}

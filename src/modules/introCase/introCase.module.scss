@@ -1,0 +1,258 @@
+@use "@styles/func";
+@use "@styles/mixins" as *;
+@use "@styles/variables";
+
+.intro {
+	display: flex;
+  justify-content: space-between;
+
+	position: relative;
+
+	padding: 0 0 78px 48px;
+
+	background-color: #F7F7F7;
+
+	max-width: 1312px;
+	width: 100%;
+	height: 786px;
+
+	margin: 0 auto;
+
+	border-radius: 60px;
+	clip-path: polygon(-100% -100%, 1312px -100%, 1312px 100%, -100% 100%);
+
+	@include desktop {
+		padding-top: 55px;
+
+		clip-path: polygon(-100% -100%, 100% -100%, 100% 100%, -100% 100%);
+
+		overflow: hidden;
+	}
+
+	@include tablet {
+		height: max-content;
+
+		gap: 5px;
+
+		justify-content: center;
+		align-items: center;
+
+		padding: 40px 0 50px;
+	}
+
+	@include tablet-small {
+		padding-top: 24px;
+		align-items: flex-start;
+
+		border-radius: 20px;
+		clip-path: polygon(-100% -100%, 100% -100%, 100% 100%, -100% 100%);
+	}
+
+	&__content {
+		display: flex;
+		flex-direction: column;
+		gap: 130px;
+
+		justify-content: flex-end;
+
+		@include desktop {
+			gap: 0;
+			justify-content: space-between;
+		}
+
+		@include tablet {
+		  justify-content: center;
+			align-items: center;
+
+			width: 100%;
+		}
+
+		&__background {
+			position: absolute;
+
+			width: 806px;
+			height: 856px;
+
+			right: 0;
+			top: -70px;
+
+			border-radius: 60px;
+
+			overflow: hidden;
+
+			@include desktop {
+				right: -50px;
+				top: auto;
+				bottom: 0;
+
+				width: 760px;
+				height: 760px;
+			}
+
+			@include tablet {
+				position: relative;
+
+				right: 0;
+				top: 0;
+
+				width: 100%;
+				height: auto;
+			}
+
+			@include tablet-small {
+				position: relative;
+
+				top: 0;
+				right: -50px;
+
+				width: 100%;
+				height: auto;
+			}
+
+			img {
+				@include desktop {
+					width: 760px;
+					height: 760px;
+				}
+
+				@include tablet {
+					width: 100%;
+					height: auto;
+				}
+
+				@include tablet-small {
+					width: 100%;
+					height: auto;
+				}
+			}
+		}
+
+		&__text {
+			display: flex;
+			flex-direction: column;
+			gap: 40px;
+
+			@include tablet {
+				align-items: center;
+			}
+
+			@include tablet-small {
+				padding: 0 20px;
+			}
+
+			button {
+				@include tablet-small {
+					max-width: 100% !important;
+					width: 100%;
+				}
+			}
+
+			&__title {
+				display: flex;
+				flex-direction: column;
+				gap: 8px;
+
+				@include desktop {
+					margin-top: 55px;
+				}
+
+				@include tablet {
+					margin-top: 0;
+				}
+
+				&__title {
+					font-family: var(--font-inter);
+					font-size: 48px;
+					font-weight: 500;
+					line-height: 120%;
+					color: #16181B;
+
+					@include tablet {
+						text-align: center;
+					}
+
+					@include tablet-small {
+						font-size: 32px;
+						text-align: left;
+					}
+				}
+
+				&__text {
+					font-family: var(--font-inter);
+					font-size: 24px;
+					font-weight: 400;
+					line-height: 130%;
+					color: rgba(22, 24, 27, 0.8);
+					max-width: 411px;
+
+					@include tablet {
+						text-align: center;
+						max-width: 100%;
+					}
+
+					@include tablet-small {
+						font-size: 16px;
+						text-align: left;
+						max-width: 296px;
+					}
+				}
+			}
+		}
+
+		&__description {
+			display: flex;
+			flex-direction: column;
+			gap: 12px;
+
+			max-width: 438px;
+
+			@include tablet {
+				align-self: flex-start;
+				justify-content: center;
+
+				margin-left: 28px;
+				flex-direction: row;
+
+				max-width: 560px;
+
+				margin-top: -100px;
+			}
+
+			@include tablet-small {
+				flex-direction: column;
+
+				max-width: 296px;
+
+				margin-top: 0px;
+			}
+
+			&__icons {
+				display: flex;
+				gap: 12px;
+
+				svg {
+					width: 70px;
+					height: 70px;
+
+					@include tablet-small {
+						width: 50px;
+						height: 50px;
+					}
+				}
+			}
+
+			&__text {
+				font-family: var(--font-inter);
+				font-size: 20px;
+				font-weight: 400;
+				line-height: 150%;
+				color: #16181B60;
+
+				@include tablet-small {
+					font-size: 16px;
+				}
+			}
+		}
+	}
+
+}

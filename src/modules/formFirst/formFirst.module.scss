@@ -1,0 +1,128 @@
+@use "@styles/mixins" as *;
+@use "@styles/func";
+@use "@styles/variables";
+
+.root {
+	display: flex;
+}
+
+
+.form {
+	display: flex;
+	gap: 32px;
+	align-items: center;
+	position: relative;
+
+	padding: 40px 90px 40px 0;
+	margin: 0 auto;
+
+	border-radius: 20px;
+
+	background-color: var(--color-black);
+
+	@include desktop-small {
+		& {
+			padding: 40px 70px 40px 0;
+		}
+
+		.image {
+			width: 638px;
+			height: 638px;
+		}
+	}
+
+	@include tablet {
+		& {
+			flex-direction: column;
+			gap: 0;
+			align-items: flex-start;
+
+			padding: 0 0 84px;
+			min-width: 745px;
+			width: 100%;
+			margin: 80px 12px 0;
+		}
+
+		&__text {
+			margin-left: 64px;
+		}
+
+		&__circle {
+			align-self: flex-end;
+			position: relative;
+			top: -80px;
+			right: -50px;
+		}
+
+		.image {
+			width: 550px;
+			height: 550px;
+		}
+	}
+
+	@include tablet-small {
+		.image {
+			width: 224px;
+			height: auto;
+			max-width: 100%;
+		}
+
+		& {
+			flex-direction: column;
+			gap: 16px;
+			align-items: center;
+
+			padding: 0 0 44px;
+			min-width: 0;
+			width: 100%;
+			margin: 36px 12px 0;
+		}
+
+		&__text {
+			margin-left: 0;
+		}
+
+		&__circle {
+			align-self: center;
+			right: auto;
+			margin-top: 16px;
+		}
+	}
+
+	@include mobile-large {
+		& {
+			gap: 0;
+			padding: 0 12px 44px;
+		}
+	}
+
+
+	&__text {
+		display: flex;
+		flex-direction: column;
+		gap: 24px;
+
+		max-width: 420px;
+
+		@include mobile-large {
+			max-width: 312px;
+			margin-top: -60px;
+			gap: 16px;
+		}
+	}
+
+	&__circle {
+		position: relative;
+		z-index: 1000;
+		transition: all 1s;
+
+		&:hover {
+			scale: 1.1;
+			transition: all 1s;
+
+			@include tablet {
+				scale: 1.1;
+			}
+		}
+	}
+}

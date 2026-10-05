@@ -1,0 +1,87 @@
+@use "@styles/func";
+@use "@styles/mixins" as *;
+@use "@styles/variables" as *;
+
+.root {
+	font-family: var(--font-inter);
+  display: grid;
+  grid-template-columns: repeat(3, 1fr); // Три колонки равной ширины
+  gap: 20px; // Промежуток между блоками
+  max-width: 1320px; // Опционально, для ограничения ширины
+  margin: 30px auto; // Центрируем и добавляем отступ снизу
+
+  @include tablet {
+    grid-template-columns: repeat(2, 1fr); // Две колонки на планшете
+    padding: 0 10px;
+  }
+
+  @include mobile {
+    grid-template-columns: 1fr; // Одна колонка на мобильных
+    padding: 0 8px;
+  }
+}
+
+.contactItem,
+.detailsItem {
+  background-color: #f9fafb; // Светло-серый фон как на картинке
+  border-radius: 12px;
+  padding: 20px;
+	transition: transform 0.3s ease;
+
+	&:hover {
+		transform: translateY(-8px);
+	}
+}
+
+.detailsItem {
+  grid-column: 3 / 4; // Занимает третью колонку
+  grid-row: 1 / 3; // Занимает две строки
+
+  @include tablet {
+    grid-column: auto; // Возвращаем авто-размещение
+    grid-row: auto;
+  }
+}
+
+.label {
+	color: #737476;
+	font-weight: 500;
+  margin: 0 0 8px; // Отступ под меткой
+}
+
+.valueContainer {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.icon {
+  width: 20px;
+  height: 20px;
+  flex-shrink: 0;
+
+  path {
+    fill: #CB172C;
+  }
+}
+
+.value,
+.valueLink {
+  font-weight: 500;
+}
+
+.valueLink {
+  text-decoration: none;
+  transition: color 0.2s ease;
+}
+
+.detailsContent {
+  p {
+    font-weight: 500;
+    margin: 0 0 6px;
+
+    &:last-child {
+      margin-bottom: 0;
+    }
+  }
+}

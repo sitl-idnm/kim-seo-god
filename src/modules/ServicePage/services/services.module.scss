@@ -1,0 +1,286 @@
+@use "@styles/func";
+@use "@styles/mixins" as *;
+@use "@styles/variables";
+
+.container {
+	display: flex;
+	flex-direction: column;
+	gap: 40px;
+	max-width: 1440px;
+	padding: 0 64px;
+	margin: 0 auto 80px;
+
+	@include tablet {
+		padding: 0 12px;
+		gap: 32px;
+	}
+}
+
+.title {
+	font-family: var(--font-inter);
+	font-size: 54px;
+	font-weight: 500;
+	line-height: 120%;
+	color: var(--color-black);
+
+	@include tablet-small {
+		font-size: 32px;
+	}
+}
+
+.root {
+	display: flex;
+	flex-wrap: wrap;
+	gap: 28px;
+	width: 100%;
+
+	@include tablet {
+		gap: 24px;
+	}
+
+	&_tab {
+		display: flex;
+		flex-wrap: wrap;
+		gap: 28px;
+		width: 100%;
+
+		@include tablet {
+			gap: 24px;
+		}
+	}
+}
+
+.service {
+	position: relative;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+	align-items: flex-start;
+	background-color: #F7F7F7;
+	width: calc((100% - 56px) / 3);
+	height: 337px;
+	padding: 28px;
+	border-radius: 20px;
+	transition: all 0.3s ease;
+
+	@include tablet {
+		width: calc((100% - 24px) / 2);
+		height: 300px;
+		padding: 24px;
+	}
+
+	@include tablet-small {
+		width: 100%;
+		max-width: 100%;
+	}
+
+	&:hover {
+		background-color: var(--color-red-gradient-start);
+		opacity: 1;
+		transition: all 0.3s ease;
+
+		* {
+			color: white;
+			transition: all 0.3s ease;
+		}
+
+		.service__footer__line {
+			background-color: white;
+		}
+
+		.service__footer__button::after {
+			content: url('../../../shared/assets/icons/service_arrow_white.svg');
+		}
+	}
+
+	&_tab {
+		cursor: pointer;
+		width: calc((100% - 56px) / 3);
+		height: auto;
+		background-color: #F7F7F7;
+
+		@include tablet {
+			width: calc((100% - 24px) / 2);
+		}
+
+		@include tablet-small {
+			width: 100%;
+			max-width: 100%;
+		}
+
+		@media (max-width: 768px) {
+			width: 100%;
+		}
+
+		.service__header {
+			display: flex;
+			justify-content: space-between;
+			align-items: center;
+			width: 100%;
+			padding-bottom: 16px;
+		}
+
+		.service__arrow {
+			width: 12px;
+			height: 12px;
+			border-right: 2px solid var(--color-black);
+			border-bottom: 2px solid var(--color-black);
+			transform: rotate(45deg);
+			transition: transform 0.3s ease;
+		}
+
+		&.service_open {
+			.service__arrow {
+				transform: rotate(-135deg);
+			}
+
+			.service__content {
+				max-height: 1000px;
+				opacity: 1;
+				margin-top: 16px;
+			}
+		}
+
+		.service__content {
+			max-height: 0;
+			opacity: 0;
+			overflow: hidden;
+			transition: all 0.3s ease;
+			margin-top: 0;
+		}
+
+		&:hover {
+			.service__arrow {
+				border-color: white;
+			}
+		}
+	}
+
+	&__content {
+		display: flex;
+		flex-direction: column;
+		gap: 12px;
+
+		&__title {
+			font-family: var(--font-inter);
+			font-size: 28px;
+			font-weight: 500;
+			line-height: 120%;
+			transition: all 0.3s ease;
+		}
+
+		&__description {
+			font-family: var(--font-manrope);
+			font-size: 16px;
+			font-weight: 400;
+			line-height: 150%;
+			transition: all 0.3s ease;
+		}
+	}
+
+	&__footer {
+		display: flex;
+		flex-direction: column;
+		gap: 20px;
+		width: 100%;
+
+		&__price {
+			font-family: var(--font-inter);
+			font-size: 20px;
+			font-weight: 500;
+			line-height: 120%;
+			color: var(--color-red-gradient-start);
+			transition: all 0.3s ease;
+		}
+
+		&__line {
+			width: 100%;
+			height: 1px;
+			background-color: #D0D1D1;
+			transition: all 0.3s ease;
+		}
+
+		&__button {
+			font-family: var(--font-inter);
+			font-size: 16px;
+			font-weight: 500;
+			line-height: 150%;
+			color: var(--color-red-gradient-start);
+			transition: all 0.3s ease;
+			width: max-content;
+			display: flex;
+			align-items: center;
+
+			&::after {
+				content: url('../../../shared/assets/icons/service_arrow.svg');
+				display: flex;
+				align-items: center;
+				justify-content: center;
+				margin-left: 10px;
+			}
+
+			&:hover {
+				opacity: 1;
+				text-decoration: underline;
+				transition: all 0.3s ease;
+			}
+		}
+	}
+}
+
+.showMoreContainer {
+	display: flex;
+	justify-content: center;
+	width: 100%;
+}
+
+.showMoreButton {
+	width: 100%;
+}
+
+.services__description {
+	font-family: var(--font-manrope);
+	font-size: 16px;
+	font-weight: 400;
+	line-height: 150%;
+	color: #737476;
+	max-width: 640px;
+}
+
+@media (max-width: 1200px) {
+	.root {
+		gap: 24px;
+	}
+
+	.service {
+		width: calc((100% - 24px) / 2);
+	}
+
+	.title {
+		font-size: 36px;
+	}
+}
+
+@media (max-width: 768px) {
+	.service {
+		width: 100%;
+		padding: 20px;
+
+		&__content {
+			&__title {
+				font-size: 20px;
+			}
+		}
+
+		&__footer {
+			&__button {
+				padding: 10px 20px;
+				font-size: 14px;
+			}
+		}
+	}
+
+	.title {
+		font-size: 28px;
+	}
+}

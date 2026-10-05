@@ -1,0 +1,159 @@
+@use "@styles/func";
+@use "@styles/mixins" as *;
+@use "@styles/variables";
+
+.root {
+  display: flex;
+  width: 100%;
+}
+
+.navigation {
+	width: 100%;
+
+	&__list {
+		display: flex;
+		align-items: center;
+		justify-content: space-between;
+		width: 100%;
+		font-weight: 500;
+		gap: 16px;
+
+		@include tablet {
+			flex-direction: column;
+			align-items: stretch;
+			justify-content: flex-start;
+			gap: 12px;
+		}
+
+		li {
+			padding: 0;
+			transition: all 0.3s ease;
+			border-radius: 4px;
+		}
+	}
+
+	&__item {
+		font-size: 16px;
+		line-height: 24px;
+		color: var(--color-black);
+		white-space: nowrap;
+		display: inline-flex;
+		align-items: center;
+
+		@include tablet {
+			font-size: 16px;
+			line-height: 24px;
+			min-height: 24px;
+			white-space: normal;
+		}
+
+		&_muted {
+			color: #cdcdcd;
+		}
+	}
+
+	&__servicesTrigger {
+		gap: 8px;
+
+		&::after {
+			content: '';
+			width: 6px;
+			height: 6px;
+			border-right: 1.5px solid currentcolor;
+			border-bottom: 1.5px solid currentcolor;
+			transform: rotate(45deg) translateY(-1px);
+		}
+	}
+
+	// Пункт «Услуги» с выпадающим списком (как бургер-меню по стилю)
+	&__servicesWrap {
+		position: relative;
+
+		@include tablet {
+			min-height: 24px;
+			display: flex;
+			align-items: center;
+		}
+	}
+
+	&__dropdown {
+		position: absolute;
+		top: 100%;
+		left: 0;
+		min-width: 256px;
+		background-color: var(--color-grey-light);
+		padding: 20px;
+		border-radius: 12px;
+		// Невидимый «мост» между пунктом и списком, чтобы меню не исчезало при наведении
+		&::before {
+			content: '';
+			position: absolute;
+			left: 0;
+			right: 0;
+			top: -6px;
+			height: 6px;
+		}
+		box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+		opacity: 0;
+		visibility: hidden;
+		pointer-events: none;
+		transform-origin: top left;
+		transition: opacity 0.2s ease, visibility 0.2s ease, transform 0.2s ease;
+		transform: scale(0.95);
+		z-index: 1000;
+
+		@include tablet {
+			display: none;
+		}
+	}
+
+	&__servicesWrap:hover &__dropdown {
+		opacity: 1;
+		visibility: visible;
+		pointer-events: auto;
+		transform: scale(1);
+	}
+
+	&__dropdownList {
+		list-style: none;
+		margin: 0;
+		padding: 0;
+		display: flex;
+		flex-direction: column;
+		gap: 6px;
+
+		li {
+			border: none;
+			padding: 0;
+		}
+	}
+
+	&__dropdownItem {
+		display: block;
+		padding: 8px 12px;
+		font-size: 16px;
+		font-weight: 500;
+		color: var(--color-black, #16181b);
+		text-decoration: none;
+		border-radius: 4px;
+		border: 1px solid transparent;
+		transition: all 0.2s ease;
+
+		&:hover {
+			border-color: var(--color-red-accent);
+			background: rgba(203, 23, 44, 0.06);
+		}
+
+		@include tablet {
+			padding: 0;
+			border: 0;
+			border-radius: 0;
+			background: transparent;
+			font-size: 16px;
+			line-height: 24px;
+			min-height: 24px;
+			display: inline-flex;
+			align-items: center;
+		}
+	}
+}

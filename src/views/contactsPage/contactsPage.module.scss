@@ -1,0 +1,26 @@
+@use "@styles/func";
+@use "@styles/mixins" as *;
+@use "@styles/variables" as *;
+
+.root {
+
+	.title {
+		font-family: var(--font-inter);
+		max-width: 1320px;
+		margin: 0 auto;
+
+		font-size: 74px;
+		font-weight: 500;
+		line-height: 1.2;
+
+		@include tablet {
+			font-size: 48px;
+			padding: 0 20px;
+		}
+
+		@include tablet-small {
+			font-size: 32px;
+			padding: 0 8px;
+		}
+	}
+}

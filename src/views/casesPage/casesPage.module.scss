@@ -1,0 +1,9 @@
+@use "@styles/func";
+@use "@styles/mixins" as *;
+@use "@styles/variables";
+
+.root {
+  width: 100%;
+  padding: func.rem(40) 0;
+  overflow: hidden;
+}

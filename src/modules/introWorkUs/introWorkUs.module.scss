@@ -1,0 +1,244 @@
+@use "@styles/func";
+@use "@styles/mixins" as *;
+@use "@styles/variables";
+
+.root {
+	display: flex;
+	flex-direction: column;
+	position: relative;
+	max-width: 1440px;
+	margin: 28px auto 0;
+
+	.box {
+		background-color: #16181B;
+		display: flex;
+		flex-direction: column;
+
+		position: relative;
+
+		gap: 13px;
+		justify-content: flex-start;
+		align-items: center;
+
+		border-radius: 40px;
+
+		@include tablet-small {
+			margin: 0 8px;
+			border-radius: 18px;
+
+			gap: 8px;
+		}
+
+		.absoluteblock {
+			position: absolute;
+
+			display: flex;
+			height: 310px;
+			bottom: -170px;
+			right: 80px;
+
+			@include tablet {
+				display: none;
+			}
+
+			.text {
+				align-self: flex-end;
+				color: #16181B70;
+				font-size: 18px;
+				font-family: var(--font-inter);
+				line-height: 130%;
+				max-width: 819px;
+				text-align: center;
+			}
+
+			&__content {
+				position: relative;
+
+				img {
+					position: absolute;
+					left: -35px;
+					top: -40px;
+				}
+
+				svg {
+					height: 270px;
+					width: 200px;
+				}
+			}
+		}
+
+		&__title {
+			font-family: var(--font-inter);
+			font-weight: 500;
+			font-size: 96px;
+			line-height: 130%;
+			letter-spacing: -2%;
+
+			color: #FAFAFA;
+
+			padding-top: 86px;
+			padding-left: 16px;
+			padding-right: 16px;
+			box-sizing: border-box;
+
+			@include tablet {
+				font-size: 60px;
+			}
+
+			@include tablet-small {
+				font-size: 20px;
+				line-height: 1.25;
+				padding-top: 24px;
+				padding-left: 16px;
+				padding-right: 16px;
+			}
+		}
+
+		&__text {
+			font-family: var(--font-inter);
+			font-size: 18px;
+			font-weight: 400;
+			line-height: 130%;
+			text-align: center;
+
+			color: #FAFAFA80;
+
+			max-width: 680px;
+
+			@include tablet {
+				max-width: 523px;
+				font-size: 16px;
+			}
+
+			@include tablet-small {
+				font-size: 12px;
+				text-align: left;
+				max-width: 100%;
+				padding: 0 24px;
+				box-sizing: border-box;
+			}
+
+			&__white {
+				color: #FAFAFA;
+			}
+		}
+
+		&__buttons {
+			display: flex;
+			flex-wrap: wrap;
+			gap: 12px;
+			justify-content: center;
+		}
+
+		&__image {
+			position: relative;
+			z-index: 10;
+			display: block;
+			margin-top: auto; // прижимаем картинку к низу карточки
+			transition: transform 0.6s ease-in-out;
+			max-width: 100%;
+			height: auto;
+			object-fit: contain;
+			object-position: center bottom;
+
+			@include tablet {
+				width: 800px;
+				max-width: 100%;
+				height: 470px;
+			}
+
+			@include tablet-small {
+				width: auto;
+				max-width: 90px;
+				height: auto;
+			}
+
+			&:hover {
+				will-change: transform;
+				transform: scale(1.05);
+				transition: transform 0.6s ease-in-out;
+			}
+		}
+	}
+
+	.white {
+		display: flex;
+		flex-direction: column;
+		gap: 20px;
+
+		position: relative;
+
+		justify-content: center;
+		align-items: center;
+
+		padding-top: 223px;
+		padding-bottom: 348px;
+
+		@include tablet {
+			padding: 80px 16px 170px;
+		}
+
+		@include tablet-small {
+			padding: 40px 8px 150px;
+		}
+
+		&__title {
+			font-family: var(--font-inter);
+			font-size: 54px;
+			font-weight: 500;
+			line-height: 130%;
+			text-align: center;
+
+			color: #16181B;
+
+			max-width: 956px;
+
+			@include tablet-small {
+				font-size: 20px;
+
+				max-width: 350px;
+			}
+		}
+
+		&__text {
+			font-family: var(--font-inter);
+			font-size: 20px;
+			line-height: 130%;
+			font-weight: 400;
+
+			color: #16181B70;
+
+			max-width: 640px;
+
+			text-align: center;
+
+			@include tablet-small {
+				font-size: 12px;
+
+				max-width: 300px;
+			}
+		}
+
+		.abst {
+			position: absolute;
+			bottom: 0;
+			right: 0;
+			transition: scale 0.6s ease-in-out;
+
+			@include tablet {
+				width: 450px;
+				height: 450px;
+			}
+
+			@include tablet-small {
+				width: 200px;
+				height: 200px;
+			}
+
+			&:hover {
+				scale: 1.1;
+				transition: scale 0.6s ease-in-out;
+			}
+		}
+	}
+}

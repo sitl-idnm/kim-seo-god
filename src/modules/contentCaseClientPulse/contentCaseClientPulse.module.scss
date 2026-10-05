@@ -1,0 +1,58 @@
+@use "@styles/func";
+@use "@styles/mixins" as *;
+@use "@styles/variables";
+
+.root {
+	display: flex;
+	flex-direction: column;
+	gap: 56px;
+	max-width: 1312px;
+
+	@include desktop {
+		max-width: 1128px;
+	}
+
+	@include tablet {
+		max-width: 744px;
+	}
+
+	@include tablet-small {
+		gap: 32px;
+	}
+
+	.textCaseWrapper {
+		div div:last-child {
+			img {
+				max-width: 100%;
+				width: 530px !important;
+				height: auto;
+				object-fit: contain;
+			}
+		}
+	}
+
+	.text {
+		display: flex;
+		flex-direction: column;
+		gap: 10px;
+
+		font-family: var(--font-inter);
+		font-size: 32px;
+		font-weight: 400;
+		line-height: 150%;
+
+		color: rgba(22, 24, 27, 0.8);
+
+		max-width: 960px;
+
+		@include tablet {
+			max-width: 744px;
+		}
+
+		@include tablet-small {
+			max-width: 336px;
+
+			font-size: 20px;
+		}
+	}
+}

@@ -1,0 +1,44 @@
+@use "@styles/func";
+@use "@styles/mixins" as *;
+@use "@styles/variables";
+
+.root {
+	max-width: 1440px;
+	padding: 0 64px;
+	margin: 0 auto;
+
+	display: flex;
+	flex-direction: column;
+	gap: 37px;
+
+	@include tablet {
+		padding: 0 32px;
+	}
+
+	@include tablet-small {
+		padding: 0 8px;
+		gap: 20px;
+	}
+
+	.blogHeader {
+		display: flex;
+		justify-content: space-between;
+		align-items: center;
+
+		.blogTitle {
+			font-family: var(--font-inter);
+			font-size: 54px;
+			font-weight: 500;
+			line-height: 120%;
+			color: #121212;
+		}
+
+		.blogLink {
+			font-family: var(--font-inter);
+			font-size: 16px;
+			font-weight: 500;
+			line-height: 150%;
+			color: var(--color-red-accent);
+		}
+	}
+}

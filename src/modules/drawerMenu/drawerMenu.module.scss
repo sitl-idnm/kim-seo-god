@@ -1,0 +1,85 @@
+@use "@styles/func";
+@use "@styles/mixins";
+@use "@styles/variables";
+
+.root {
+    position: fixed;
+    left: 0;
+    z-index: 1000;
+    touch-action: none;
+    -webkit-tap-highlight-color: transparent;
+    cursor: grab;
+    will-change: transform;
+    user-select: none;
+    -webkit-user-select: none;
+
+    &:active {
+        cursor: grabbing;
+    }
+}
+
+.drawer {
+    position: relative;
+    background: #1a1a1a;
+    width: 280px;
+    min-height: 300px;
+    border-radius: 0 12px 12px 0;
+
+    &::before {
+        content: '';
+        position: absolute;
+        right: 100%;
+        top: 0;
+        width: 100vw;
+        height: 100%;
+        background: #1a1a1a;
+    }
+}
+
+.content {
+    padding: 20px;
+    color: white;
+    pointer-events: none;
+
+    a {
+        pointer-events: auto;
+    }
+}
+
+.handle {
+    position: absolute;
+    top: 50%;
+    right: 8px;
+    transform: translateY(-50%);
+    width: 4px;
+    height: 40px;
+    background: rgba(255, 255, 255, 0.3);
+    border-radius: 2px;
+    pointer-events: none;
+}
+
+.navigation {
+    ul {
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+    }
+
+    :global {
+        .navigation__list {
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .navigation__item {
+            font-size: 18px;
+            color: white;
+            transition: color 0.3s ease;
+            pointer-events: auto;
+
+            &:hover {
+                color: red;
+            }
+        }
+    }
+}

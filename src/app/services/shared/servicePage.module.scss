@@ -1,0 +1,131 @@
+@use '@styles/mixins' as *;
+
+.root {
+  max-width: 1312px;
+  margin: 0 auto;
+
+  @include tablet {
+    padding: 0 8px;
+    box-sizing: border-box;
+
+    :global([class*='standartText_root']) {
+      padding-left: 0;
+      padding-right: 0;
+    }
+
+    :global([class*='why_root']) :global([class*='container']) {
+      padding-left: 0;
+      padding-right: 0;
+    }
+  }
+}
+
+.introBlock {
+  margin-bottom: 50px !important;
+
+  :global([class*='box']) {
+    gap: 10px;
+  }
+
+  :global([class*='box__text']) {
+    margin-bottom: 2px;
+  }
+}
+
+.introButtonsWrap {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  gap: 12px;
+  justify-content: center;
+  align-items: center;
+  margin-top: 4px;
+
+  & > * {
+    width: auto !important;
+    max-width: 320px;
+    flex: 0 0 auto;
+  }
+}
+
+.introHeroButton {
+  width: 100%;
+
+  &::before,
+  &::after {
+    white-space: normal !important;
+    text-align: center;
+    height: 56px;
+    line-height: 1.2;
+  }
+}
+
+.introTitleSmall {
+  max-width: 1100px;
+  text-align: center;
+  font-size: 60px !important;
+  padding-left: 16px;
+  padding-right: 16px;
+  box-sizing: border-box;
+
+  @include tablet {
+    font-size: 48px !important;
+  }
+
+  @include tablet-small {
+    font-size: 24px !important;
+    line-height: 1.25 !important;
+  }
+}
+
+.formBlock {
+  margin-top: 8px;
+}
+
+.casesSection {
+  margin-top: 56px;
+
+  @include tablet {
+    margin-top: 40px;
+  }
+
+  @include tablet-small {
+    margin-top: 28px;
+  }
+}
+
+.servicesSection {
+  :global([class*='container']) {
+    padding-left: 0;
+    padding-right: 0;
+
+    @include tablet {
+      padding-left: 0;
+      padding-right: 0;
+    }
+  }
+}
+
+.thirdCardsCompact {
+  :global([class*='container']) {
+    padding-bottom: 40px;
+  }
+
+  :global([class*='advantageItem']) {
+    padding: 44px 24px 16px;
+    gap: 12px;
+  }
+
+  @include tablet {
+    :global([class*='container']) {
+      padding-bottom: 24px;
+    }
+  }
+
+  @include tablet-small {
+    :global([class*='advantageItem']) {
+      width: 100%;
+      padding: 16px 14px;
+    }
+  }
+}

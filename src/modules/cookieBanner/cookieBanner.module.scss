@@ -1,0 +1,63 @@
+@use "@styles/func";
+@use "@styles/mixins" as *;
+@use "@styles/variables";
+
+.root {
+	display: flex;
+	align-items: flex-end;
+
+	gap: 20px;
+
+	max-width: 880px;
+
+	position: fixed;
+	bottom: 20px;
+	left: 20px;
+	right: 20px;
+
+	padding: 20px;
+
+	border-radius: 10px;
+
+	background-color: var(--color-white-default);
+
+	z-index: 1000;
+
+	@include tablet-small {
+		bottom: 0;
+		left: 0;
+		right: 0;
+
+		max-width: 100%;
+
+		padding: 10px;
+		gap: 10px;
+
+		flex-direction: column;
+	}
+
+	&__content {
+		display: flex;
+		flex-direction: column;
+		gap: 10px;
+
+		@include tablet-small {
+			gap: 5px;
+		}
+
+		&__title {
+			font-size: 16px;
+			line-height: 1.2;
+			font-weight: 600;
+			color: var(--color-black-default);
+		}
+
+		&__text {
+			font-size: 14px;
+			line-height: 1.2;
+			font-weight: 400;
+			color: var(--color-black-default);
+		}
+	}
+
+}

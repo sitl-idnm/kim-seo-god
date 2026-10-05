@@ -1,0 +1,206 @@
+@use "@styles/func";
+@use "@styles/mixins" as *;
+@use "@styles/variables";
+
+.root {
+	display: flex;
+}
+
+.form {
+	display: flex;
+	gap: 100px;
+	align-items: center;
+
+	max-width: 1440px;
+	width: 100%;
+	box-sizing: border-box;
+
+	margin: 0 auto 160px;
+	padding: 80px 105px 108px;
+
+	border-radius: 100px 100px 0 0;
+
+	background-color: var(--color-grey);
+
+	&__circle {
+		position: relative;
+		align-self: flex-start;
+
+		max-width: 600px;
+
+		/* stylelint-disable-next-line selector-class-pattern */
+		.form__second {
+			color: black;
+
+			@include desktop-small {
+				h2 {
+					font-size: 47px;
+				}
+			}
+
+			@include tablet {
+				p {
+					text-align: center;
+				}
+			}
+
+			@include tablet-small {
+				h2 {
+					font-size: 22px;
+					line-height: 1.25;
+					padding: 0 4px;
+				}
+
+				p {
+					font-size: 12px;
+					text-align: left;
+				}
+			}
+		}
+
+		.image {
+			position: absolute;
+			top: 150px;
+			right: 0;
+
+			z-index: 1000;
+			transition: all 1s;
+
+			&:hover {
+				scale: 0.9;
+				transition: all 1s;
+
+				@include tablet {
+					scale: 0.9;
+				}
+			}
+		}
+	}
+
+
+	@include desktop-small {
+		& {
+			padding: 50px 52px 90px;
+			gap: 42px;
+			justify-content: space-around;
+		}
+
+		&__circle {
+			max-width: 565px;
+		}
+
+		.image {
+			width: 565px;
+			height: 565px;
+		}
+	}
+
+	@include tablet {
+		& {
+			flex-direction: column;
+			gap: 28px;
+			align-items: center;
+
+			min-width: 0;
+			width: 100%;
+			padding: 40px 24px 340px;
+			box-sizing: border-box;
+		}
+
+		&__circle {
+			align-self: center;
+			position: relative;
+			max-width: 100%;
+		}
+
+		.image {
+			width: 420px;
+			height: 420px;
+			top: 420px;
+			left: 50%;
+			right: auto;
+			transform: translateX(-50%);
+			z-index: 10;
+		}
+	}
+
+	@include tablet-small {
+		border-radius: 20px 20px 0 0;
+
+		.image {
+			width: 240px;
+			height: 240px;
+			top: 300px;
+			left: 50%;
+			right: auto;
+			transform: translateX(-50%);
+		}
+
+		& {
+			flex-direction: column;
+			gap: 20px;
+			align-items: center;
+
+			padding: 20px 16px 260px;
+			min-width: 0;
+			width: 100%;
+			margin: 0 auto 32px;
+			box-sizing: border-box;
+		}
+
+		&__circle {
+			align-self: center;
+			right: auto;
+			max-width: 100%;
+			padding: 0 4px;
+		}
+
+		&__circle,
+		&__text {
+			max-width: 100%;
+		}
+	}
+
+	&__text {
+		display: flex;
+		flex-direction: column;
+		gap: 24px;
+
+		max-width: 525px;
+		width: 100%;
+
+		@include tablet-small {
+			max-width: 312px;
+			width: 100%;
+		}
+
+		.input {
+			@include desktop-small {
+				& {
+					max-width: 485px;
+					width: 100%;
+
+					form {
+						max-width: 485px;
+						width: 100%;
+					}
+				}
+			}
+
+			form {
+				div:nth-child(5),
+				div:nth-child(6) {
+					label {
+						color: black;
+						font-size: 12px;
+
+						@include tablet-small {
+							font-size: 10px;
+						}
+					}
+				}
+			}
+		}
+	}
+
+}

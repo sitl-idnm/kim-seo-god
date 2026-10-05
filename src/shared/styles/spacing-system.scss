@@ -1,0 +1,21 @@
+@use '@styles/mixins' as *;
+
+// Единая система вертикальных отступов для SEO-проекта
+$section-gap-desktop: 64px;
+$section-gap-tablet: 48px;
+$section-gap-mobile: 32px;
+
+$text-gap-desktop: 20px;
+$text-gap-mobile: 12px;
+
+@mixin section-gap {
+  margin-bottom: $section-gap-desktop;
+
+  @include tablet {
+    margin-bottom: $section-gap-tablet;
+  }
+
+  @include tablet-small {
+    margin-bottom: $section-gap-mobile;
+  }
+}

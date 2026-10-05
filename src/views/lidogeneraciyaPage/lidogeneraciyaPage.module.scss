@@ -1,0 +1,186 @@
+@use '@styles/func';
+@use '@styles/mixins' as *;
+@use '@styles/variables';
+
+.root {
+  max-width: 1312px;
+  margin: 0 auto;
+
+  @include tablet {
+    padding: 0 16px;
+    box-sizing: border-box;
+  }
+
+  @include tablet-small {
+    padding: 0 12px;
+  }
+}
+
+/* Стиль кнопки «Рассчитать мой вариант» — как у Branch, но открывает модалку */
+.branchModalButton {
+  display: inline-block;
+  padding: 16px 32px;
+  font-family: var(--font-inter);
+  font-size: 18px;
+  font-weight: 500;
+  line-height: 1.3;
+  color: #fff;
+  background-color: var(--color-black, #16181b);
+  border-radius: 12px;
+  border: none;
+  cursor: pointer;
+  text-decoration: none;
+  transition: opacity 0.2s;
+
+  &:hover {
+    opacity: 0.9;
+  }
+
+  @include tablet {
+    font-size: 16px;
+    padding: 14px 28px;
+  }
+}
+
+.buttonSecondaryBlock {
+  background: #FAFAFA !important;
+  color: #16181B !important;
+  border-radius: 10px !important;
+  min-height: 56px !important;
+
+  &::before {
+    background: #FAFAFA !important;
+    color: #CB172C !important;
+    border-radius: 10px !important;
+    height: 56px !important;
+  }
+
+  &::after {
+    background: #e8e8e8 !important;
+    color: #16181B !important;
+    border-radius: 10px !important;
+    height: 56px !important;
+  }
+}
+
+.introBlock {
+  margin-bottom: 50px !important;
+
+  /* Кнопки визуально внутри блока: меньше зазор между текстом и кнопками */
+  :global([class*='box']) {
+    gap: 10px;
+  }
+
+  :global([class*='box__text']) {
+    margin-bottom: 2px;
+  }
+}
+
+/* Кнопки интро в одну строку, красная + белая */
+.introButtonsWrap {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  gap: 12px;
+  justify-content: center;
+  align-items: center;
+  margin-top: 4px;
+
+  & > * {
+    width: auto !important;
+    max-width: 192px;
+    flex: 0 0 auto;
+  }
+}
+
+.introButtonPrimary {
+  /* Красная по умолчанию — без переопределения */
+}
+
+/* Белая кнопка: скругление и высота как у красной, анимация не ломается */
+.introButtonSecondary {
+  background: #FAFAFA !important;
+  color: #16181B !important;
+  border-radius: 10px !important;
+  min-height: 56px !important;
+
+  &::before {
+    background: #FAFAFA !important;
+    color: #CB172C !important;
+    border-radius: 10px !important;
+    height: 56px !important;
+  }
+
+  &::after {
+    background: #e8e8e8 !important;
+    color: #16181B !important;
+    border-radius: 10px !important;
+    height: 56px !important;
+  }
+
+  &:hover {
+    &::before {
+      color: #CB172C;
+    }
+  }
+}
+
+.introTitleSmall {
+  max-width: 1100px;
+  text-align: center;
+  font-size: 60px !important;
+  padding-left: 16px;
+  padding-right: 16px;
+  box-sizing: border-box;
+
+  @include tablet {
+    font-size: 48px !important;
+  }
+
+  @include tablet-small {
+    font-size: 24px !important;
+    line-height: 1.25 !important;
+  }
+}
+
+/* Подзаголовок блока цен — заметно меньше основного заголовка */
+.branchSubtitle {
+  font-size: 0.55em;
+  font-weight: 500;
+  opacity: 0.85;
+  display: block;
+  margin-top: 0.25em;
+}
+
+/* Визуальный разрыв между двумя блоками с галочками */
+.sectionDivider {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 32px 0 24px;
+  padding: 0 1rem;
+
+  @include tablet-small {
+    margin: 20px 0 14px;
+  }
+}
+
+.sectionDividerLine {
+  display: block;
+  width: 80px;
+  height: 3px;
+  background: var(--color-red-accent, #CB172C);
+  border-radius: 2px;
+}
+
+.whyCardsEqualPadding :global([class*='advantageItem']) {
+  padding: 28px;
+
+  @include tablet {
+    padding: 26px;
+  }
+
+  @include tablet-small {
+    padding: 14px 12px;
+  }
+}

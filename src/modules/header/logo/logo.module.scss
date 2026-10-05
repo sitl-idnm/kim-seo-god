@@ -1,0 +1,23 @@
+@use '@styles/func';
+@use '@styles/mixins';
+
+.root {
+  display: inline-flex;
+  align-items: center;
+  width: 100.22px;
+  height: 31.31px;
+  line-height: 0;
+
+  svg {
+    display: block;
+    width: 100% !important;
+    height: 100% !important;
+    max-width: none;
+    flex-shrink: 0;
+
+    @include mixins.tablet {
+      width: 100% !important;
+      height: 100% !important;
+    }
+  }
+}

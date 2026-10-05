@@ -1,0 +1,104 @@
+@use '@styles/mixins' as *;
+
+@mixin quiz-stepper-mobile {
+  .controlsFormStep {
+    justify-content: center;
+
+    .backButton {
+      min-width: 160px;
+    }
+  }
+
+  @include tablet-small {
+    .container {
+      gap: 20px;
+      padding: 20px 14px;
+    }
+
+    .subtitle {
+      max-width: none;
+    }
+
+    .content {
+      gap: 16px;
+      min-height: auto;
+    }
+
+    .progress {
+      margin-top: 22px;
+      margin-bottom: 0;
+      height: 6px;
+    }
+
+    .stepCount {
+      top: -20px;
+      font-size: 12px;
+    }
+
+    .form {
+      margin-bottom: 0;
+    }
+
+    .formStep {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .formDescription {
+      margin-top: 0;
+    }
+
+    .controls {
+      flex-direction: column;
+      gap: 10px;
+      margin-top: 4px;
+    }
+
+    .controlsFormStep {
+      margin-top: 12px;
+
+      .backButton {
+        min-width: 0;
+      }
+    }
+
+    .backButton,
+    .nextButton {
+      width: 100%;
+      min-width: 0;
+      padding: 14px 20px;
+      font-size: 15px;
+    }
+
+    .option {
+      padding: 14px 12px;
+    }
+
+    .quizForm {
+      :global([class*='form']) {
+        gap: 12px;
+      }
+
+      :global([class*='form_wrapper']:not([class*='checkbox'])) {
+        width: 100%;
+      }
+
+      :global([class*='form_wrapper_checkbox']) {
+        align-items: flex-start;
+        gap: 10px;
+
+        label {
+          line-height: 1.45;
+          font-size: 12px;
+        }
+      }
+
+      :global(input[type='submit']) {
+        width: 100%;
+        min-height: 52px;
+        margin-top: 4px;
+      }
+    }
+  }
+}

@@ -1,0 +1,123 @@
+@use "@styles/func";
+@use "@styles/mixins" as *;
+@use "@styles/variables";
+
+.root {
+	max-width: 1312px;
+	display: flex;
+	margin: 0 auto 80px;
+
+	@include tablet {
+		margin: 0 0 40px;
+	}
+
+	@include tablet-small {
+		margin: 0 0 24px;
+	}
+}
+
+.introduce {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	max-width: 1312px;
+	gap: 28px;
+
+	&--auto {
+		margin: 0 auto;
+	}
+
+	&--none {
+		margin: 0;
+	}
+
+	&_left {
+		align-items: flex-start;
+	}
+
+	&_right {
+		align-items: flex-end;
+	}
+
+	&_center {
+		align-items: center;
+	}
+
+	&__title {
+		font-family: var(--font-inter);
+		font-size: 74px;
+		font-weight: 500;
+		text-align: center;
+		line-height: 120%;
+		margin-bottom: 32px;
+		color: var(--color-black);
+
+		@include tablet {
+			font-size: 48px;
+			margin-bottom: 24px;
+		}
+
+		@include tablet-small {
+			text-align: left;
+			font-size: 38px;
+			margin-bottom: 16px;
+		}
+
+		&__awesome {
+			color: var(--color-red-gradient-start);
+		}
+	}
+
+	&__title_medium {
+		text-align: center;
+		font-family: var(--font-inter);
+		font-size: 58px;
+		font-weight: 500;
+		line-height: 120%;
+		margin-bottom: 32px;
+		color: var(--color-black);
+
+		@include tablet {
+			font-size: 32px;
+			margin-bottom: 24px;
+		}
+
+		@include mobile {
+			font-size: 24px;
+			margin-bottom: 16px;
+		}
+	}
+
+	&__description {
+		max-width: 420px;
+		font-size: 16px;
+		line-height: 1.6;
+		margin: -30px 0 0;
+
+		&--left {
+			text-align: left;
+		}
+
+		&--center {
+			text-align: center;
+		}
+
+		&--right {
+			text-align: right;
+		}
+
+		@include tablet {
+			font-size: 12px;
+		}
+
+		@include tablet-small {
+			text-align: left;
+		}
+	}
+
+	@include tablet-small {
+		margin-left: 8px;
+		align-items: flex-start;
+	}
+}

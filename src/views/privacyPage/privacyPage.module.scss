@@ -1,0 +1,78 @@
+@use "@styles/func";
+@use "@styles/mixins" as *;
+@use "@styles/variables";
+
+.root {
+  display: flex;
+  flex-direction: column;
+  gap: 56px;
+  max-width: 1312px;
+  width: 100%;
+  margin: 0 auto;
+  position: relative;
+  padding-top: 70px;
+	padding-bottom: 100px;
+
+  @include desktop {
+    overflow-x: hidden;
+    overflow-y: visible;
+    padding: 70px 36px;
+  }
+
+  @include tablet {
+    padding: 70px 12px;
+  }
+
+  @include tablet-small {
+    gap: 32px;
+  }
+
+  .container {
+    display: flex;
+    flex-direction: column;
+    gap: 32px;
+    padding: 0 16px;
+
+    @include tablet-small {
+      gap: 24px;
+      padding: 0 12px;
+    }
+
+    h1 {
+      font-family: var(--font-inter);
+      font-size: 42px;
+      font-weight: 500;
+      line-height: 132%;
+      color: #16181B;
+
+      @include tablet-small {
+        font-size: 32px;
+      }
+    }
+
+    h2 {
+      font-family: var(--font-inter);
+      font-size: 32px;
+      font-weight: 500;
+      line-height: 132%;
+      color: #16181B;
+
+      @include tablet-small {
+        font-size: 24px;
+      }
+    }
+
+    p {
+      font-family: var(--font-inter);
+      font-size: 16px;
+      font-weight: 400;
+      line-height: 150%;
+      color: rgba(22, 24, 27, 0.6);
+
+      strong {
+        color: #16181B;
+        font-weight: 600;
+      }
+    }
+  }
+}

@@ -1,0 +1,1 @@
+export { default as Favour } from './favour'

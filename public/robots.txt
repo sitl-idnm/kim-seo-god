@@ -1,0 +1,8 @@
+﻿# ВРЕМЕННО (staging): сайт на согласовании — индексация полностью закрыта.
+# Перед запуском: заменить этим файлом содержимое robots.production.txt
+# (там разрешён доступ ИИ-краулерам и настройки для Яндекса) и снять noindex в src/app/layout.tsx.
+User-agent: *
+Disallow: /
+
+Host: https://kim-agency.ru/
+Sitemap: https://kim-agency.ru/sitemap.xml

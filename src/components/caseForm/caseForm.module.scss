@@ -1,0 +1,307 @@
+/* stylelint-disable no-descending-specificity */
+@use "@styles/func";
+@use "@styles/mixins" as *;
+@use "@styles/variables";
+
+.root {
+	display: flex;
+
+	background-color: #16181B;
+	border-radius: 40px;
+
+	justify-content: space-between;
+
+	position: relative;
+
+	padding: 87px;
+
+	@include desktop {
+		padding: 62px 52px;
+		margin: 0 15px;
+	}
+
+	@include tablet {
+		padding: 70px;
+		flex-direction: column;
+		align-items: center;
+
+		margin: 0 12px;
+	}
+
+	@include tablet-small {
+		margin: 0;
+	}
+
+	& > div:nth-child(1) {
+		margin: -87px;
+
+		@include desktop {
+			margin: -62px -52px;
+		}
+
+		@include tablet {
+			margin: -70px;
+		}
+	}
+
+	.form_header {
+		display: flex;
+		flex-direction: column;
+		gap: 12px;
+		align-items: flex-start;
+
+		@include desktop {
+			justify-content: center;
+		}
+
+		@include tablet-small {
+			width: 312px;
+		}
+
+		.form_header_title {
+			font-family: var(--font-inter);
+			font-weight: 500;
+			font-size: 54px;
+			line-height: 120%;
+			color: #FAFAFA;
+
+			@include tablet-small {
+				font-size: 28px;
+			}
+		}
+
+		img {
+			@include desktop {
+				width: 605px;
+				height: 437px;
+			}
+
+			@include tablet-small {
+				width: 336px;
+				height: 243px;
+			}
+		}
+	}
+}
+
+.form {
+	display: flex;
+	flex-direction: column;
+	gap: 16px;
+	width: 421px;
+	position: relative;
+
+	@include tablet {
+		width: 605px;
+	}
+
+	@include tablet-small {
+		width: 312px;
+	}
+
+	&_wrapper {
+		display: flex;
+		position: relative;
+		gap: 12px;
+
+		&:nth-child(3) {
+			display: flex;
+			flex-direction: row;
+		}
+
+		&:nth-child(5) {
+			display: flex;
+			flex-direction: row;
+		}
+
+		&:nth-child(6) {
+			display: flex;
+			flex-direction: row;
+		}
+
+		h3 {
+			font-family: var(--font-inter);
+			font-weight: 500;
+			font-size: 24px;
+			line-height: 150%;
+			color: #FAFAFA;
+		}
+
+		label {
+			color: var(--color-white-default);
+			font-size: 12px;
+			font-family: var(--font-manrope);
+			font-weight: 500;
+
+			@include mobile-large {
+				font-size: 12px;
+			}
+		}
+	}
+
+	.placeholder {
+		position: absolute;
+		display: inline-block;
+		top: 20px;
+		left: 20px;
+		color: #16181B35;
+		font-family: var(--font-manrope);
+		font-weight: 500;
+		pointer-events: none;
+		transition: .5s;
+	}
+
+
+	input {
+		height: 65px;
+		width: 100%;
+
+		padding: 9px 20px;
+
+		cursor: pointer;
+
+		font-size: var(--font-size);
+		font-family: var(--font-manrope);
+		font-weight: 500;
+
+		border: 1px solid var(--color-gray-border);
+		border-radius: 10px;
+
+		transition: 3s;
+
+		@include mobile-large {
+			input {
+				height: 55px;
+
+				padding: 15.5px 20px;
+
+				font-size: 14px;
+			}
+		}
+
+		&[type='checkbox'] {
+			min-height: auto;
+			border-radius: 4px;
+			padding: 0;
+
+			accent-color: var(--color-red-accent);
+
+			width: 24px;
+			height: 24px;
+		}
+
+		&[type='submit'] {
+			font-family: var(--font-inter);
+			font-weight: 500;
+			line-height: 150%;
+			border: 1px solid var(--color-red-gradient-start);
+			transition: all 0.5s ease-in;
+
+			background: linear-gradient(315deg, var(--color-red-gradient-start), var(--color-red-gradient-end));
+
+			color: var(--color-white-default);
+		}
+
+		&[type='submit']:hover {
+			background: var(--color-black);
+			border: 1px solid var(--color-black-default);
+			/* Firefox */
+			-moz-transition: all 0.5s ease-in;
+			/* WebKit */
+			-webkit-transition: all 0.5s ease-in;
+			/* Opera */
+			-o-transition: all 0.5s ease-in;
+			/* Standard */
+			transition: all 0.5s ease-in;
+		}
+
+		&[type="number"]::-webkit-outer-spin-button,
+		&[type="number"]::-webkit-inner-spin-button {
+			-webkit-appearance: none; // Yeah, yeah everybody write about it
+		}
+
+		&[type='number'],
+		&[type="number"]:hover,
+		&[type="number"]:focus {
+			appearance: none;
+				-moz-appearance: textfield;
+			}
+
+		&::placeholder {
+			color: transparent;
+		}
+
+		&:focus ~ .placeholder,
+		&:not(:placeholder-shown) ~ .placeholder {
+			transform: translateY(-20px);
+			font-size: 12px;
+
+			@include mobile-large {
+				font-size: 10px;
+			}
+		}
+	}
+
+	textarea {
+		resize: none;
+		height: 133px;
+		width: 100%;
+
+		padding: 20px;
+
+		cursor: pointer;
+
+		font-size: 16px;
+		font-family: var(--font-manrope);
+		font-weight: 500;
+
+		border: 1px solid var(--color-gray-border);
+		border-radius: 10px;
+
+		transition: 3s;
+
+		&::placeholder {
+			color: transparent;
+		}
+
+		&:focus ~ .placeholder,
+		&:not(:placeholder-shown) ~ .placeholder {
+			transform: translateY(-20px);
+			font-size: 12px;
+
+			@include mobile-large {
+				font-size: 10px;
+			}
+		}
+	}
+
+	/* stylelint-disable-next-line selector-class-pattern */
+	.successMessage {
+		position: absolute;
+		width: 100%;
+		height: 100%;
+
+		display: flex;
+		flex-direction: column;
+		gap: 10px;
+		justify-content: center;
+		align-items: center;
+		color: #F7F7F7;
+		border-radius: 10px;
+
+		background-color: var(--color-red-accent);
+		font-family: var(--font-manrope);
+		font-weight: 500;
+		font-size: 16px;
+
+		& svg {
+			width: 70px;
+			height: 70px;
+		}
+	}
+}
+
+
+.policyLink {
+  margin-left: 4px;
+}

@@ -1,0 +1,28 @@
+/* stylelint-disable */
+
+// breakpoints
+$desktop: 1440px;
+$tablet: 1200px;
+$tablet-small: 768px;
+$mobile-large: 480px;
+$mobile: 360px;
+
+// retina
+$retina-dpi: 144dpi;
+$retina-dppx: 1.5dppx;
+
+// transitions
+$transition-duration: 0.3s;
+$transition-timing-function: ease;
+$transition: $transition-duration $transition-timing-function;
+
+// Typography
+// ---------------------------------
+
+$font-size:        16px;
+$font-size-sm:     $font-size * 0.875;
+$font-size-lg:     $font-size * 1.25;
+$line-height:      1.5;
+$font-family: -apple-system, blinkmacsystemfont, "Roboto", "Ubuntu", "Droid Sans", "Helvetica Neue", "Arial", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+$font-family-base: $font-family;
+$ff-rouble:        "Rouble", "Arial", sans-serif;

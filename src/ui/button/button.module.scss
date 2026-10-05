@@ -1,0 +1,96 @@
+@use '@styles/func';
+@use '@styles/variables';
+@use '@styles/mixins';
+
+$speed: 0.5s ease;
+
+.root {
+  @include mixins.reset-btn;
+  position: relative;
+  display: inline-block;
+  border: 1px solid transparent;
+
+  font-family: var(--font-inter);
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 150%;
+  color: var(--color-white-default);
+
+  cursor: pointer;
+
+  text-align: center;
+
+  width: 100%;
+
+  opacity: 1;
+  outline: 0;
+
+  &:hover {
+    &::after {
+      opacity: 1;
+      transform: translateY(0) rotateX(0);
+    }
+
+    &::before {
+      transform: translateY(50%) rotateX(90deg);
+    }
+  }
+
+  &:after{
+    content: attr(data-back);
+
+    top: 0;
+    left: 0;
+
+    opacity: 0;
+
+    width: 100%;
+    height: 56px;
+    padding: 0 24px;
+    box-sizing: border-box;
+    white-space: nowrap;
+
+    line-height: 150%;
+    color: var(--color-red-accent); // Цвет шрифта в конечном состоянии
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: absolute;
+    border-radius: 10px;
+
+    transition: $speed;
+    transform: translateY(-50%) rotateX(90deg);
+
+    background-color: var(--color-grey-light);
+  }
+
+  &:before{
+    content: attr(data-front);
+
+    top: 0;
+    left: 0;
+
+    opacity: 1;
+
+    width: 100%;
+    height: 56px;
+    padding: 0 24px;
+    box-sizing: border-box;
+    white-space: nowrap;
+
+    color: var(--color-white-default); // Цвет шрифта в начальном состоянии
+    line-height: 150%;
+
+    background: linear-gradient(256.01deg, var(--color-red-gradient-start) -7.55%, var(--color-red-gradient-end) 74.55%);
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    border-radius: 10px;
+
+    transition: $speed;
+    transform: translateY(0) rotateX(0);
+  }
+}

@@ -1,0 +1,42 @@
+@use '@styles/func';
+@use '@styles/mixins';
+@use '@styles/variables';
+
+.root {
+  width: 100%;
+  padding: func.rem(40) 0;
+  overflow: hidden;
+}
+
+.title {
+  color: var(--color-blue);
+  text-align: center;
+  margin: 0 auto func.rem(32);
+}
+
+.image {
+  display: block;
+  width: 100%;
+  max-width: func.rem(512);
+  height: auto;
+  margin: 0 auto;
+
+  @include mixins.tablet-small {
+    max-width: func.rem(400);
+  }
+}
+
+.hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+  visibility: hidden;
+  opacity: 0;
+  display: none;
+}
