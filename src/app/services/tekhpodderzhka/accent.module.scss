@@ -1,0 +1,6 @@
+// Акцентные классы страницы техподдержки.
+// Переиспользуют общий механизм serviceAccent: цвет берётся из CSS-переменной
+// --accent, которую страница проставляет из uiConfig (см. page.tsx).
+// Общий shared/servicePage.module.scss не трогаем — акцент держим отдельно.
+
+@use '@styles/serviceAccent' as *;

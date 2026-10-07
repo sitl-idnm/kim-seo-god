@@ -10,6 +10,7 @@
  */
 
 let registered = false
+let registeredMotion = false
 
 export const loadGsap = async () => {
   const gsap = (await import('gsap')).default
@@ -28,7 +29,10 @@ export const loadGsapWithMotionPath = async () => {
   const { ScrollTrigger } = await import('gsap/ScrollTrigger')
   const { MotionPathPlugin } = await import('gsap/MotionPathPlugin')
 
-  gsap.registerPlugin(ScrollTrigger, MotionPathPlugin)
+  if (!registeredMotion) {
+    gsap.registerPlugin(ScrollTrigger, MotionPathPlugin)
+    registeredMotion = true
+  }
 
   return { gsap, ScrollTrigger, MotionPathPlugin }
 }

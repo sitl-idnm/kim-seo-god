@@ -1,0 +1,23 @@
+// Акцентные классы страницы «Фирменный стиль».
+// Управляются CSS-переменными --accent/--accent-soft, которые страница
+// проставляет из uiConfig. Переиспользуем общие классы serviceAccent.
+@use '@styles/serviceAccent' as *;
+
+// Акцентная полоска у заголовка секции StandartText (левый бар из --accent).
+.accentHeading {
+  :global([class*='standartText_title']) {
+    position: relative;
+    padding-left: 20px;
+
+    &::before {
+      content: '';
+      position: absolute;
+      left: 0;
+      top: 0.18em;
+      bottom: 0.18em;
+      width: 6px;
+      border-radius: 6px;
+      background: var(--accent, #cb172c);
+    }
+  }
+}

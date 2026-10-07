@@ -16,5 +16,10 @@ export const lidogeneraciyaData: ServiceData = {
     'Закрытие под ключ (опционально)',
     'Масштабирование и оптимизация каналов'
   ],
-  technologies: []
+  technologies: [],
+  uiConfig: {
+    accent: '#EB5757',
+    accentSoft: '#FDEDED',
+    heroEyebrow: 'Лидогенерация'
+  }
 }

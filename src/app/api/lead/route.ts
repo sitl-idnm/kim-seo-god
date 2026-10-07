@@ -19,6 +19,12 @@ const hits = new Map<string, { count: number; ts: number }>()
 
 function rateLimited(ip: string): boolean {
   const now = Date.now()
+  // Периодическая очистка протухших записей — чтобы Map не рос бесконечно на долгоживущем инстансе.
+  if (hits.size > 1000) {
+    for (const [key, value] of hits) {
+      if (now - value.ts > WINDOW_MS) hits.delete(key)
+    }
+  }
   const rec = hits.get(ip)
   if (!rec || now - rec.ts > WINDOW_MS) {
     hits.set(ip, { count: 1, ts: now })

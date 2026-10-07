@@ -30,7 +30,13 @@ export const razrabotkaMobilnogoPrilozheniyaData: ServiceData = {
     'Figma',
     'Метрика',
     'Roistat'
-  ]
+  ],
+  uiConfig: {
+    accent: '#0A84FF',
+    accentSoft: '#E6F1FF',
+    heroVariant: 'bold',
+    heroEyebrow: 'Мобильные приложения'
+  }
 }
 
 export const faqData = [

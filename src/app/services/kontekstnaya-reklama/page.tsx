@@ -1,7 +1,9 @@
 import { getServiceData } from '@/shared/dataServices'
 import styles from '../shared/servicePage.module.scss'
+import accent from './accent.module.scss'
 import classNames from 'classnames'
 import { FC } from 'react'
+import type { CSSProperties } from 'react'
 import { IntroWorkUs } from '@/modules/introWorkUs'
 import type { Metadata } from 'next'
 import { StandartText } from '@/ui'
@@ -39,6 +41,19 @@ const KontekstnayaReklamaPage: FC = () => {
   }
 
   const rootClassName = classNames(styles.root)
+
+  const ui = serviceData.uiConfig
+  const accentStyle = ui
+    ? ({ '--accent': ui.accent, '--accent-soft': ui.accentSoft ?? '#f7f7f8' } as CSSProperties)
+    : undefined
+  const introClassName = classNames(
+    styles.introBlock,
+    ui?.heroEyebrow && accent.heroWithEyebrow,
+    ui?.heroVariant === 'spotlight' && accent.heroSpotlight,
+    ui?.heroVariant === 'split' && accent.heroSplit,
+    ui?.heroVariant === 'bold' && accent.heroBold,
+    ui?.heroVariant === 'minimal' && accent.heroMinimal
+  )
 
   return (
     <div
@@ -97,27 +112,31 @@ const KontekstnayaReklamaPage: FC = () => {
         ))}
       </div>
 
-      <main className={rootClassName}>
+      <main className={rootClassName} style={accentStyle}>
         <IntroWorkUs
-          className={styles.introBlock}
+          className={introClassName}
           title="Настройка контекстной рекламы"
           text="Настройка контекстной рекламы помогает получать заявки в момент, когда человек уже ищет товар или услугу. Для бизнеса это способ быстро выйти на горячий спрос, проверить оффер и понять, какие запросы реально приводят обращения. В K.KIM мы строим работу не вокруг кликов, а вокруг экономики: считаем допустимую стоимость лида, смотрим маржинальность, готовим структуру и только потом запускаем кампании."
           highlightedText=""
           titleClassName={styles.introTitleSmall}
           buttons={(
             <div className={styles.introButtonsWrap}>
-              <PricingModalButton
-                modalKey="детали"
-                maxWidth="320px"
-                className={styles.introHeroButton}
-              >
-                Заказать настройку
-              </PricingModalButton>
+              <div className={accent.heroStack}>
+                {ui?.heroEyebrow && <span className={accent.heroEyebrow}>{ui.heroEyebrow}</span>}
+                <PricingModalButton
+                  modalKey="детали"
+                  maxWidth="320px"
+                  className={classNames(styles.introHeroButton, accent.accentHeroButton)}
+                >
+                  Заказать настройку
+                </PricingModalButton>
+              </div>
             </div>
           )}
         />
 
         <StandartText
+          className={accent.accentHeading}
           marginBottom
           marginTop
           title="Что входит в работу"

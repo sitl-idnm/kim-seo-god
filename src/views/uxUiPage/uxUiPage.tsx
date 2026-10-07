@@ -16,6 +16,8 @@ import { Button } from '@/ui'
 import { Heading } from '@/ui'
 import { ServicePricing } from '@/modules/servicePricing'
 import Services from '@/modules/ServicePage/services/services'
+import type { CSSProperties } from 'react'
+import { getServiceData } from '@/shared/dataServices'
 import styles from './uxUiPage.module.scss'
 
 const PAGE_URL = 'https://kim-agency.ru/ux-ui'
@@ -43,9 +45,13 @@ const normalizeText = (value: string) => value.replaceAll('\\u00A0', '\u00A0')
 
 export const UxUiPageView: FC = () => {
   const rootClassName = classNames(styles.root)
+  const ui = getServiceData('ux-ui')?.uiConfig
+  const accentStyle = ui
+    ? ({ '--accent': ui.accent, '--accent-soft': ui.accentSoft ?? '#f7f7f8' } as CSSProperties)
+    : undefined
 
   return (
-    <div itemScope itemType="https://schema.org/WebPage">
+    <div itemScope itemType="https://schema.org/WebPage" style={accentStyle}>
       <meta itemProp="name" content="UI & UX дизайн от K.KIM" />
       <meta itemProp="url" content={PAGE_URL} />
 
@@ -107,14 +113,17 @@ export const UxUiPageView: FC = () => {
           titleClassName={styles.introTitleSmall}
           buttons={(
             <div className={styles.introButtonsWrap}>
-              <Button
-                tag="a"
-                href="#order-form"
-                maxWidth="320px"
-                className={styles.introHeroButton}
-              >
-                Заказать UX/UI дизайн
-              </Button>
+              <div className={styles.heroStack}>
+                {ui?.heroEyebrow && <span className={styles.heroEyebrow}>{ui.heroEyebrow}</span>}
+                <Button
+                  tag="a"
+                  href="#order-form"
+                  maxWidth="320px"
+                  className={classNames(styles.introHeroButton, styles.accentHeroButton)}
+                >
+                  Заказать UX/UI дизайн
+                </Button>
+              </div>
             </div>
           )}
         />
@@ -251,7 +260,7 @@ export const UxUiPageView: FC = () => {
         <Clients title="Нам доверяют" />
 
         <section className={styles.tech}>
-          <Heading size="md" className={styles.techTitle}>
+          <Heading size="md" className={classNames(styles.techTitle, styles.accentTitle)}>
             Наши технологии
           </Heading>
           <p className={styles.techText}>

@@ -15,5 +15,10 @@ export const uxUiData: ServiceData = {
     'Адаптация под мобильные и десктопные устройства',
     'Подготовка макетов к передаче в разработку'
   ],
-  technologies: ['Figma', 'Tilda', 'Freepik']
+  technologies: ['Figma', 'Tilda', 'Freepik'],
+  uiConfig: {
+    accent: '#9B51E0',
+    accentSoft: '#F3EBFB',
+    heroEyebrow: 'UX/UI дизайн'
+  }
 }

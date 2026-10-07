@@ -20,5 +20,11 @@ export const razrabotkaChatBotovPageData: ServiceData = {
     'Интеграции: REST API, CRM (Bitrix24)',
     'Хостинг и инфраструктура: VPS, Docker, облачные серверы',
     'AI-инструменты: модели ИИ для обработки текста'
-  ]
+  ],
+  uiConfig: {
+    accent: '#6C5CE7',
+    accentSoft: '#F0EEFC',
+    heroVariant: 'spotlight',
+    heroEyebrow: 'Чат-боты и автоматизация'
+  }
 }

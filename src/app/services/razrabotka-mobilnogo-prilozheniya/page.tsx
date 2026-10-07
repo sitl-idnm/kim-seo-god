@@ -1,7 +1,9 @@
 import { getServiceData } from '@/shared/dataServices'
 import styles from '../shared/servicePage.module.scss'
+import accent from './accent.module.scss'
 import classNames from 'classnames'
 import { FC } from 'react'
+import type { CSSProperties } from 'react'
 import { IntroWorkUs } from '@/modules/introWorkUs'
 import type { Metadata } from 'next'
 import { StandartText } from '@/ui'
@@ -58,10 +60,24 @@ const RazrabotkaMobilnogoPrilozheniyaPage: FC = () => {
 
   const rootClassName = classNames(styles.root)
 
+  const ui = serviceData.uiConfig
+  const accentStyle = ui
+    ? ({ '--accent': ui.accent, '--accent-soft': ui.accentSoft ?? '#f7f7f8' } as CSSProperties)
+    : undefined
+  const introClassName = classNames(
+    styles.introBlock,
+    ui?.heroEyebrow && accent.heroWithEyebrow,
+    ui?.heroVariant === 'split' && accent.heroSplit,
+    ui?.heroVariant === 'spotlight' && accent.heroSpotlight,
+    ui?.heroVariant === 'bold' && accent.heroBold,
+    ui?.heroVariant === 'minimal' && accent.heroMinimal
+  )
+
   return (
     <div
       itemScope
       itemType="https://schema.org/WebPage"
+      style={accentStyle}
     >
       <meta itemProp="name" content={serviceData?.title ?? 'Разработка мобильного приложения'} />
       <meta itemProp="url" content={PAGE_URL} />
@@ -117,20 +133,23 @@ const RazrabotkaMobilnogoPrilozheniyaPage: FC = () => {
 
       <main className={rootClassName}>
         <IntroWorkUs
-          className={styles.introBlock}
+          className={introClassName}
           title="Разработка мобильного приложения"
           text="KIM Agency помогает бизнесу сделать удобное приложение без разработки с нуля. Если нужно создать мобильное приложение для сайта, мы оцениваем задачи, аудиторию, интеграции и подбираем формат: нативная разработка, PWA или конструктор."
           highlightedText=""
           titleClassName={styles.introTitleSmall}
           buttons={(
             <div className={styles.introButtonsWrap}>
-              <PricingModalButton
-                modalKey="Начать"
-                maxWidth="320px"
-                className={styles.introHeroButton}
-              >
-                Начать работу
-              </PricingModalButton>
+              <div className={accent.heroStack}>
+                {ui?.heroEyebrow && <span className={accent.heroEyebrow}>{ui.heroEyebrow}</span>}
+                <PricingModalButton
+                  modalKey="Начать"
+                  maxWidth="320px"
+                  className={classNames(styles.introHeroButton, accent.accentHeroButton)}
+                >
+                  Начать работу
+                </PricingModalButton>
+              </div>
             </div>
           )}
         />

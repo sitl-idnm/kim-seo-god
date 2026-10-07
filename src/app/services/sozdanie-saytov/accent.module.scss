@@ -1,0 +1,4 @@
+// Локальные акцентные классы страницы услуги.
+// Управляются CSS-переменной --accent (из uiConfig), проставляемой на корне страницы.
+// Переиспользуем общие accent-классы из serviceAccent, не трогая общий servicePage.module.scss.
+@use '@styles/serviceAccent' as *;

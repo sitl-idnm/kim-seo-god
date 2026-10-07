@@ -7,6 +7,7 @@ import { FC } from 'react'
 import { IntroWorkUs } from '@/modules/introWorkUs'
 import { RazrabotkaChatBotovPageProps } from './page.types'
 import type { Metadata } from 'next'
+import type { CSSProperties } from 'react'
 import { StandartText } from '@/ui'
 import { Why } from '@/modules/why'
 import { Heading } from '@/ui'
@@ -58,10 +59,24 @@ const RazrabotkaChatBotovPage: FC<RazrabotkaChatBotovPageProps> = () => {
 
   const rootClassName = classNames(styles.root)
 
+  const ui = serviceData.uiConfig
+  const accentStyle = ui
+    ? ({ '--accent': ui.accent, '--accent-soft': ui.accentSoft ?? '#f7f7f8' } as CSSProperties)
+    : undefined
+  const introClassName = classNames(
+    styles.introBlock,
+    ui?.heroEyebrow && styles.heroWithEyebrow,
+    ui?.heroVariant === 'split' && styles.heroSplit,
+    ui?.heroVariant === 'spotlight' && styles.heroSpotlight,
+    ui?.heroVariant === 'bold' && styles.heroBold,
+    ui?.heroVariant === 'minimal' && styles.heroMinimal
+  )
+
   return (
     <div
       itemScope
       itemType="https://schema.org/WebPage"
+      style={accentStyle}
     >
       {/* Microdata WebPage */}
       <meta itemProp="name" content={serviceData?.title ?? 'Разработка чат-ботов'} />
@@ -116,7 +131,7 @@ const RazrabotkaChatBotovPage: FC<RazrabotkaChatBotovPageProps> = () => {
 
       <main className={rootClassName}>
         <IntroWorkUs
-          className={styles.introBlock}
+          className={introClassName}
           title="Разработка чат-ботов для бизнеса от K.KIM"
           text={
             'Разработка чат ботов — это инструмент, который переводит чат в управляемый канал коммуникации и продаж. Мы выполняем разработку чат бота для бизнеса с учетом логики компании, интеграций и аналитики. Каждый бот создается под конкретную задачу: обработка лидов, поддержка, сопровождение продажи. Грамотная разработка позволяет внедрять чат-боты без сбоев в существующий процесс и получать измеримый результат.'
@@ -125,14 +140,17 @@ const RazrabotkaChatBotovPage: FC<RazrabotkaChatBotovPageProps> = () => {
           titleClassName={styles.introTitleSmall}
           buttons={(
             <div className={styles.introButtonsWrap}>
-              <Button
-                tag="a"
-                href="#form"
-                maxWidth="320px"
-                className={styles.introHeroButton}
-              >
-                Заказать разработку чат-бота
-              </Button>
+              <div className={styles.heroStack}>
+                {ui?.heroEyebrow && <span className={styles.heroEyebrow}>{ui.heroEyebrow}</span>}
+                <Button
+                  tag="a"
+                  href="#form"
+                  maxWidth="320px"
+                  className={classNames(styles.introHeroButton, styles.accentHeroButton)}
+                >
+                  Заказать разработку чат-бота
+                </Button>
+              </div>
             </div>
           )}
         />
@@ -169,7 +187,7 @@ const RazrabotkaChatBotovPage: FC<RazrabotkaChatBotovPageProps> = () => {
         </div>
 
         <section className={styles.solutions}>
-          <h2 className={styles.solutionsTitle}>Наши решения по созданию и внедрению чат-ботов</h2>
+          <h2 className={classNames(styles.solutionsTitle, styles.accentTitle)}>Наши решения по созданию и внедрению чат-ботов</h2>
           <p className={styles.solutionsText}>
             В нашей компании доступна разработка и внедрение чат ботов под ключ для решения различных бизнес-задач.
             Возможна реализация для Telegram и ВКонтакте. Каждый бот адаптируется под формат мессенджера и особенности аудитории.

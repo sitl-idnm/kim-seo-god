@@ -1,7 +1,9 @@
 import { getServiceData } from '@/shared/dataServices'
 import styles from '../shared/servicePage.module.scss'
+import accent from './accent.module.scss'
 import classNames from 'classnames'
 import { FC } from 'react'
+import type { CSSProperties } from 'react'
 import Link from 'next/link'
 import { IntroWorkUs } from '@/modules/introWorkUs'
 import type { Metadata } from 'next'
@@ -45,6 +47,19 @@ const FirmenniyStilPage: FC = () => {
   }
 
   const rootClassName = classNames(styles.root)
+
+  const ui = serviceData.uiConfig
+  const accentStyle = ui
+    ? ({ '--accent': ui.accent, '--accent-soft': ui.accentSoft ?? '#f7f7f8' } as CSSProperties)
+    : undefined
+  const introClassName = classNames(
+    styles.introBlock,
+    ui?.heroEyebrow && accent.heroWithEyebrow,
+    ui?.heroVariant === 'bold' && accent.heroBold,
+    ui?.heroVariant === 'split' && accent.heroSplit,
+    ui?.heroVariant === 'spotlight' && accent.heroSpotlight,
+    ui?.heroVariant === 'minimal' && accent.heroMinimal
+  )
 
   return (
     <div
@@ -103,22 +118,25 @@ const FirmenniyStilPage: FC = () => {
         ))}
       </div>
 
-      <main className={rootClassName}>
+      <main className={rootClassName} style={accentStyle}>
         <IntroWorkUs
-          className={styles.introBlock}
+          className={introClassName}
           title="Фирменный стиль и брендбук от K.KIM"
           text=""
           highlightedText=""
           titleClassName={styles.introTitleSmall}
           buttons={(
             <div className={styles.introButtonsWrap}>
-              <PricingModalButton
-                modalKey="дизайн"
-                maxWidth="320px"
-                className={styles.introHeroButton}
-              >
-                Заказать разработку
-              </PricingModalButton>
+              <div className={accent.heroStack}>
+                {ui?.heroEyebrow && <span className={accent.heroEyebrow}>{ui.heroEyebrow}</span>}
+                <PricingModalButton
+                  modalKey="дизайн"
+                  maxWidth="320px"
+                  className={classNames(styles.introHeroButton, accent.accentHeroButton)}
+                >
+                  Заказать разработку
+                </PricingModalButton>
+              </div>
             </div>
           )}
         />
@@ -148,6 +166,7 @@ const FirmenniyStilPage: FC = () => {
         />
 
         <StandartText
+          className={accent.accentHeading}
           marginBottom
           title="Что входит в фирменный стиль"
           texts={[

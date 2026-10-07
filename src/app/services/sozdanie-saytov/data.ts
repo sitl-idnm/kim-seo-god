@@ -33,7 +33,13 @@ export const sozdanieSaytovData: ServiceData = {
     'Настройка аналитики',
     'Подключение домена и хостинга'
   ],
-  technologies: ['WordPress', '1C-Битрикс', 'Tilda', 'индивидуальная веб-разработка']
+  technologies: ['WordPress', '1C-Битрикс', 'Tilda', 'индивидуальная веб-разработка'],
+  uiConfig: {
+    accent: '#FF6B35',
+    accentSoft: '#FFEEE6',
+    heroVariant: 'split',
+    heroEyebrow: 'Сайты под задачу'
+  }
 }
 
 export const faqData: FaqItem[] = [

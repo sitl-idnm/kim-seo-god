@@ -1,7 +1,9 @@
 import { getServiceData } from '@/shared/dataServices'
 import styles from '../shared/servicePage.module.scss'
+import accent from './accent.module.scss'
 import classNames from 'classnames'
 import { FC } from 'react'
+import type { CSSProperties } from 'react'
 import { IntroWorkUs } from '@/modules/introWorkUs'
 import type { Metadata } from 'next'
 import { StandartText } from '@/ui'
@@ -51,10 +53,24 @@ const SozdanieSaytovPage: FC = () => {
 
   const rootClassName = classNames(styles.root)
 
+  const ui = serviceData.uiConfig
+  const accentStyle = ui
+    ? ({ '--accent': ui.accent, '--accent-soft': ui.accentSoft ?? '#f7f7f8' } as CSSProperties)
+    : undefined
+  const introClassName = classNames(
+    styles.introBlock,
+    ui?.heroEyebrow && accent.heroWithEyebrow,
+    ui?.heroVariant === 'split' && accent.heroSplit,
+    ui?.heroVariant === 'spotlight' && accent.heroSpotlight,
+    ui?.heroVariant === 'bold' && accent.heroBold,
+    ui?.heroVariant === 'minimal' && accent.heroMinimal
+  )
+
   return (
     <div
       itemScope
       itemType="https://schema.org/WebPage"
+      style={accentStyle}
     >
       <meta itemProp="name" content={serviceData?.title ?? 'Разработка сайтов'} />
       <meta itemProp="url" content={PAGE_URL} />
@@ -110,20 +126,23 @@ const SozdanieSaytovPage: FC = () => {
 
       <main className={rootClassName}>
         <IntroWorkUs
-          className={styles.introBlock}
+          className={introClassName}
           title="Разработка сайтов K.KIM"
           text="Разработка сайтов — это не просто техническая работа, а создание полноценного цифрового инструмента для бизнеса. В KIM Agency мы создаем современные веб-решения, которые помогают компаниям продавать, масштабироваться и эффективно работать в интернете."
           highlightedText=""
           titleClassName={styles.introTitleSmall}
           buttons={(
             <div className={styles.introButtonsWrap}>
-              <PricingModalButton
-                modalKey="стоимость"
-                maxWidth="320px"
-                className={styles.introHeroButton}
-              >
-                Узнать стоимость
-              </PricingModalButton>
+              <div className={accent.heroStack}>
+                {ui?.heroEyebrow && <span className={accent.heroEyebrow}>{ui.heroEyebrow}</span>}
+                <PricingModalButton
+                  modalKey="стоимость"
+                  maxWidth="320px"
+                  className={classNames(styles.introHeroButton, accent.accentHeroButton)}
+                >
+                  Узнать стоимость
+                </PricingModalButton>
+              </div>
             </div>
           )}
         />

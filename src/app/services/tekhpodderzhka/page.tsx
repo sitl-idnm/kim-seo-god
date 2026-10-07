@@ -1,7 +1,9 @@
 import { getServiceData } from '@/shared/dataServices'
 import styles from '../shared/servicePage.module.scss'
+import accent from './accent.module.scss'
 import classNames from 'classnames'
 import { FC } from 'react'
+import type { CSSProperties } from 'react'
 import Link from 'next/link'
 import { IntroWorkUs } from '@/modules/introWorkUs'
 import type { Metadata } from 'next'
@@ -57,7 +59,16 @@ const TekhpodderzhkaPage: FC = () => {
     return null
   }
 
+  const ui = serviceData.uiConfig
+  const accentStyle = ui
+    ? ({ '--accent': ui.accent, '--accent-soft': ui.accentSoft ?? '#f7f7f8' } as CSSProperties)
+    : undefined
   const rootClassName = classNames(styles.root)
+  const introClassName = classNames(
+    styles.introBlock,
+    ui?.heroEyebrow && accent.heroWithEyebrow,
+    ui?.heroVariant === 'split' && accent.heroSplit
+  )
 
   return (
     <div
@@ -116,22 +127,25 @@ const TekhpodderzhkaPage: FC = () => {
         ))}
       </div>
 
-      <main className={rootClassName}>
+      <main className={rootClassName} style={accentStyle}>
         <IntroWorkUs
-          className={styles.introBlock}
+          className={introClassName}
           title="Услуги технической поддержки от K.KIM"
           text=""
           highlightedText=""
           titleClassName={styles.introTitleSmall}
           buttons={(
             <div className={styles.introButtonsWrap}>
-              <PricingModalButton
-                modalKey="поддержка"
-                maxWidth="320px"
-                className={styles.introHeroButton}
-              >
-                Подключить поддержку
-              </PricingModalButton>
+              <div className={accent.heroStack}>
+                {ui?.heroEyebrow && <span className={accent.heroEyebrow}>{ui.heroEyebrow}</span>}
+                <PricingModalButton
+                  modalKey="поддержка"
+                  maxWidth="320px"
+                  className={classNames(styles.introHeroButton, accent.accentHeroButton)}
+                >
+                  Подключить поддержку
+                </PricingModalButton>
+              </div>
             </div>
           )}
         />

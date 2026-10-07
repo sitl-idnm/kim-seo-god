@@ -15,7 +15,13 @@ export const kontekstnayaReklamaData: ServiceData = {
     'Контроль ставок и качества трафика',
     'Оптимизация кампаний на основе данных'
   ],
-  technologies: ['Яндекс Директ', 'Яндекс.Метрика', 'Google Analytics']
+  technologies: ['Яндекс Директ', 'Яндекс.Метрика', 'Google Analytics'],
+  uiConfig: {
+    accent: '#F2A900',
+    accentSoft: '#FDF3DC',
+    heroVariant: 'spotlight',
+    heroEyebrow: 'Контекстная реклама'
+  }
 }
 
 export const faqData = [

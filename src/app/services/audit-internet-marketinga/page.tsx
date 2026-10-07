@@ -2,6 +2,7 @@ import { getServiceData } from '@/shared/dataServices'
 import styles from './page.module.scss'
 import classNames from 'classnames'
 import { FC } from 'react'
+import type { CSSProperties } from 'react'
 import { IntroWorkUs } from '@/modules/introWorkUs'
 import type { Metadata } from 'next'
 import { StandartText } from '@/ui'
@@ -54,6 +55,19 @@ const AuditInternetMarketingPage: FC = () => {
   }
 
   const rootClassName = classNames(styles.root)
+
+  const ui = serviceData.uiConfig
+  const accentStyle = ui
+    ? ({ '--accent': ui.accent, '--accent-soft': ui.accentSoft ?? '#f7f7f8' } as CSSProperties)
+    : undefined
+  const introClassName = classNames(
+    styles.introBlock,
+    ui?.heroEyebrow && styles.heroWithEyebrow,
+    ui?.heroVariant === 'split' && styles.heroSplit,
+    ui?.heroVariant === 'spotlight' && styles.heroSpotlight,
+    ui?.heroVariant === 'bold' && styles.heroBold,
+    ui?.heroVariant === 'minimal' && styles.heroMinimal
+  )
 
   return (
     <div
@@ -112,22 +126,25 @@ const AuditInternetMarketingPage: FC = () => {
         ))}
       </div>
 
-      <main className={rootClassName}>
+      <main className={rootClassName} style={accentStyle}>
         <IntroWorkUs
-          className={styles.introBlock}
+          className={introClassName}
           title="Аудит интернет маркетинга бизнеса"
           text="Аудит интернет маркетинга помогает понять, как на самом деле работает продвижение в сети и какие факторы мешают получать стабильный поток клиентов."
           highlightedText=""
           titleClassName={styles.introTitleSmall}
           buttons={(
             <div className={styles.introButtonsWrap}>
-              <PricingModalButton
-                modalKey="детали"
-                maxWidth="320px"
-                className={styles.introHeroButton}
-              >
-                Заказать аудит
-              </PricingModalButton>
+              <div className={styles.heroStack}>
+                {ui?.heroEyebrow && <span className={styles.heroEyebrow}>{ui.heroEyebrow}</span>}
+                <PricingModalButton
+                  modalKey="детали"
+                  maxWidth="320px"
+                  className={classNames(styles.introHeroButton, styles.accentHeroButton)}
+                >
+                  Заказать аудит
+                </PricingModalButton>
+              </div>
             </div>
           )}
         />
@@ -143,6 +160,7 @@ const AuditInternetMarketingPage: FC = () => {
         />
 
         <StandartText
+          className={styles.accentHeading}
           marginBottom
           title="Преимущества проведения аудита"
           texts={[

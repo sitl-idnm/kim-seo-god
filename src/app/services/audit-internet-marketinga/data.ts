@@ -19,5 +19,11 @@ export const auditInternetMarketingData: ServiceData = {
     'Google Analytics',
     'Google Search Console',
     'Looker Studio'
-  ]
+  ],
+  uiConfig: {
+    accent: '#00B8D4',
+    accentSoft: '#E0F7FB',
+    heroVariant: 'split',
+    heroEyebrow: 'Аудит маркетинга'
+  }
 }

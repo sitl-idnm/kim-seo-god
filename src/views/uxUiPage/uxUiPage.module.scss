@@ -1,5 +1,7 @@
 @use '@styles/mixins' as *;
 @use '@styles/spacing-system' as spacing;
+// Акцент услуги (пурпурный) через общий механизм --accent.
+@use '@styles/serviceAccent' as *;
 
 .root {
   max-width: 1312px;

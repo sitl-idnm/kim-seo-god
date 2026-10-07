@@ -15,7 +15,7 @@ export function IntroButtonsLeadgen() {
         tag="button"
         maxWidth="192px"
         onClick={() => setModalContent('детали-лидогенерация')}
-        className={styles.introButtonPrimary}
+        className={classNames(styles.introButtonPrimary, styles.accentHeroButton)}
       >
         Обсудить результат
       </Button>

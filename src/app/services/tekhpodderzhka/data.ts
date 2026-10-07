@@ -15,5 +15,11 @@ export const tekhpodderzhkaData: ServiceData = {
     'Техподдержка интернет-магазинов',
     'Администрирование и сопровождение проектов'
   ],
-  technologies: ['WordPress', '1C-Битрикс', 'Tilda', 'индивидуальная веб-разработка']
+  technologies: ['WordPress', '1C-Битрикс', 'Tilda', 'индивидуальная веб-разработка'],
+  uiConfig: {
+    accent: '#2D9CDB',
+    accentSoft: '#EAF5FC',
+    heroVariant: 'split',
+    heroEyebrow: 'Техподдержка сайтов'
+  }
 }

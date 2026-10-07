@@ -1,6 +1,7 @@
 @use '@styles/func';
 @use '@styles/mixins' as *;
 @use '@styles/variables';
+@use '@styles/serviceAccent' as *;
 
 .root {
   max-width: 1312px;
@@ -204,6 +205,25 @@
     @include tablet {
       padding-left: 0;
       padding-right: 0;
+    }
+  }
+}
+
+// Акцентная полоска у заголовка секции StandartText (левый бар из --accent).
+.accentHeading {
+  :global([class*='standartText_title']) {
+    position: relative;
+    padding-left: 20px;
+
+    &::before {
+      content: '';
+      position: absolute;
+      left: 0;
+      top: 0.18em;
+      bottom: 0.18em;
+      width: 6px;
+      border-radius: 6px;
+      background: var(--accent, #cb172c);
     }
   }
 }

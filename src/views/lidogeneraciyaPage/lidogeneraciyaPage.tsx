@@ -15,15 +15,21 @@ import { CaseLeadgen } from '@/modules/caseLeadgen'
 import { IntroButtonsLeadgen } from './IntroButtonsLeadgen'
 import { OpenDetailsModalButton } from './OpenDetailsModalButton'
 import { faqData } from './faqData'
+import type { CSSProperties } from 'react'
+import { getServiceData } from '@/shared/dataServices'
 
 import styles from './lidogeneraciyaPage.module.scss'
 
 export const LidogeneraciyaPageView: FC = () => {
   const rootClassName = classNames(styles.root)
+  const ui = getServiceData('lidogeneraciya')?.uiConfig
+  const accentStyle = ui
+    ? ({ '--accent': ui.accent, '--accent-soft': ui.accentSoft ?? '#f7f7f8' } as CSSProperties)
+    : undefined
 
   return (
     <>
-      <main className={rootClassName}>
+      <main className={rootClassName} style={accentStyle}>
         <IntroWorkUs
           className={styles.introBlock}
           title="Найдем клиентов там, где конкуренты сливают бюджеты на контекст"

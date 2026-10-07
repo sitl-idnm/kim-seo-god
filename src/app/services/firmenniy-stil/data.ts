@@ -20,7 +20,13 @@ export const firmenniyStilData: ServiceData = {
     'Adobe Illustrator',
     'Figma',
     'Adobe InDesign'
-  ]
+  ],
+  uiConfig: {
+    accent: '#E84393',
+    accentSoft: '#FDEBF4',
+    heroVariant: 'bold',
+    heroEyebrow: 'Бренд и фирменный стиль'
+  }
 }
 
 export const faqData = [
