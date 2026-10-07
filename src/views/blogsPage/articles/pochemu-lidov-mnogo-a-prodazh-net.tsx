@@ -93,7 +93,7 @@ export function PochemuLidovMnogoAProdazhNetArticle() {
       </p>
 
       <h2 className={styles.sectionTitle}>Содержание</h2>
-      <div className={styles.toc}>
+      <div className={styles.toc} data-toc>
         <a href="#why">Почему заявок больше, а выручки нет</a>
         <a href="#where">Где теряются деньги после лида</a>
         <a href="#metrics">Какие метрики смотреть вместе</a>
@@ -193,10 +193,7 @@ export function PochemuLidovMnogoAProdazhNetArticle() {
         Оставить заявку
       </a>
 
-      <h2 className={styles.sectionTitle} id="faq">
-        Частые вопросы
-      </h2>
-      <div className={styles.faqWrap}>
+      <div className={styles.faqWrap} id="faq">
         <Faq faqData={faqData} title="Частые вопросы" />
       </div>
 

@@ -12,9 +12,15 @@ $retina-dpi: 144dpi;
 $retina-dppx: 1.5dppx;
 
 // transitions
-$transition-duration: 0.3s;
+$transition-duration: 0.3s;                       // базовый токен
+$transition-duration-micro: 0.2s;                 // микро-токен (мелкие интерактивные элементы)
 $transition-timing-function: ease;
 $transition: $transition-duration $transition-timing-function;
+$transition-micro: $transition-duration-micro $transition-timing-function;
+
+// focus (единый брендовый видимый фокус)
+$focus-ring-width: 2px;
+$focus-ring-color: var(--color-red-accent);
 
 // Typography
 // ---------------------------------

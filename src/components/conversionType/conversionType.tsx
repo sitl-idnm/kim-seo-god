@@ -8,14 +8,10 @@ import { ConversionTypeProps } from './conversionType.types'
 import Icon from '@icons/snowflacke.svg'
 import Timeline from '@icons/timeline.svg'
 import Accept from '@icons/accept.svg'
-import { useGSAP } from '@gsap/react'
-import gsap from 'gsap'
-import { ScrollTrigger } from 'gsap/ScrollTrigger'
+import { loadGsap } from '@/shared/lib/gsap'
 import { Button } from '@/ui'
 import { openModalContent } from '@/shared/atoms/openModal'
 import { useSetAtom } from 'jotai/react'
-
-gsap.registerPlugin(ScrollTrigger, useGSAP)
 
 const ConversionType: FC<ConversionTypeProps> = ({
   className
@@ -35,70 +31,83 @@ const ConversionType: FC<ConversionTypeProps> = ({
   }, [setModalContent])
 
   useLayoutEffect(() => {
-    const ctx = gsap.context(() => {
-      const extraLong = extraL.current
-      const mainCont = mainContainer.current
-      const boxes = gsap.utils.toArray(`.${styles.box}`) as HTMLElement[];
+    let ctx: { revert: () => void } | undefined
+    let onResize: (() => void) | undefined
+    let raf = 0
+    let cancelled = false
 
-      const scrollTween = gsap.to(extraLong, {
-        xPercent: -100,
-        x: () => window.innerWidth,
-        ease: "none",
-        scrollTrigger: {
-          pin: mainCont,
-          trigger: mainCont,
-          start: 'top 5%',
-          end: () => `+=${extraLong!.offsetWidth} bottom`,
-          scrub: 1,
-          invalidateOnRefresh: true,
-        }
-      })
+    loadGsap().then(({ gsap, ScrollTrigger }) => {
+      if (cancelled) return
 
-      gsap.utils.toArray<HTMLElement>('.conversionType_timeline__de68M').forEach((line) => {
-        gsap.to(line, {
-          width: '50%',
+      ctx = gsap.context(() => {
+        const extraLong = extraL.current
+        const mainCont = mainContainer.current
+        const boxes = gsap.utils.toArray(`.${styles.box}`) as HTMLElement[];
+
+        const scrollTween = gsap.to(extraLong, {
+          xPercent: -100,
+          x: () => window.innerWidth,
+          ease: "none",
           scrollTrigger: {
-            trigger: line,
-            start: 'left 30%',
-            end: 'left 20%',
-            scrub: 2,
-            containerAnimation: scrollTween,
+            pin: mainCont,
+            trigger: mainCont,
+            start: 'top 5%',
+            end: () => `+=${extraLong!.offsetWidth} bottom`,
+            scrub: 1,
             invalidateOnRefresh: true,
           }
         })
-      })
 
-      boxes.forEach((box) => {
-        gsap.fromTo(box,
-          { height: '5%' },
-          {
-            height: '100%',
+        gsap.utils.toArray<HTMLElement>(`.${styles.timeline}`).forEach((line) => {
+          gsap.to(line, {
+            width: '50%',
             scrollTrigger: {
-              trigger: box,
-              start: 'left 100%',
-              scrub: 1,
+              trigger: line,
+              start: 'left 30%',
+              end: 'left 20%',
+              scrub: 2,
               containerAnimation: scrollTween,
               invalidateOnRefresh: true,
             }
-          }
-        )
-      })
+          })
+        })
 
-      return () => {
-        scrollTween.kill()
-        ScrollTrigger.getAll().forEach(st => st.kill())
+        boxes.forEach((box) => {
+          gsap.fromTo(box,
+            { height: '5%' },
+            {
+              height: '100%',
+              scrollTrigger: {
+                trigger: box,
+                start: 'left 100%',
+                scrub: 1,
+                containerAnimation: scrollTween,
+                invalidateOnRefresh: true,
+              }
+            }
+          )
+        })
+
+        return () => {
+          scrollTween.kill()
+          ScrollTrigger.getAll().forEach(st => st.kill())
+        }
+      }, section)
+
+      // rAF-коалесинг: один refresh на кадр во время ресайза
+      onResize = () => {
+        if (raf) cancelAnimationFrame(raf)
+        raf = requestAnimationFrame(() => ScrollTrigger.refresh())
       }
-    }, section)
 
-    const handleResize = () => {
-      ScrollTrigger.refresh()
-    }
-
-    window.addEventListener('resize', handleResize)
+      window.addEventListener('resize', onResize)
+    })
 
     return () => {
-      window.removeEventListener('resize', handleResize)
-      ctx.revert()
+      cancelled = true
+      if (raf) cancelAnimationFrame(raf)
+      if (onResize) window.removeEventListener('resize', onResize)
+      ctx?.revert()
     }
   }, [])
 

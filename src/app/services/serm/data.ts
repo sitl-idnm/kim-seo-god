@@ -22,5 +22,27 @@ export const sermData: ServiceData = {
     'Яндекс.Карты / Google Карты',
     'Отзовики (Яндекс Отзывы, Otzovik, Flamp, 2ГИС)',
     'Поисковая выдача Яндекс и Google'
-  ]
+  ],
+  uiConfig: {
+    accent: '#00A2B8',
+    accentSoft: '#E6F6F9',
+    heroVariant: 'minimal',
+    heroEyebrow: 'Репутация бренда',
+    // Репутация — про доверие: FAQ и объяснение процесса выше, сдержанный минималистичный герой.
+    order: [
+      'intro',
+      'about',
+      'process',
+      'solutions',
+      'includes',
+      'pricing',
+      'stats',
+      'consult',
+      'faq',
+      'cases',
+      'clients',
+      'reviews',
+      'finalForm'
+    ]
+  }
 }

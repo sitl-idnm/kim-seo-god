@@ -93,7 +93,7 @@ export function ChemIiAgentOtlichaetsyaOtChatBotaArticle() {
       </p>
 
       <h2 className={styles.sectionTitle}>Содержание</h2>
-      <div className={styles.toc}>
+      <div className={styles.toc} data-toc>
         <a href="#bot">Что такое чат-бот</a>
         <a href="#agent">Что такое ИИ-агент</a>
         <a href="#compare">Таблица сравнения</a>
@@ -203,10 +203,7 @@ export function ChemIiAgentOtlichaetsyaOtChatBotaArticle() {
         Оставить заявку
       </a>
 
-      <h2 className={styles.sectionTitle} id="faq">
-        Частые вопросы
-      </h2>
-      <div className={styles.faqWrap}>
+      <div className={styles.faqWrap} id="faq">
         <Faq faqData={faqData} title="Частые вопросы" />
       </div>
 

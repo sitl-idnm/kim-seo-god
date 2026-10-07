@@ -24,5 +24,28 @@ export const seoData: ServiceData = {
     'Screaming Frog',
     'Ahrefs',
     'Key Collector'
-  ]
+  ],
+  uiConfig: {
+    accent: '#1FB573',
+    accentSoft: '#EAF8F1',
+    heroVariant: 'split',
+    heroEyebrow: 'Органический трафик',
+    // Акцент на процессе и кейсах: сначала показываем, как работаем и что получилось.
+    order: [
+      'intro',
+      'about',
+      'process',
+      'includes',
+      'solutions',
+      'cases',
+      'stats',
+      'pricing',
+      'consult',
+      'clients',
+      'faq',
+      'reviews',
+      'form',
+      'finalForm'
+    ]
+  }
 }

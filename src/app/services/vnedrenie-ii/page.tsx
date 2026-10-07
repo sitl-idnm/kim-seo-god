@@ -1,10 +1,11 @@
 import { getServiceData } from '@/shared/dataServices'
 import styles from './page.module.scss'
 import classNames from 'classnames'
-import { FC } from 'react'
+import { FC, ReactNode } from 'react'
 import { IntroWorkUs } from '@/modules/introWorkUs'
 import { VnedrenieIiPageProps } from './page.types'
 import type { Metadata } from 'next'
+import type { CSSProperties } from 'react'
 import Script from 'next/script'
 import { StandartText } from '@/ui'
 import { Why } from '@/modules/why'
@@ -120,7 +121,229 @@ const VnedrenieIiPage: FC<VnedrenieIiPageProps> = () => {
     return null
   }
 
+  const ui = serviceData.uiConfig
+  const accentStyle = ui
+    ? ({ '--accent': ui.accent, '--accent-soft': ui.accentSoft ?? '#f7f7f8' } as CSSProperties)
+    : undefined
   const rootClassName = classNames(styles.root)
+  const introClassName = classNames(
+    styles.introBlock,
+    ui?.heroEyebrow && styles.heroWithEyebrow,
+    ui?.heroVariant === 'split' && styles.heroSplit,
+    ui?.heroVariant === 'spotlight' && styles.heroSpotlight,
+    ui?.heroVariant === 'bold' && styles.heroBold,
+    ui?.heroVariant === 'minimal' && styles.heroMinimal
+  )
+
+  const sections: Record<string, ReactNode> = {
+    intro: (
+      <IntroWorkUs
+        key="intro"
+        className={introClassName}
+        title="Внедрение ИИ и ИИ-агентов в бизнес"
+        text={
+          'Внедрение ИИ — это автоматизация конкретного бизнес-процесса, которая приносит измеримый результат: быстрее обрабатываются заявки, меньше ручной работы, заявки не теряются. Мы начинаем не с выбора нейросети, а с процесса: находим повторяющуюся задачу, запускаем пилот за 2–4 недели и считаем эффект. Окупается изменение процесса, а не сама технология.'
+        }
+        highlightedText=""
+        titleClassName={styles.introTitleSmall}
+        buttons={(
+          <div className={styles.introButtonsWrap}>
+            <div className={styles.heroStack}>
+              {ui?.heroEyebrow && <span className={styles.heroEyebrow}>{ui.heroEyebrow}</span>}
+              <Button
+                tag="a"
+                href="#form"
+                maxWidth="320px"
+                className={classNames(styles.introHeroButton, styles.accentHeroButton)}
+              >
+                Получить диагностику
+              </Button>
+            </div>
+          </div>
+        )}
+      />
+    ),
+    about: (
+      <StandartText
+        key="about"
+        marginBottom
+        marginTop
+        title="Когда внедрение ИИ действительно окупается"
+        texts={[
+          'ИИ не исправляет хаос — он ускоряет то, что уже происходит. Если автоматизировать беспорядок, получится беспорядок быстрее и дороже. Поэтому перед внедрением мы разбираем процесс: где повторяющаяся задача, понятный вход и выход, заметная потеря времени. Именно там ИИ даёт первый реальный эффект. Внедряем по шагам: диагностика → пилот на одном участке → замер по одной метрике → масштабирование. Человек всегда остаётся в контуре проверки.'
+        ]}
+      />
+    ),
+    includes: (
+      <Why
+        key="includes"
+        direction="row"
+        titleJustify="center"
+        titleAlign="center"
+        cardsPerRow={3}
+        title="Какие процессы отдаём ИИ в первую очередь"
+        itemsData={[
+          { icon: <AcceptIcon />, title: 'Разбор входящих заявок и сообщений', description: '' },
+          { icon: <AcceptIcon />, title: 'Черновик первого ответа клиенту', description: '' },
+          { icon: <AcceptIcon />, title: 'Сводка звонка, встречи или переписки', description: '' },
+          { icon: <AcceptIcon />, title: 'Заполнение CRM по понятным правилам', description: '' },
+          { icon: <AcceptIcon />, title: 'Поиск ответа в базе знаний и документах', description: '' },
+          { icon: <AcceptIcon />, title: 'Подготовка коммерческого предложения и отчётов', description: '' }
+        ]}
+      />
+    ),
+    consult: (
+      <div key="consult" id="free-consult" className={styles.freeConsultSection}>
+        <FormFirst
+          title="Разберём ваш процесс на бесплатной диагностике"
+          paragraph="Оставьте контакт — поможем выбрать первую точку для внедрения ИИ и посчитаем окупаемость до старта."
+          submitValue="Получить диагностику"
+        />
+      </div>
+    ),
+    solutions: (
+      <section key="solutions" className={styles.solutions}>
+        <h2 className={classNames(styles.solutionsTitle, styles.accentTitle)}>Наши решения на базе ИИ</h2>
+        <p className={styles.solutionsText}>
+          Собираем не одну большую модель, а систему специализированных агентов: один работает с
+          заявками, другой — с документами, третий — с отчётностью. Каждое решение проектируется под
+          конкретную задачу и встраивается в существующий процесс, а не ломает его.
+        </p>
+        <div className={styles.solutionsCards}>
+          <article className={styles.solutionsCard}>
+            <h3 className={styles.solutionsCardTitle}>ИИ-агенты и автоматизация</h3>
+            <ul className={styles.solutionsList}>
+              <li>Агент разбора заявок и квалификации лидов.</li>
+              <li>Автоматизация документооборота и подготовки сделок.</li>
+              <li>Персональный ИИ-агент (Second Brain) для эксперта или руководителя.</li>
+            </ul>
+          </article>
+          <article className={classNames(styles.solutionsCard, styles.accentCard)}>
+            <h3 className={styles.solutionsCardTitle}>Чат-боты и цифровые приёмные</h3>
+            <p className={styles.solutionsCardText}>
+              Омниканальные боты в Telegram, MAX и ВКонтакте: приём и обработка обращений, сбор
+              данных в одном месте, передача в CRM или таблицу. Заявки перестают теряться в
+              переписках.
+            </p>
+          </article>
+        </div>
+      </section>
+    ),
+    process: (
+      <Why
+        key="process"
+        direction="row"
+        titleJustify="center"
+        titleAlign="center"
+        cardsPerRow={3}
+        title="Как проходит внедрение"
+        counter
+        itemsData={[
+          { icon: '', title: '1', description: 'Диагностика процесса и выбор первой задачи' },
+          { icon: '', title: '2', description: 'Фиксация базы: время, ошибки, скорость сейчас' },
+          { icon: '', title: '3', description: 'Пилот: собираем ИИ-агента под один участок' },
+          { icon: '', title: '4', description: 'Проверка человеком и настройка правил' },
+          { icon: '', title: '5', description: 'Сравнение эффекта и масштабирование' }
+        ]}
+      />
+    ),
+    pricing: (
+      <section key="pricing" className={styles.pricing}>
+        <Heading size="md" className={styles.pricingMainTitle}>Стоимость и сроки</Heading>
+
+        <div className={styles.pricingRow}>
+          <div className={styles.pricingBadge}>
+            <p className={styles.pricingBadgeLabel}>Стоимость пилота</p>
+            <p className={styles.pricingBadgeValue}>от 150 000 ₽</p>
+          </div>
+          <div className={styles.pricingBadge}>
+            <p className={styles.pricingBadgeLabel}>Срок пилота</p>
+            <p className={styles.pricingBadgeValue}>2–4 недели</p>
+          </div>
+        </div>
+
+        <Heading size="md" className={styles.techTitle}>
+          Технологии и интеграции
+        </Heading>
+        <p className={styles.techText}>
+          Подбираем модель под задачу — не всегда нужен самый мощный ИИ. Для узких задач компактные
+          модели дешевле и предсказуемее.
+        </p>
+
+        <div className={styles.techGrid}>
+          <div className={styles.techCard}>
+            <p className={styles.techCardTitle}>Модели</p>
+            <ul className={styles.techList}>
+              <li>LLM для сложных задач</li>
+              <li>компактные SLM для узких</li>
+            </ul>
+          </div>
+          <div className={styles.techCard}>
+            <p className={styles.techCardTitle}>Каналы</p>
+            <ul className={styles.techList}>
+              <li>Telegram, MAX</li>
+              <li>ВКонтакте, сайт</li>
+            </ul>
+          </div>
+          <div className={styles.techCard}>
+            <p className={styles.techCardTitle}>Интеграции</p>
+            <ul className={styles.techList}>
+              <li>CRM (Bitrix24, amoCRM)</li>
+              <li>REST API, вебхуки</li>
+            </ul>
+          </div>
+        </div>
+      </section>
+    ),
+    form: (
+      <div key="form" id="form">
+        <FormFirst
+          className={styles.formBlock}
+          title="Запишитесь на бесплатную диагностику"
+          paragraph="Разберём процесс, выберем первую задачу для ИИ и рассчитаем окупаемость."
+          submitValue="Отправить"
+        />
+      </div>
+    ),
+    cases: (
+      <div key="cases" id="cases" className={styles.casesSection}>
+        <Case />
+      </div>
+    ),
+    clients: <Clients key="clients" title="Наши клиенты" />,
+    stats: (
+      <Why
+        key="stats"
+        counter
+        direction="row"
+        titleJustify="start"
+        titleAlign="start"
+        cardsPerRow={3}
+        title="Результаты в цифрах"
+        itemsData={[
+          { icon: '', title: '10–20 мин → 1–2 мин', description: 'обработка участника клуба после внедрения бота' },
+          { icon: '', title: '×1,5–2', description: 'рост конверсии «новичок → активный клиент»' },
+          { icon: '', title: '×6', description: 'рост потока обращений без роста бюджета' },
+          { icon: '', title: '200+', description: 'реализованных проектов' },
+          { icon: '', title: '10 000+', description: 'приведённых лидов' },
+          { icon: '', title: '7 000+', description: 'пользователей наших решений' }
+        ]}
+      />
+    ),
+    faq: <Faq key="faq" faqData={faqData} title="Частые вопросы о внедрении ИИ" />,
+    reviews: <Review key="reviews" />,
+    finalForm: (
+      <FormFirst
+        key="finalForm"
+        className={styles.formBlock}
+        title="Готовы получить измеримый эффект от ИИ?"
+        paragraph="Оставьте заявку — свяжемся и проведём бесплатную диагностику вашего процесса."
+        submitValue="Отправить"
+      />
+    )
+  }
+
+  const order = ui?.order ?? Object.keys(sections)
 
   return (
     <>
@@ -130,193 +353,8 @@ const VnedrenieIiPage: FC<VnedrenieIiPageProps> = () => {
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
       />
 
-      <main className={rootClassName}>
-        <IntroWorkUs
-          className={styles.introBlock}
-          title="Внедрение ИИ и ИИ-агентов в бизнес"
-          text={
-            'Внедрение ИИ — это автоматизация конкретного бизнес-процесса, которая приносит измеримый результат: быстрее обрабатываются заявки, меньше ручной работы, заявки не теряются. Мы начинаем не с выбора нейросети, а с процесса: находим повторяющуюся задачу, запускаем пилот за 2–4 недели и считаем эффект. Окупается изменение процесса, а не сама технология.'
-          }
-          highlightedText=""
-          titleClassName={styles.introTitleSmall}
-          buttons={(
-            <div className={styles.introButtonsWrap}>
-              <Button
-                tag="a"
-                href="#form"
-                maxWidth="320px"
-                className={styles.introHeroButton}
-              >
-                Получить диагностику
-              </Button>
-            </div>
-          )}
-        />
-
-        <StandartText
-          marginBottom
-          marginTop
-          title="Когда внедрение ИИ действительно окупается"
-          texts={[
-            'ИИ не исправляет хаос — он ускоряет то, что уже происходит. Если автоматизировать беспорядок, получится беспорядок быстрее и дороже. Поэтому перед внедрением мы разбираем процесс: где повторяющаяся задача, понятный вход и выход, заметная потеря времени. Именно там ИИ даёт первый реальный эффект. Внедряем по шагам: диагностика → пилот на одном участке → замер по одной метрике → масштабирование. Человек всегда остаётся в контуре проверки.'
-          ]}
-        />
-
-        <Why
-          direction="row"
-          titleJustify="center"
-          titleAlign="center"
-          cardsPerRow={3}
-          title="Какие процессы отдаём ИИ в первую очередь"
-          itemsData={[
-            { icon: <AcceptIcon />, title: 'Разбор входящих заявок и сообщений', description: '' },
-            { icon: <AcceptIcon />, title: 'Черновик первого ответа клиенту', description: '' },
-            { icon: <AcceptIcon />, title: 'Сводка звонка, встречи или переписки', description: '' },
-            { icon: <AcceptIcon />, title: 'Заполнение CRM по понятным правилам', description: '' },
-            { icon: <AcceptIcon />, title: 'Поиск ответа в базе знаний и документах', description: '' },
-            { icon: <AcceptIcon />, title: 'Подготовка коммерческого предложения и отчётов', description: '' }
-          ]}
-        />
-
-        <div id="free-consult" className={styles.freeConsultSection}>
-          <FormFirst
-            title="Разберём ваш процесс на бесплатной диагностике"
-            paragraph="Оставьте контакт — поможем выбрать первую точку для внедрения ИИ и посчитаем окупаемость до старта."
-            submitValue="Получить диагностику"
-          />
-        </div>
-
-        <section className={styles.solutions}>
-          <h2 className={styles.solutionsTitle}>Наши решения на базе ИИ</h2>
-          <p className={styles.solutionsText}>
-            Собираем не одну большую модель, а систему специализированных агентов: один работает с
-            заявками, другой — с документами, третий — с отчётностью. Каждое решение проектируется под
-            конкретную задачу и встраивается в существующий процесс, а не ломает его.
-          </p>
-          <div className={styles.solutionsCards}>
-            <article className={styles.solutionsCard}>
-              <h3 className={styles.solutionsCardTitle}>ИИ-агенты и автоматизация</h3>
-              <ul className={styles.solutionsList}>
-                <li>Агент разбора заявок и квалификации лидов.</li>
-                <li>Автоматизация документооборота и подготовки сделок.</li>
-                <li>Персональный ИИ-агент (Second Brain) для эксперта или руководителя.</li>
-              </ul>
-            </article>
-            <article className={styles.solutionsCard}>
-              <h3 className={styles.solutionsCardTitle}>Чат-боты и цифровые приёмные</h3>
-              <p className={styles.solutionsCardText}>
-                Омниканальные боты в Telegram, MAX и ВКонтакте: приём и обработка обращений, сбор
-                данных в одном месте, передача в CRM или таблицу. Заявки перестают теряться в
-                переписках.
-              </p>
-            </article>
-          </div>
-        </section>
-
-        <Why
-          direction="row"
-          titleJustify="center"
-          titleAlign="center"
-          cardsPerRow={3}
-          title="Как проходит внедрение"
-          counter
-          itemsData={[
-            { icon: '', title: '1', description: 'Диагностика процесса и выбор первой задачи' },
-            { icon: '', title: '2', description: 'Фиксация базы: время, ошибки, скорость сейчас' },
-            { icon: '', title: '3', description: 'Пилот: собираем ИИ-агента под один участок' },
-            { icon: '', title: '4', description: 'Проверка человеком и настройка правил' },
-            { icon: '', title: '5', description: 'Сравнение эффекта и масштабирование' }
-          ]}
-        />
-
-        <section className={styles.pricing}>
-          <Heading size="md" className={styles.pricingMainTitle}>Стоимость и сроки</Heading>
-
-          <div className={styles.pricingRow}>
-            <div className={styles.pricingBadge}>
-              <p className={styles.pricingBadgeLabel}>Стоимость пилота</p>
-              <p className={styles.pricingBadgeValue}>от 150 000 ₽</p>
-            </div>
-            <div className={styles.pricingBadge}>
-              <p className={styles.pricingBadgeLabel}>Срок пилота</p>
-              <p className={styles.pricingBadgeValue}>2–4 недели</p>
-            </div>
-          </div>
-
-          <Heading size="md" className={styles.techTitle}>
-            Технологии и интеграции
-          </Heading>
-          <p className={styles.techText}>
-            Подбираем модель под задачу — не всегда нужен самый мощный ИИ. Для узких задач компактные
-            модели дешевле и предсказуемее.
-          </p>
-
-          <div className={styles.techGrid}>
-            <div className={styles.techCard}>
-              <p className={styles.techCardTitle}>Модели</p>
-              <ul className={styles.techList}>
-                <li>LLM для сложных задач</li>
-                <li>компактные SLM для узких</li>
-              </ul>
-            </div>
-            <div className={styles.techCard}>
-              <p className={styles.techCardTitle}>Каналы</p>
-              <ul className={styles.techList}>
-                <li>Telegram, MAX</li>
-                <li>ВКонтакте, сайт</li>
-              </ul>
-            </div>
-            <div className={styles.techCard}>
-              <p className={styles.techCardTitle}>Интеграции</p>
-              <ul className={styles.techList}>
-                <li>CRM (Bitrix24, amoCRM)</li>
-                <li>REST API, вебхуки</li>
-              </ul>
-            </div>
-          </div>
-        </section>
-
-        <div id="form">
-          <FormFirst
-            className={styles.formBlock}
-            title="Запишитесь на бесплатную диагностику"
-            paragraph="Разберём процесс, выберем первую задачу для ИИ и рассчитаем окупаемость."
-            submitValue="Отправить"
-          />
-        </div>
-
-        <div id="cases" className={styles.casesSection}>
-          <Case />
-        </div>
-        <Clients title="Наши клиенты" />
-
-        <Why
-          counter
-          direction="row"
-          titleJustify="start"
-          titleAlign="start"
-          cardsPerRow={3}
-          title="Результаты в цифрах"
-          itemsData={[
-            { icon: '', title: '10–20 мин → 1–2 мин', description: 'обработка участника клуба после внедрения бота' },
-            { icon: '', title: '×1,5–2', description: 'рост конверсии «новичок → активный клиент»' },
-            { icon: '', title: '×6', description: 'рост потока обращений без роста бюджета' },
-            { icon: '', title: '200+', description: 'реализованных проектов' },
-            { icon: '', title: '10 000+', description: 'приведённых лидов' },
-            { icon: '', title: '7 000+', description: 'пользователей наших решений' }
-          ]}
-        />
-
-        <Faq faqData={faqData} title="Частые вопросы о внедрении ИИ" />
-
-        <Review />
-
-        <FormFirst
-          className={styles.formBlock}
-          title="Готовы получить измеримый эффект от ИИ?"
-          paragraph="Оставьте заявку — свяжемся и проведём бесплатную диагностику вашего процесса."
-          submitValue="Отправить"
-        />
+      <main className={rootClassName} style={accentStyle}>
+        {order.map((key) => sections[key] ?? null)}
       </main>
     </>
   )

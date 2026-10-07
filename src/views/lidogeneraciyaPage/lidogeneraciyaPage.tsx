@@ -14,7 +14,6 @@ import { FormSecond } from '@/modules/formSecond'
 import { CaseLeadgen } from '@/modules/caseLeadgen'
 import { IntroButtonsLeadgen } from './IntroButtonsLeadgen'
 import { OpenDetailsModalButton } from './OpenDetailsModalButton'
-import NewModalContainer from '@/components/newModalContainer/newModalContainer'
 import { faqData } from './faqData'
 
 import styles from './lidogeneraciyaPage.module.scss'
@@ -351,7 +350,6 @@ export const LidogeneraciyaPageView: FC = () => {
           project={false}
         />
       </main>
-      <NewModalContainer />
     </>
   )
 }

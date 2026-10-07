@@ -65,6 +65,7 @@ const ServicePage: FC<ServicePageProps> = ({
         <Services
           hasCost={true}
           showDescription={false}
+          filterable
         />
         <FormFirst />
         <Branch

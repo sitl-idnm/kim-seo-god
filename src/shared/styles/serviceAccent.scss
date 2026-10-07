@@ -1,0 +1,163 @@
+// Общие акцентные стили страниц услуг.
+// Управляются CSS-переменной --accent (и --accent-soft), которую страница
+// проставляет из per-service uiConfig. За счёт этого одни и те же классы
+// дают разный визуал для каждой услуги, не плодя копий SCSS.
+//
+// Подключать в page.module.scss услуги через `@use '@styles/serviceAccent' as *;`
+// и примешивать нужные классы к разметке.
+
+@use 'mixins' as *;
+
+// Акцент по умолчанию, если переменная не задана (fallback = фирменный красный).
+$service-accent-fallback: #cb172c;
+
+// Hero: вертикальный стек «подпись + кнопка».
+.heroStack {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 14px;
+
+  @include tablet-small {
+    gap: 10px;
+  }
+}
+
+// Hero: подпись-eyebrow над кнопкой героя.
+.heroEyebrow {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  width: fit-content;
+  padding: 7px 16px;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid var(--accent, #{$service-accent-fallback});
+  color: #fafafa;
+  font-family: var(--font-manrope);
+  font-size: 14px;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  line-height: 1;
+
+  &::before {
+    content: '';
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: var(--accent, #{$service-accent-fallback});
+  }
+
+  @include tablet-small {
+    font-size: 11px;
+    padding: 6px 12px;
+  }
+}
+
+// Когда есть eyebrow — убираем верхний отступ у заголовка героя,
+// чтобы подпись и заголовок читались как единый блок.
+.heroWithEyebrow {
+  :global([class*='box__title']) {
+    padding-top: 14px;
+  }
+}
+
+// Варианты оформления героя (меняют подложку intro-блока).
+.heroSpotlight {
+  :global([class*='box']) {
+    background:
+      radial-gradient(
+        120% 90% at 50% 0%,
+        color-mix(in srgb, var(--accent, #{$service-accent-fallback}) 24%, transparent) 0%,
+        transparent 60%
+      ),
+      #16181b;
+  }
+}
+
+.heroSplit {
+  :global([class*='box']) {
+    background:
+      linear-gradient(
+        100deg,
+        color-mix(in srgb, var(--accent, #{$service-accent-fallback}) 22%, #16181b) 0%,
+        #16181b 55%
+      );
+  }
+}
+
+.heroBold {
+  :global([class*='box']) {
+    background:
+      linear-gradient(
+        180deg,
+        #16181b 0%,
+        color-mix(in srgb, var(--accent, #{$service-accent-fallback}) 18%, #16181b) 100%
+      );
+    border: 1px solid color-mix(in srgb, var(--accent, #{$service-accent-fallback}) 50%, transparent);
+    border-radius: 40px;
+
+    @include tablet-small {
+      border-radius: 18px;
+    }
+  }
+}
+
+.heroMinimal {
+  :global([class*='box']) {
+    background: #121316;
+  }
+}
+
+// Акцентная кнопка героя — фон = акцент услуги.
+.accentHeroButton {
+  &:global(button),
+  &:global(a) {
+    // noop, селектор-страховка
+  }
+
+  background: var(--accent, #{$service-accent-fallback}) !important;
+  border-color: var(--accent, #{$service-accent-fallback}) !important;
+
+  &::before,
+  &::after {
+    background: var(--accent, #{$service-accent-fallback}) !important;
+  }
+}
+
+// Акцентная полоска у заголовков секций (например, «Наши решения»).
+.accentTitle {
+  position: relative;
+  padding-left: 20px;
+
+  &::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0.18em;
+    bottom: 0.18em;
+    width: 6px;
+    border-radius: 6px;
+    background: var(--accent, #{$service-accent-fallback});
+  }
+
+  @include tablet-small {
+    padding-left: 14px;
+
+    &::before {
+      width: 4px;
+    }
+  }
+}
+
+// Акцентная карточка в блоке решений (вместо фиксированного красного).
+.accentCard {
+  background: var(--accent, #{$service-accent-fallback}) !important;
+}
+
+// Мягкая акцентная подложка секции (например, pricing).
+.accentSurface {
+  background: var(--accent-soft, #f7f7f8) !important;
+}

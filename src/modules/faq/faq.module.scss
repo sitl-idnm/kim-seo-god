@@ -66,7 +66,7 @@
     }
 
     .answer {
-      max-height: 1000px;
+      grid-template-rows: 1fr;
       opacity: 1;
       margin-top: 16px;
       margin-bottom: 20px;
@@ -88,7 +88,7 @@
   font-size: 20px;
   font-weight: 500;
   color: #000;
-  transition: color 0.3s ease;
+  transition: color variables.$transition;
 
   &:hover {
     color: var(--color-red-accent);
@@ -102,6 +102,12 @@
     font-size: 16px;
   }
 
+  &:focus-visible {
+    outline: variables.$focus-ring-width solid variables.$focus-ring-color;
+    outline-offset: -2px;
+    border-radius: 12px;
+  }
+
   .icon {
     flex-shrink: 0;
     width: 32px;
@@ -110,14 +116,14 @@
     align-items: center;
     justify-content: center;
     color: var(--color-red-accent);
-    transition: all 0.3s ease;
+    transition: transform variables.$transition;
     transform: translateZ(0);
     will-change: transform;
 
     svg {
       width: 32px;
       height: 32px;
-      transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+      transition: transform variables.$transition-duration cubic-bezier(0.4, 0, 0.2, 1);
       transform-origin: center;
       will-change: transform;
       backface-visibility: hidden;
@@ -127,10 +133,12 @@
 }
 
 .answer {
-  max-height: 0;
+  // Плавное раскрытие без «дёрганья»: grid-строка 0fr -> 1fr работает при любой высоте.
+  display: grid;
+  grid-template-rows: 0fr;
   opacity: 0;
-  overflow: hidden;
-  transition: all 0.3s ease;
+  transition: grid-template-rows variables.$transition, opacity variables.$transition,
+    margin variables.$transition;
   margin-top: 0;
   margin-bottom: 0;
   font-size: 16px;
@@ -141,6 +149,11 @@
   @include tablet {
     font-size: 12px;
   }
+}
+
+.answerInner {
+  overflow: hidden;
+  min-height: 0;
 }
 
 .answerList {

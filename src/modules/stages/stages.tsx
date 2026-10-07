@@ -7,11 +7,8 @@ import { StagesProps } from './stages.types'
 
 import Icon from '@icons/snowflacke.svg'
 import Timeline from '@icons/timeline.svg'
-import gsap from 'gsap'
-import { ScrollTrigger } from 'gsap/ScrollTrigger'
+import { loadGsap } from '@/shared/lib/gsap'
 import { Button } from '@/ui'
-
-gsap.registerPlugin(ScrollTrigger)
 
 const Stages: FC<StagesProps> = ({
   className,
@@ -35,76 +32,89 @@ const Stages: FC<StagesProps> = ({
   const mainContainer = useRef<HTMLDivElement>(null)
 
   useLayoutEffect(() => {
-    const ctx = gsap.context(() => {
-      const mainCont = mainContainer.current
-      const extraLong = extraL.current
+    let ctx: { revert: () => void } | undefined
+    let onResize: (() => void) | undefined
+    let raf = 0
+    let cancelled = false
 
-      if (!mainCont || !extraLong) return
+    loadGsap().then(({ gsap, ScrollTrigger }) => {
+      if (cancelled) return
 
-      const extraLongWidth = extraLong.offsetWidth
-      const mainContWidth = mainCont.offsetWidth
-      const maxScroll = -(extraLongWidth - mainContWidth)
+      ctx = gsap.context(() => {
+        const mainCont = mainContainer.current
+        const extraLong = extraL.current
 
-      const scrollTween = gsap.to(extraLong, {
-        x: maxScroll,
-        ease: "none",
-        scrollTrigger: {
-          pin: mainCont,
-          trigger: mainCont,
-          start: 'top 5%',
-          end: `+=${extraLongWidth}`,
-          scrub: 1,
-          invalidateOnRefresh: true
-        }
-      })
+        if (!mainCont || !extraLong) return
 
-      gsap.utils.toArray<HTMLElement>('.conversionType_timeline__de68M').forEach((line) => {
-        gsap.to(line, {
-          width: '50%',
+        const extraLongWidth = extraLong.offsetWidth
+        const mainContWidth = mainCont.offsetWidth
+        const maxScroll = -(extraLongWidth - mainContWidth)
+
+        const scrollTween = gsap.to(extraLong, {
+          x: maxScroll,
+          ease: "none",
           scrollTrigger: {
-            trigger: line,
-            start: 'left 30%',
-            end: 'left 20%',
-            scrub: 2,
-            containerAnimation: scrollTween,
-            invalidateOnRefresh: true,
+            pin: mainCont,
+            trigger: mainCont,
+            start: 'top 5%',
+            end: `+=${extraLongWidth}`,
+            scrub: 1,
+            invalidateOnRefresh: true
           }
         })
-      })
 
-      const boxes = gsap.utils.toArray(`.${styles.box}`) as HTMLElement[];
-
-      boxes.forEach((box) => {
-        gsap.fromTo(box,
-          { height: '5%' },
-          {
-            height: '100%',
+        gsap.utils.toArray<HTMLElement>(`.${styles.timeline}`).forEach((line) => {
+          gsap.to(line, {
+            width: '50%',
             scrollTrigger: {
-              trigger: box,
-              start: 'left 100%',
-              scrub: 1,
+              trigger: line,
+              start: 'left 30%',
+              end: 'left 20%',
+              scrub: 2,
               containerAnimation: scrollTween,
               invalidateOnRefresh: true,
             }
-          }
-        )
-      })
+          })
+        })
 
-      return () => {
-        scrollTween.kill()
-        ScrollTrigger.getAll().forEach(st => st.kill())
+        const boxes = gsap.utils.toArray(`.${styles.box}`) as HTMLElement[];
+
+        boxes.forEach((box) => {
+          gsap.fromTo(box,
+            { height: '5%' },
+            {
+              height: '100%',
+              scrollTrigger: {
+                trigger: box,
+                start: 'left 100%',
+                scrub: 1,
+                containerAnimation: scrollTween,
+                invalidateOnRefresh: true,
+              }
+            }
+          )
+        })
+
+        return () => {
+          scrollTween.kill()
+          ScrollTrigger.getAll().forEach(st => st.kill())
+        }
+      }, section)
+
+      // rAF-коалесинг: один refresh на кадр во время ресайза
+      onResize = () => {
+        if (raf) cancelAnimationFrame(raf)
+        raf = requestAnimationFrame(() => ScrollTrigger.refresh())
       }
-    }, section)
 
-    const handleResize = () => {
-      ScrollTrigger.refresh()
-    }
-
-    window.addEventListener('resize', handleResize)
+      window.addEventListener('resize', onResize)
+    })
 
     return () => {
-      window.removeEventListener('resize', handleResize)
-      ctx.revert()
+      cancelled = true
+      if (raf) cancelAnimationFrame(raf)
+      if (onResize) window.removeEventListener('resize', onResize)
+      ctx?.revert()
     }
   }, [])
 

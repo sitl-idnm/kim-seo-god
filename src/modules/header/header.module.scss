@@ -1,5 +1,6 @@
 @use '@styles/func';
 @use '@styles/mixins' as *;
+@use '@styles/variables';
 
 /* stylelint-disable */
 
@@ -67,10 +68,15 @@
     align-items: center;
     justify-content: center;
     flex-shrink: 0;
-    transition: transform 0.2s ease;
+    transition: transform variables.$transition-micro;
 
     &:hover {
       transform: translateY(-1px);
+    }
+
+    &:focus-visible {
+      outline: variables.$focus-ring-width solid variables.$focus-ring-color;
+      outline-offset: 2px;
     }
 
     svg {
@@ -87,10 +93,15 @@
   gap: 12px;
 }
 
+.city {
+  position: relative;
+  width: 192px;
+}
+
 .cityButton {
   @include reset-btn;
   height: 56px;
-  width: 192px;
+  width: 100%;
   padding: 0 20px;
   border-radius: 12px;
   border: 1px solid #e8e8e8;
@@ -103,6 +114,17 @@
   align-items: center;
   justify-content: space-between;
   gap: 12px;
+  cursor: pointer;
+  transition: border-color variables.$transition-micro, background variables.$transition-micro;
+
+  &:hover {
+    border-color: var(--color-red-accent);
+  }
+
+  &:focus-visible {
+    outline: variables.$focus-ring-width solid variables.$focus-ring-color;
+    outline-offset: 2px;
+  }
 
   &::after {
     content: '';
@@ -111,6 +133,60 @@
     border-right: 1.5px solid var(--color-black);
     border-bottom: 1.5px solid var(--color-black);
     transform: rotate(45deg) translateY(-2px);
+    transition: transform variables.$transition-micro;
+  }
+
+  &_open::after {
+    transform: rotate(-135deg) translateY(-2px);
+  }
+}
+
+.cityDropdown {
+  position: absolute;
+  top: calc(100% + 6px);
+  left: 0;
+  right: 0;
+  list-style: none;
+  margin: 0;
+  padding: 6px;
+  background: var(--color-white-default, #fff);
+  border: 1px solid #e8e8e8;
+  border-radius: 12px;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
+  z-index: 1100;
+
+  li {
+    list-style: none;
+  }
+}
+
+.cityOption {
+  @include reset-btn;
+  display: flex;
+  align-items: center;
+  width: 100%;
+  padding: 10px 14px;
+  border-radius: 8px;
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 1.2;
+  color: var(--color-black);
+  cursor: pointer;
+  text-align: left;
+  transition: background variables.$transition-micro, color variables.$transition-micro;
+
+  &:hover {
+    background: rgba(203, 23, 44, 0.06);
+  }
+
+  &:focus-visible {
+    outline: variables.$focus-ring-width solid variables.$focus-ring-color;
+    outline-offset: -2px;
+  }
+
+  &_active {
+    color: var(--color-red-accent);
+    background: rgba(203, 23, 44, 0.08);
   }
 }
 
@@ -250,6 +326,10 @@
     margin-bottom: 0;
   }
 
+  .city {
+    width: 100%;
+  }
+
   .cityButton {
     width: 100%;
   }
@@ -272,11 +352,16 @@
   position: relative;
   z-index: 1001;
   border: 2px solid transparent;
-  transition: all 0.3s ease;
+  transition: background variables.$transition, border-color variables.$transition;
 
   @include tablet {
     display: flex;
     align-self: flex-start;
+  }
+
+  &:focus-visible {
+    outline: variables.$focus-ring-width solid variables.$focus-ring-color;
+    outline-offset: 2px;
   }
 
   &:hover {

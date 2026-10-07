@@ -23,5 +23,27 @@ export const webdesignData: ServiceData = {
     'Adobe Illustrator',
     'Tilda',
     'Framer'
-  ]
+  ],
+  uiConfig: {
+    accent: '#E5417E',
+    accentSoft: '#FDECF3',
+    heroVariant: 'split',
+    heroEyebrow: 'Дизайн, который продаёт',
+    // Дизайн — визуальная услуга: состав работ и кейсы выше, цифры ближе к концу.
+    order: [
+      'intro',
+      'about',
+      'includes',
+      'solutions',
+      'process',
+      'cases',
+      'pricing',
+      'clients',
+      'stats',
+      'consult',
+      'reviews',
+      'faq',
+      'finalForm'
+    ]
+  }
 }

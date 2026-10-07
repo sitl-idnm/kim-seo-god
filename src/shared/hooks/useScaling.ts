@@ -75,9 +75,19 @@ export const useScaling = ({
       setDevice(getDeviceType(viewportWidth, deviceBreakpoints))
     }
 
-    handleWindowResize()
-    window.addEventListener('resize', handleWindowResize)
+    // rAF-коалесинг: не чаще одного пересчёта на кадр во время ресайза
+    let raf = 0
+    const onResize = () => {
+      if (raf) cancelAnimationFrame(raf)
+      raf = requestAnimationFrame(handleWindowResize)
+    }
 
-    return () => window.removeEventListener('resize', handleWindowResize)
+    handleWindowResize()
+    window.addEventListener('resize', onResize)
+
+    return () => {
+      if (raf) cancelAnimationFrame(raf)
+      window.removeEventListener('resize', onResize)
+    }
   }, [deviceBreakpoints, scalingBreakpoints, setDevice])
 }

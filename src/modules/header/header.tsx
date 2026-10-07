@@ -16,10 +16,65 @@ import PhoneIcon from '@icons/phone-custom.svg';
 import VkIcon from '@icons/vk.svg';
 import TelegramIcon from '@icons/telegram.svg';
 
+type City = {
+  id: string;
+  label: string;
+  href?: string;
+};
+
+const CITIES: City[] = [
+  { id: 'msk', label: 'Москва' },
+  { id: 'spb', label: 'Санкт-Петербург', href: 'https://spb.kim.agency' },
+];
+
+const CITY_STORAGE_KEY = 'kim-city';
+
 const Header: FC<HeaderProps> = ({ className }) => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isMobile, setIsMobile] = useState(false);
+  const [activeCityId, setActiveCityId] = useState<string>('msk');
+  const [isCityOpen, setIsCityOpen] = useState(false);
+  const cityRef = useRef<HTMLDivElement>(null);
   const headerClassName = classNames(styles.root, className);
+
+  const activeCity = CITIES.find((city) => city.id === activeCityId) ?? CITIES[0];
+
+  useEffect(() => {
+    try {
+      const saved = localStorage.getItem(CITY_STORAGE_KEY);
+      if (saved && CITIES.some((city) => city.id === saved)) {
+        setActiveCityId(saved);
+      }
+    } catch {
+      // localStorage недоступен — используем дефолт
+    }
+  }, []);
+
+  const handleCitySelect = useCallback((city: City) => {
+    try {
+      localStorage.setItem(CITY_STORAGE_KEY, city.id);
+    } catch {
+      // игнорируем недоступность localStorage
+    }
+    setIsCityOpen(false);
+    if (city.href) {
+      window.location.href = city.href;
+    } else {
+      setActiveCityId(city.id);
+    }
+  }, []);
+
+  // Закрытие выпадающего списка города по клику вне
+  useEffect(() => {
+    if (!isCityOpen) return;
+    const handleClickOutside = (event: MouseEvent) => {
+      if (cityRef.current && !cityRef.current.contains(event.target as Node)) {
+        setIsCityOpen(false);
+      }
+    };
+    document.addEventListener('mousedown', handleClickOutside);
+    return () => document.removeEventListener('mousedown', handleClickOutside);
+  }, [isCityOpen]);
   const menuRef = useRef<HTMLDivElement>(null);
   const burgerButtonRef = useRef<HTMLDivElement>(null);
   const burgerIconRef = useRef<HTMLDivElement>(null);
@@ -39,12 +94,19 @@ const Header: FC<HeaderProps> = ({ className }) => {
     // Инициализация при монтировании
     handleResize();
 
-    // Добавляем слушатель изменения размера окна
-    window.addEventListener('resize', handleResize);
+    // rAF-коалесинг: не чаще одного пересчёта на кадр во время ресайза
+    let raf = 0;
+    const onResize = () => {
+      if (raf) cancelAnimationFrame(raf);
+      raf = requestAnimationFrame(handleResize);
+    };
+
+    window.addEventListener('resize', onResize);
 
     // Очистка при размонтировании
     return () => {
-      window.removeEventListener('resize', handleResize);
+      if (raf) cancelAnimationFrame(raf);
+      window.removeEventListener('resize', onResize);
     };
   }, []);
 
@@ -147,6 +209,39 @@ const Header: FC<HeaderProps> = ({ className }) => {
     setIsMenuOpen(!isMenuOpen);
   };
 
+  const renderCitySwitcher = () => (
+    <div className={styles.city} ref={cityRef}>
+      <button
+        type="button"
+        className={classNames(styles.cityButton, { [styles.cityButton_open]: isCityOpen })}
+        onClick={() => setIsCityOpen((prev) => !prev)}
+        aria-haspopup="listbox"
+        aria-expanded={isCityOpen}
+      >
+        {activeCity.label}
+      </button>
+      {isCityOpen && (
+        <ul className={styles.cityDropdown} role="listbox">
+          {CITIES.map((city) => (
+            <li key={city.id}>
+              <button
+                type="button"
+                role="option"
+                aria-selected={city.id === activeCityId}
+                className={classNames(styles.cityOption, {
+                  [styles.cityOption_active]: city.id === activeCityId,
+                })}
+                onClick={() => handleCitySelect(city)}
+              >
+                {city.label}
+              </button>
+            </li>
+          ))}
+        </ul>
+      )}
+    </div>
+  );
+
   // Обработчик клика вне меню
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
@@ -185,7 +280,7 @@ const Header: FC<HeaderProps> = ({ className }) => {
                 </a>
               </div>
               <div className={styles.topActions}>
-                <button type="button" className={styles.cityButton}>Москва</button>
+                {renderCitySwitcher()}
                 <Button
                   tag='button'
                   className={styles.workButton}
@@ -254,7 +349,7 @@ const Header: FC<HeaderProps> = ({ className }) => {
         </div>
 
         <div className={styles.mobileActions}>
-          <button type="button" className={styles.cityButton}>Москва</button>
+          {renderCitySwitcher()}
           <Button
             tag='button'
             className={styles.workButtonMobile}

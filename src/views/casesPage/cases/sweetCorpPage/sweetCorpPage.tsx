@@ -7,7 +7,6 @@ import { IntroCase } from '@/modules/introCase'
 import { ContentCase } from '@/modules/contentCaseSweetCorp'
 import { MoveCasePage } from '@/modules/moveCasePage'
 import { CaseForm, DefaultTextCase } from '@/components'
-import NewModalContainer from '@/components/newModalContainer/newModalContainer'
 import { WidgetCase } from '@/modules/widgetCase'
 
 const SweetCorpPage: FC<SweetCorpPageProps> = ({
@@ -17,7 +16,6 @@ const SweetCorpPage: FC<SweetCorpPageProps> = ({
 
   return (
     <main className={rootClassName}>
-      <NewModalContainer />
       <WidgetCase />
       <IntroCase
         adaptiveBackgroundImage={'/images/cases/sweetcorp/SweetCorpCaseBackgroundAdaptive.png'}

@@ -2,7 +2,8 @@
 @use '@styles/variables';
 @use '@styles/mixins';
 
-$speed: 0.5s ease;
+// 3D-flip кнопки: длительность приведена к базовому токену.
+$speed: variables.$transition;
 
 .root {
   @include mixins.reset-btn;
@@ -23,9 +24,17 @@ $speed: 0.5s ease;
   width: 100%;
 
   opacity: 1;
-  outline: 0;
 
-  &:hover {
+  // Видимый брендовый фокус с клавиатуры (вместо outline: 0 без замены).
+  &:focus-visible {
+    outline: variables.$focus-ring-width solid variables.$focus-ring-color;
+    outline-offset: 2px;
+    border-radius: 10px;
+  }
+
+  // Триггерим flip и на наведении, и на клавиатурном фокусе.
+  &:hover,
+  &:focus-visible {
     &::after {
       opacity: 1;
       transform: translateY(0) rotateX(0);

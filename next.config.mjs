@@ -27,7 +27,38 @@ const nextConfig = {
     ]
   },
   async headers() {
+    // Пермиссивный CSP: сознательно широкий, чтобы НЕ сломать сайт.
+    // script: 'unsafe-inline'/'unsafe-eval' нужны для инлайн-сниппета Я.Метрики и dev-рантайма Next.
+    // Я.Метрика/Вебвизор: mc.yandex.ru, mc.webvisor.com. Лиды уходят через same-origin /api/lead,
+    // api.telegram.org оставлен в connect/img/script как задел. *.kim.agency — поддомены (spb).
+    const csp = [
+      "default-src 'self'",
+      "base-uri 'self'",
+      "object-src 'none'",
+      "frame-ancestors 'self'",
+      "form-action 'self'",
+      `script-src 'self' 'unsafe-inline'${process.env.NODE_ENV !== 'production' ? " 'unsafe-eval'" : ''} https://mc.yandex.ru https://mc.webvisor.com https://api.telegram.org https://*.kim.agency`,
+      "style-src 'self' 'unsafe-inline'",
+      "img-src 'self' data: blob: https://mc.yandex.ru https://mc.webvisor.com https://api.telegram.org https://*.kim.agency",
+      "font-src 'self' data:",
+      "connect-src 'self' https://mc.yandex.ru https://mc.webvisor.com https://api.telegram.org https://*.kim.agency",
+      "frame-src 'self' https://mc.yandex.ru https://mc.webvisor.com",
+      "media-src 'self' data: blob:",
+      "worker-src 'self' blob:"
+    ].join('; ')
+
+    const securityHeaders = [
+      { key: 'X-Frame-Options', value: 'SAMEORIGIN' },
+      { key: 'X-Content-Type-Options', value: 'nosniff' },
+      { key: 'Referrer-Policy', value: 'strict-origin-when-cross-origin' },
+      { key: 'Content-Security-Policy', value: csp }
+    ]
+
     return [
+      {
+        source: '/:path*',
+        headers: securityHeaders
+      },
       {
         source: '/sitemap.xml',
         headers: [
@@ -76,6 +107,7 @@ const nextConfig = {
   },
   images: {
     unoptimized: false,
+    formats: ['image/avif', 'image/webp'],
   }
 };
 

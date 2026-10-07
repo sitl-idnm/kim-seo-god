@@ -1,0 +1,255 @@
+/* stylelint-disable selector-class-pattern */
+/* stylelint-disable color-function-notation */
+@use "@styles/mixins" as *;
+
+// Общие стили слайдов для 4 модалок (исследования/дизайн/разработка/поддержка).
+// Тёмная тема, красный акцент — в едином брендстайле.
+
+.hero {
+	display: flex;
+	flex-direction: column;
+	gap: 28px;
+
+	min-height: 100%;
+
+	@include tablet-small {
+		gap: 18px;
+	}
+
+	&__title {
+		display: flex;
+		align-items: center;
+		flex-wrap: wrap;
+		gap: 16px;
+
+		font-family: var(--font-inter);
+		font-weight: 500;
+		font-size: 72px;
+		line-height: 100%;
+		letter-spacing: -0.02em;
+		color: var(--color-white-default);
+
+		@include tablet-small {
+			gap: 10px;
+			font-size: 38px;
+		}
+
+		span[data-accent] {
+			color: var(--color-red-accent);
+		}
+
+		svg {
+			width: 56px;
+			height: 56px;
+
+			@include tablet-small {
+				width: 28px;
+				height: 28px;
+			}
+		}
+	}
+
+	&__accent {
+		color: var(--color-red-accent);
+	}
+
+	&__text {
+		max-width: 540px;
+
+		font-family: var(--font-inter);
+		font-size: 24px;
+		line-height: 150%;
+		font-weight: 400;
+		color: rgba(255, 255, 255, 0.6);
+
+		@include tablet-small {
+			font-size: 16px;
+		}
+
+		b,
+		strong {
+			color: var(--color-white-default);
+			font-weight: 600;
+		}
+	}
+
+	&__media {
+		flex: 1 1 auto;
+		display: flex;
+		align-items: flex-end;
+		justify-content: center;
+
+		min-height: 0;
+		margin-top: auto;
+
+		img {
+			width: auto;
+			max-width: 100%;
+			max-height: 360px;
+			height: auto;
+			object-fit: contain;
+
+			@include tablet-small {
+				max-height: 240px;
+			}
+		}
+	}
+
+	&__icons {
+		display: flex;
+		gap: 16px;
+
+		svg {
+			width: 56px;
+			height: 56px;
+
+			@include tablet-small {
+				width: 44px;
+				height: 44px;
+			}
+		}
+	}
+}
+
+.favour {
+	display: flex;
+	flex-direction: column;
+	gap: 24px;
+
+	&__title {
+		font-family: var(--font-inter);
+		font-weight: 500;
+		font-size: 40px;
+		line-height: 110%;
+		color: var(--color-white-default);
+
+		@include tablet-small {
+			font-size: 28px;
+		}
+	}
+
+	&__list {
+		display: grid;
+		grid-template-columns: repeat(3, 1fr);
+		gap: 16px;
+
+		@include tablet-small {
+			grid-template-columns: 1fr;
+		}
+
+		li {
+			width: 100%;
+			height: auto;
+			min-height: 0;
+			padding: 24px;
+			border-radius: 22px;
+
+			@include tablet-small {
+				padding: 20px 16px;
+			}
+
+			img {
+				display: none;
+			}
+
+			h2 {
+				margin-bottom: 8px;
+
+				font-size: 22px;
+				line-height: 120%;
+				text-align: left;
+
+				@include tablet-small {
+					font-size: 20px;
+				}
+			}
+
+			p {
+				font-family: var(--font-manrope);
+				font-weight: 400;
+				font-size: 14px;
+				line-height: 150%;
+			}
+
+			button {
+				display: none;
+			}
+
+			&:hover {
+				transform: none;
+			}
+		}
+	}
+}
+
+.result {
+	display: flex;
+	flex-direction: column;
+	gap: 28px;
+
+	&__title {
+		font-family: var(--font-inter);
+		font-weight: 500;
+		font-size: 44px;
+		line-height: 105%;
+		color: var(--color-white-default);
+
+		@include tablet-small {
+			font-size: 28px;
+		}
+	}
+
+	&__list {
+		display: flex;
+		flex-wrap: wrap;
+		gap: 12px;
+	}
+
+	&__point {
+		display: flex;
+		align-items: center;
+		gap: 12px;
+
+		padding: 18px 24px;
+
+		font-family: var(--font-inter);
+		font-size: 18px;
+		line-height: 140%;
+		font-weight: 500;
+		color: var(--color-white-default);
+
+		background-color: rgba(255, 255, 255, 0.06);
+		border: 1px solid rgba(255, 255, 255, 0.1);
+		border-radius: 999px;
+
+		@include tablet-small {
+			padding: 14px 16px;
+			font-size: 14px;
+			width: 100%;
+		}
+
+		&::before {
+			content: "";
+
+			flex-shrink: 0;
+			width: 22px;
+			height: 22px;
+
+			background: var(--color-red-accent)
+				center / 12px no-repeat
+				url("../../shared/assets/icons/accept.svg");
+			border-radius: 50%;
+		}
+	}
+}
+
+// Карточки преимуществ приходят из FavourItem — на тёмном фоне модалки
+// слегка осветляем серую карточку, чтобы текст читался.
+.favourGrey {
+	background-color: rgba(255, 255, 255, 0.08) !important;
+
+	h2,
+	p {
+		color: var(--color-white-default) !important;
+	}
+}

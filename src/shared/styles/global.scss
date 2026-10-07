@@ -135,3 +135,21 @@ body::-webkit-scrollbar-thumb {
                      var(--sb-track-color);
   }
 }
+
+// Доступность: уважаем системную настройку «уменьшить движение».
+// Отключаем/минимизируем анимации, транзишены и плавный скролл.
+@media (prefers-reduced-motion: reduce) {
+  html,
+  body {
+    scroll-behavior: auto;
+  }
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}

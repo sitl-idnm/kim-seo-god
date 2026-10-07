@@ -8,7 +8,6 @@ import { HomeProps } from './home.types'
 import { Favour, Introduce } from '@/components'
 import { FormSecond } from '@/modules/formSecond'
 import { Case } from '@/modules/case'
-import NewModalContainer from '../../components/newModalContainer/newModalContainer'
 import { RedBoxWork } from '@/modules/redBoxWork'
 import Faq from '@/modules/faq/faq'
 import Clients from '@/modules/clients/clients'
@@ -20,6 +19,7 @@ import Review from '@/modules/review/review'
 import { BlogsMain } from '@/modules/blogsMain'
 import { BlackBoxLink } from '@/modules/blackBoxLink'
 import { Services } from '@/modules/ServicePage/services'
+import { ServiceFinder } from '@/modules/serviceFinder'
 
 const faqData = [
   {
@@ -41,7 +41,6 @@ const Home: FC<HomeProps> = ({ className }) => {
 
   return (
     <main className={rootClassName}>
-      <NewModalContainer />
       <Wrapper>
         <Introduce
           title={<>Агентство комплексного<br /></>}
@@ -58,7 +57,9 @@ const Home: FC<HomeProps> = ({ className }) => {
         <Services
           hasCost={false}
           showDescription={true}
+          filterable
         />
+        <ServiceFinder />
         <HowWeWork />
         <Branch />
         <RedBoxWork />

@@ -62,7 +62,7 @@
 			max-width: 98%;
 		}
 
-		transition: all 0.5s;
+		transition: transform variables.$transition, background-color variables.$transition;
 
 		&:hover {
 			transform: translateY(-10px);
@@ -147,7 +147,7 @@
 
 	&__item > img {
 		scale: 1;
-		transition: all 0.5s;
+		transition: scale variables.$transition;
 		margin: 135px 0;
 
 		@include tablet {
@@ -157,7 +157,6 @@
 
 	&__item:hover > img {
 		scale: 1.5;
-		transition: all 1s;
 
 		@include tablet {
 			scale: 1.1;

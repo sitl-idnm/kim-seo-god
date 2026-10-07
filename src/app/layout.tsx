@@ -10,6 +10,7 @@ import '@styles/global.scss'
 import localFont from 'next/font/local'
 import { Provider } from '@service/provider'
 import { CookieBanner } from '@/modules/cookieBanner'
+import NewModalContainer from '@/components/newModalContainer/newModalContainer'
 import Script from 'next/script'
 
 const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL ?? 'https://kim-agency.ru'
@@ -118,7 +119,8 @@ const inter = localFont({
       style: 'normal'
     }
   ],
-  variable: '--font-inter'
+  variable: '--font-inter',
+  display: 'swap'
 })
 const manrope = localFont({
   src: [
@@ -138,7 +140,9 @@ const manrope = localFont({
       style: 'normal'
     }
   ],
-  variable: '--font-manrope'
+  variable: '--font-manrope',
+  display: 'swap',
+  preload: false
 })
 
 export default function RootLayout({
@@ -163,11 +167,13 @@ export default function RootLayout({
           </div>
 
           <div id="modal-root" />
+          {/* Единое глобальное монтирование модалок — работают на ВСЕХ маршрутах */}
+          <NewModalContainer />
         </Provider>
 
         <Script
           id="ym-loader"
-          strategy="afterInteractive"
+          strategy="lazyOnload"
           dangerouslySetInnerHTML={{
             __html: `(function(m,e,t,r,i,k,a){m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};m[i].l=1*new Date();k=e.createElement(t),a=e.getElementsByTagName(t)[0];k.async=1;k.src=r;a.parentNode.insertBefore(k,a)})(window, document, "script", "https://mc.yandex.ru/metrika/tag.js", "ym");ym(105250589, "init", { ssr:true, webvisor:true, clickmap:true, ecommerce:"dataLayer", accurateTrackBounce:true, trackLinks:true });`
           }}

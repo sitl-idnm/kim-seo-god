@@ -39,6 +39,7 @@
 		white-space: nowrap;
 		display: inline-flex;
 		align-items: center;
+		transition: color variables.$transition;
 
 		@include tablet {
 			font-size: 16px;
@@ -47,8 +48,43 @@
 			white-space: normal;
 		}
 
+		// Брендовый hover (кроме приглушённых пунктов)
+		&:not(&_muted):hover {
+			color: var(--color-red-accent);
+		}
+
+		// Видимый клавиатурный фокус
+		&:focus-visible {
+			outline: variables.$focus-ring-width solid variables.$focus-ring-color;
+			outline-offset: 3px;
+			border-radius: 4px;
+		}
+
 		&_muted {
 			color: #cdcdcd;
+		}
+
+		// Активный пункт — брендовый красный акцент + подчёркивание
+		&_active {
+			position: relative;
+			color: var(--color-red-accent);
+
+			&::before {
+				content: '';
+				position: absolute;
+				left: 0;
+				right: 0;
+				bottom: -4px;
+				height: 2px;
+				background: var(--color-red-accent);
+				border-radius: 2px;
+			}
+
+			@include tablet {
+				&::before {
+					display: none;
+				}
+			}
 		}
 	}
 
@@ -79,27 +115,32 @@
 	&__dropdown {
 		position: absolute;
 		top: 100%;
-		left: 0;
-		min-width: 256px;
+		// Центрируем панель под навигацией, чтобы она совпадала с контейнером
+		// и не уезжала за край экрана (вместо привязки к одному пункту).
+		left: 50%;
+		transform: translateX(-50%) scale(0.98);
+		// Мега-меню во всю ширину контейнера, не уезжает за правый край экрана
+		width: min(1312px, calc(100vw - 48px));
+		max-width: 1312px;
 		background-color: var(--color-grey-light);
-		padding: 20px;
-		border-radius: 12px;
+		padding: 28px 32px;
+		border-radius: 16px;
+		margin-top: 12px;
 		// Невидимый «мост» между пунктом и списком, чтобы меню не исчезало при наведении
 		&::before {
 			content: '';
 			position: absolute;
 			left: 0;
 			right: 0;
-			top: -6px;
-			height: 6px;
+			top: -12px;
+			height: 12px;
 		}
 		box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
 		opacity: 0;
 		visibility: hidden;
 		pointer-events: none;
-		transform-origin: top left;
+		transform-origin: top center;
 		transition: opacity 0.2s ease, visibility 0.2s ease, transform 0.2s ease;
-		transform: scale(0.95);
 		z-index: 1000;
 
 		@include tablet {
@@ -107,11 +148,40 @@
 		}
 	}
 
-	&__servicesWrap:hover &__dropdown {
+	// Сетка колонок по категориям
+	&__mega {
+		display: grid;
+		grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+		gap: 28px 32px;
+		align-items: start;
+	}
+
+	&__megaColumn {
+		display: flex;
+		flex-direction: column;
+		gap: 12px;
+		min-width: 0;
+	}
+
+	&__megaTitle {
+		margin: 0;
+		font-family: var(--font-inter);
+		font-size: 14px;
+		font-weight: 600;
+		line-height: 1.2;
+		text-transform: uppercase;
+		letter-spacing: 0.04em;
+		color: var(--color-red-accent);
+	}
+
+	// Открытие меню: hover, фокус с клавиатуры (:focus-within) и управляемое состояние (_open)
+	&__servicesWrap:hover &__dropdown,
+	&__servicesWrap:focus-within &__dropdown,
+	&__servicesWrap_open &__dropdown {
 		opacity: 1;
 		visibility: visible;
 		pointer-events: auto;
-		transform: scale(1);
+		transform: translateX(-50%) scale(1);
 	}
 
 	&__dropdownList {
@@ -131,15 +201,29 @@
 	&__dropdownItem {
 		display: block;
 		padding: 8px 12px;
-		font-size: 16px;
+		font-size: 15px;
+		line-height: 1.35;
 		font-weight: 500;
 		color: var(--color-black, #16181b);
 		text-decoration: none;
 		border-radius: 4px;
 		border: 1px solid transparent;
-		transition: all 0.2s ease;
+		transition: border-color variables.$transition-micro, background variables.$transition-micro,
+			color variables.$transition-micro;
 
 		&:hover {
+			border-color: var(--color-red-accent);
+			background: rgba(203, 23, 44, 0.06);
+		}
+
+		&:focus-visible {
+			outline: variables.$focus-ring-width solid variables.$focus-ring-color;
+			outline-offset: 2px;
+		}
+
+		// Активная услуга в дропдауне
+		&_active {
+			color: var(--color-red-accent);
 			border-color: var(--color-red-accent);
 			background: rgba(203, 23, 44, 0.06);
 		}

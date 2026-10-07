@@ -47,11 +47,7 @@ const NewModal: FC<NewModalProps> = ({
             y: 0,
             opacity: 1,
             duration: 0.3,
-            clearProps: 'transform', // Очищаем transform
-            onComplete: () => {
-              // Обновляем ScrollTrigger после анимации
-              ScrollTrigger.refresh()
-            }
+            clearProps: 'transform' // Очищаем transform
           }
         )
       } else {
@@ -78,8 +74,6 @@ const NewModal: FC<NewModalProps> = ({
 
     return () => {
       ctx.revert()
-      // Обновляем ScrollTrigger при размонтировании
-      ScrollTrigger.refresh()
     }
   }, [isOpen])
 
@@ -90,7 +84,7 @@ const NewModal: FC<NewModalProps> = ({
   }
 
   return (
-    <Portal selector="body">
+    <Portal selector="#modal-root">
       <div
         ref={modalRef}
         className={classNames(styles.modal, className)}

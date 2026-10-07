@@ -23,7 +23,8 @@ const FavourItem: FC<FavourItemProps> = ({
   alignItems = 'flex-start',
   flexDirection = 'row',
   footer,
-  footerTitle
+  footerTitle,
+  priority = false
 }) => {
   const setModalContent = useSetAtom(openModalContent)
 
@@ -88,6 +89,7 @@ const FavourItem: FC<FavourItemProps> = ({
         width={280}
         height={280}
         quality={100}
+        priority={priority}
         alt={typeof title === 'string' ? title : ''}
         className={styles.favour__image} />}
       <button className={styles.favour__description} style={{ color: linkColor }}>

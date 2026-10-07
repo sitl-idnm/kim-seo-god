@@ -5,7 +5,6 @@ import classNames from 'classnames'
 
 import styles from './approvePage.module.scss'
 import { PrivacyPageProps } from './approvePage.types'
-import NewModalContainer from '@/components/newModalContainer/newModalContainer'
 const PrivacyPage: FC<PrivacyPageProps> = ({
   className
 }) => {
@@ -13,7 +12,6 @@ const PrivacyPage: FC<PrivacyPageProps> = ({
 
   return (
     <main className={rootClassName}>
-      <NewModalContainer />
       <div className={styles.container}>
         <p>Домен - <a href="https://kim.agency/" target="_blank" rel="noopener noreferrer">https://kim.agency/</a></p>
 

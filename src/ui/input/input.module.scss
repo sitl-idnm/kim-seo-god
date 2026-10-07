@@ -9,11 +9,25 @@
   font-family: Arial, Helvetica, sans-serif;
   color: var(--color-black-default);
   background-color: var(--color-white-default);
-  border: none;
+  border: 1px solid transparent;
   border-radius: func.rem(8);
   outline: none;
   transition: variables.$transition;
-  transition-property: border-color, background-color;
+  transition-property: border-color, background-color, box-shadow;
+
+  &:hover {
+    border-color: rgba(203, 23, 44, 0.4);
+  }
+
+  &:focus,
+  &:focus-visible {
+    border-color: var(--color-red-accent);
+    box-shadow: 0 0 0 variables.$focus-ring-width rgba(203, 23, 44, 0.2);
+  }
+
+  &::placeholder {
+    transition: color variables.$transition-micro;
+  }
 
   &::-webkit-outer-spin-button,
   &::-webkit-inner-spin-button {

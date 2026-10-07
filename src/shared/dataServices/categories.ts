@@ -28,5 +28,12 @@ export const categories: ServiceCategory[] = [
 		slug: 'development',
 		title: 'Разработка',
 		description: 'Создание и поддержка сайтов'
+	},
+	{
+		id: 'ai',
+		name: 'AI-решения',
+		slug: 'ai',
+		title: 'AI-решения',
+		description: 'Внедрение искусственного интеллекта и ИИ-агентов'
 	}
 ]

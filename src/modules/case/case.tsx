@@ -1,19 +1,15 @@
 'use client'
 
-import { FC, useRef } from 'react'
+import { FC, useRef, useLayoutEffect } from 'react'
 import classNames from 'classnames'
-import gsap from 'gsap'
-import { ScrollTrigger } from 'gsap/ScrollTrigger'
 import { usePathname } from 'next/navigation'
 import Arrow from '@icons/cases__arrow.svg'
 
 import styles from './case.module.scss'
 import { CaseProps } from './case.types'
 import { CaseItem } from '@/components'
-import { useGSAP } from '@gsap/react'
+import { loadGsap } from '@/shared/lib/gsap'
 import Link from 'next/link'
-
-gsap.registerPlugin(useGSAP, ScrollTrigger)
 
 const itemsData = [
   { title: 'Магия вкуса', text: 'Интернет-магазин для пекарни полного цикла', imageSrc: '/images/tablet__magic.png', link: '/cases/magiya-vkusa' },
@@ -29,7 +25,7 @@ const Case: FC<CaseProps> = ({
   const casesRef = useRef<HTMLDivElement>(null)
   const containerRef = useRef<HTMLDivElement>(null)
 
-  useGSAP(() => {
+  useLayoutEffect(() => {
     const container = containerRef.current
     const cases = casesRef.current
 
@@ -37,45 +33,97 @@ const Case: FC<CaseProps> = ({
       return
     }
 
-    const mm = gsap.matchMedia()
+    let cleanup: (() => void) | undefined
+    let cancelled = false
 
-    mm.add('(min-width: 1201px)', () => {
-      const getScrollDistance = () => Math.max(0, cases.scrollWidth - container.clientWidth)
+    loadGsap().then(({ gsap, ScrollTrigger }) => {
+      if (cancelled) return
 
-      if (getScrollDistance() <= 0) {
-        gsap.set(cases, { x: 0 })
-        return
-      }
+      const mm = gsap.matchMedia()
 
-      const tween = gsap.to(cases, {
-        x: () => -getScrollDistance(),
-        ease: 'none',
-        overwrite: 'auto',
-        scrollTrigger: {
-          trigger: container,
-          start: 'top top',
-          end: () => `+=${getScrollDistance()}`,
-          scrub: 1,
-          pin: container,
-          invalidateOnRefresh: true,
-          anticipatePin: 1
+      mm.add('(min-width: 1201px)', () => {
+        const getScrollDistance = () => Math.max(0, cases.scrollWidth - container.clientWidth)
+
+        const tween = gsap.to(cases, {
+          x: () => -getScrollDistance(),
+          ease: 'none',
+          overwrite: 'auto',
+          scrollTrigger: {
+            trigger: container,
+            start: 'top top',
+            end: () => `+=${getScrollDistance()}`,
+            scrub: 1,
+            pin: container,
+            invalidateOnRefresh: true,
+            anticipatePin: 1
+          }
+        })
+
+        // Пересчитываем триггер после реальной верстки; если ширина ещё не
+        // посчитана (scrollWidth<=0 / distance<=0) — повторяем на следующем кадре.
+        let rafId = 0
+        const refresh = () => ScrollTrigger.refresh()
+        const ensureReady = () => {
+          if (getScrollDistance() <= 0) {
+            rafId = requestAnimationFrame(ensureReady)
+            return
+          }
+          refresh()
+        }
+        ensureReady()
+
+        // Картинки кейсов могут догрузиться позже layout — пересчитываем по мере
+        // их загрузки, а также после window 'load' (все ресурсы готовы).
+        const imgs = Array.from(cases.querySelectorAll('img'))
+        const onImgDone = () => requestAnimationFrame(refresh)
+        imgs.forEach((img) => {
+          if (!img.complete) {
+            img.addEventListener('load', onImgDone)
+            img.addEventListener('error', onImgDone)
+          }
+        })
+
+        const onWindowLoad = () => requestAnimationFrame(refresh)
+        if (document.readyState === 'complete') {
+          onWindowLoad()
+        } else {
+          window.addEventListener('load', onWindowLoad)
+        }
+
+        // Пересчёт при resize через rAF (без спама refresh на каждый пиксель).
+        let resizeRaf = 0
+        const onResize = () => {
+          if (resizeRaf) cancelAnimationFrame(resizeRaf)
+          resizeRaf = requestAnimationFrame(refresh)
+        }
+        window.addEventListener('resize', onResize)
+
+        return () => {
+          if (rafId) cancelAnimationFrame(rafId)
+          if (resizeRaf) cancelAnimationFrame(resizeRaf)
+          window.removeEventListener('resize', onResize)
+          window.removeEventListener('load', onWindowLoad)
+          imgs.forEach((img) => {
+            img.removeEventListener('load', onImgDone)
+            img.removeEventListener('error', onImgDone)
+          })
+          tween.scrollTrigger?.kill()
+          tween.kill()
+          gsap.set(cases, { x: 0 })
         }
       })
 
-      ScrollTrigger.refresh()
-
-      return () => {
-        tween.scrollTrigger?.kill()
-        tween.kill()
-        gsap.set(cases, { x: 0 })
+      cleanup = () => {
+        mm.revert()
+        gsap.set(cases, { clearProps: 'transform' })
       }
     })
 
     return () => {
-      mm.revert()
-      gsap.set(cases, { clearProps: 'transform' })
+      cancelled = true
+      cleanup?.()
     }
-  }, { scope: containerRef, dependencies: [pathname] })
+  }, [pathname])
 
   return (
     <div className={rootClassName} ref={containerRef}>

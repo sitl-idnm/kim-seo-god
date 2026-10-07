@@ -33,6 +33,7 @@ const Favour: FC<FavourProps> = ({
               linkText={item.linkText}
               linkColor={item.linkColor}
               imageSrc={item.imageSrc}
+              priority={index === 0}
               justifyContent='center'
               alignItems='center'
               flexDirection='column'

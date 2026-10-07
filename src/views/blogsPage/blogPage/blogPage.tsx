@@ -5,6 +5,7 @@ import { RazrabotkaInteraktivnogoSaitaArticle } from '../articles/razrabotka-int
 import { KakVnedritIiVBiznesArticle } from '../articles/kak-vnedrit-ii-v-biznes'
 import { ChemIiAgentOtlichaetsyaOtChatBotaArticle } from '../articles/chem-ii-agent-otlichaetsya-ot-chat-bota'
 import { PochemuLidovMnogoAProdazhNetArticle } from '../articles/pochemu-lidov-mnogo-a-prodazh-net'
+import { TocHighlighter } from '../components/TocHighlighter'
 import styles from './blogPage.module.scss'
 import { BlogPageProps } from './blogPage.types'
 import { FormFirst } from '@/modules/formFirst'
@@ -64,7 +65,7 @@ const BlogPage: FC<BlogPageProps> = ({ className, blogSlug }) => {
       </div>
 
       <h2 className={styles.sectionTitle}>Содержание</h2>
-      <div className={styles.toc}>
+      <div className={styles.toc} data-toc>
         <a href="#who">Кому подходит услуга и что она дает</a>
         <a href="#seo">Как работает SEO-продвижение</a>
         <a href="#context">Как работает контекстная реклама</a>
@@ -372,6 +373,7 @@ const BlogPage: FC<BlogPageProps> = ({ className, blogSlug }) => {
   return (
     <main className={rootClassName}>
       <article className={styles.article}>{renderContent()}</article>
+      <TocHighlighter activeClassName={styles.tocActive} />
     </main>
   )
 }

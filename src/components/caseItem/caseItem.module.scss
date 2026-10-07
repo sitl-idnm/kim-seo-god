@@ -14,7 +14,7 @@
 	min-width: 727px;
 	min-height: 474px;
 	height: 100%;
-	transition: background-color 0.3s ease;
+	transition: background-color variables.$transition;
 
 	@include tablet {
 		width: 100%;
@@ -117,7 +117,7 @@
 			right: 24px;
 			opacity: 0;
 			transform: translateY(10px);
-			transition: opacity 0.3s ease, transform 0.3s ease;
+			transition: opacity variables.$transition, transform variables.$transition;
 
 			@include tablet-small {
 				bottom: 140px;
@@ -144,7 +144,7 @@
 	min-height: 474px;
 	padding: 0 36px 40px;
 
-	transition: background 1s ease;
+	transition: background-color variables.$transition;
 
 	margin-top: 200px;
 
@@ -204,7 +204,7 @@
 
 			color: var(--color-black);
 
-			transition: color 1s ease;
+			transition: color variables.$transition;
 
 			@include tablet-small {
 				font-size: 20px;
@@ -221,7 +221,7 @@
 
 			color: var(--color-black);
 
-			transition: color 1s ease;
+			transition: color variables.$transition;
 		}
 
 		&__button {
@@ -230,7 +230,7 @@
 			right: 24px;
 			opacity: 1;
 			transform: translateY(10px);
-			transition: opacity 0.3s ease, transform 0.3s ease;
+			transition: opacity variables.$transition, transform variables.$transition;
 
 			@include tablet-small {
 				display: none;
@@ -241,17 +241,17 @@
 	&:hover {
 		background-color: var(--color-red-accent);
 
-		transition: background 1s ease;
+		transition: background-color variables.$transition;
 
 		.bottom {
 			&__title {
 				color: #FAFAFA;
-				transition: color 1s ease;
+				transition: color variables.$transition;
 			}
 
 			&__description {
 				color: #FAFAFA;
-				transition: color 1s ease;
+				transition: color variables.$transition;
 			}
 		}
 	}

@@ -15,20 +15,24 @@ const NewModalContainer: FC = () => {
   const modalContent = useAtomValue(openModalContent)
 
   useEffect(() => {
-    if (modalContent) {
-      document.documentElement.style.overflow = 'hidden'
-      document.body.style.overflow = 'hidden'
-      document.body.style.paddingRight = '15px' // Компенсация скроллбара
-    } else {
-      document.documentElement.style.overflow = ''
-      document.body.style.overflow = ''
-      document.body.style.paddingRight = ''
+    if (!modalContent) return
+
+    // Реальная ширина скроллбара: 0 на мобильных и ОС с overlay-скроллбаром.
+    const scrollbarWidth = window.innerWidth - document.documentElement.clientWidth
+    const prevRootOverflow = document.documentElement.style.overflow
+    const prevBodyOverflow = document.body.style.overflow
+    const prevBodyPadding = document.body.style.paddingRight
+
+    document.documentElement.style.overflow = 'hidden'
+    document.body.style.overflow = 'hidden'
+    if (scrollbarWidth > 0) {
+      document.body.style.paddingRight = `${scrollbarWidth}px`
     }
 
     return () => {
-      document.documentElement.style.overflow = ''
-      document.body.style.overflow = ''
-      document.body.style.paddingRight = ''
+      document.documentElement.style.overflow = prevRootOverflow
+      document.body.style.overflow = prevBodyOverflow
+      document.body.style.paddingRight = prevBodyPadding
     }
   }, [modalContent])
 

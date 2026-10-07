@@ -1,10 +1,11 @@
 import { getServiceData } from '@/shared/dataServices'
 import styles from './page.module.scss'
 import classNames from 'classnames'
-import { FC } from 'react'
+import { FC, ReactNode } from 'react'
 import { IntroWorkUs } from '@/modules/introWorkUs'
 import { WebDesignPageProps } from './page.types'
 import type { Metadata } from 'next'
+import type { CSSProperties } from 'react'
 import Script from 'next/script'
 import { StandartText } from '@/ui'
 import { Why } from '@/modules/why'
@@ -120,7 +121,228 @@ const WebDesignPage: FC<WebDesignPageProps> = () => {
     return null
   }
 
+  const ui = serviceData.uiConfig
+  const accentStyle = ui
+    ? ({ '--accent': ui.accent, '--accent-soft': ui.accentSoft ?? '#f7f7f8' } as CSSProperties)
+    : undefined
   const rootClassName = classNames(styles.root)
+  const introClassName = classNames(
+    styles.introBlock,
+    ui?.heroEyebrow && styles.heroWithEyebrow,
+    ui?.heroVariant === 'split' && styles.heroSplit,
+    ui?.heroVariant === 'spotlight' && styles.heroSpotlight,
+    ui?.heroVariant === 'bold' && styles.heroBold,
+    ui?.heroVariant === 'minimal' && styles.heroMinimal
+  )
+
+  const sections: Record<string, ReactNode> = {
+    intro: (
+      <IntroWorkUs
+        key="intro"
+        className={introClassName}
+        title="Веб-дизайн сайтов"
+        text={
+          'Веб-дизайн — это проектирование сайта под задачи бизнеса, а не просто красивая картинка. Мы разбираем, кто ваш клиент и какой путь он проходит, затем собираем структуру, интерфейс и адаптив. Подходит компаниям, которым нужен сайт, понятный пользователю. Результат — сайт, который удерживает внимание и превращает посетителей в заявки.'
+        }
+        highlightedText=""
+        titleClassName={styles.introTitleSmall}
+        buttons={(
+          <div className={styles.introButtonsWrap}>
+            <div className={styles.heroStack}>
+              {ui?.heroEyebrow && <span className={styles.heroEyebrow}>{ui.heroEyebrow}</span>}
+              <Button
+                tag="a"
+                href="#form"
+                maxWidth="320px"
+                className={classNames(styles.introHeroButton, styles.accentHeroButton)}
+              >
+                Обсудить дизайн
+              </Button>
+            </div>
+          </div>
+        )}
+      />
+    ),
+    about: (
+      <StandartText
+        key="about"
+        marginBottom
+        marginTop
+        title="Как мы проектируем дизайн сайта"
+        texts={[
+          'Хороший дизайн начинается не с макета, а с задачи. Сначала мы проводим UX-исследование: разбираем аудиторию, конкурентов и путь пользователя к цели. Дальше собираем прототип — структуру экранов без визуала, чтобы согласовать логику до отрисовки. Затем переходим к UI-дизайну: типографика, цвет, компоненты. Каждый экран прорабатываем в адаптиве под мобильные и десктоп. На выходе — дизайн-система, по которой разработчик соберёт сайт без расхождений.'
+        ]}
+      />
+    ),
+    includes: (
+      <Why
+        key="includes"
+        direction="row"
+        titleJustify="center"
+        titleAlign="center"
+        cardsPerRow={3}
+        title="Что входит в веб-дизайн"
+        itemsData={[
+          { icon: <AcceptIcon />, title: 'UX-исследование аудитории и конкурентов', description: '' },
+          { icon: <AcceptIcon />, title: 'Прототип структуры и пользовательского пути', description: '' },
+          { icon: <AcceptIcon />, title: 'UI-дизайн всех экранов сайта', description: '' },
+          { icon: <AcceptIcon />, title: 'Адаптив под мобильные, планшет и десктоп', description: '' },
+          { icon: <AcceptIcon />, title: 'Дизайн-система и UI-kit компонентов', description: '' },
+          { icon: <AcceptIcon />, title: 'Передача макетов разработчику без потерь', description: '' }
+        ]}
+      />
+    ),
+    consult: (
+      <div key="consult" id="free-consult" className={styles.freeConsultSection}>
+        <FormFirst
+          title="Обсудим ваш проект на бесплатной консультации"
+          paragraph="Оставьте контакт — разберём задачу, подскажем формат сайта и ориентир по срокам и стоимости дизайна."
+          submitValue="Обсудить дизайн"
+        />
+      </div>
+    ),
+    solutions: (
+      <section key="solutions" className={styles.solutions}>
+        <h2 className={classNames(styles.solutionsTitle, styles.accentTitle)}>Какие сайты мы оформляем</h2>
+        <p className={styles.solutionsText}>
+          Дизайн подбираем под тип проекта и его цель. Лендингу нужна концентрация на одном
+          действии, корпоративному сайту — структура и доверие, магазину — удобный путь к покупке.
+          Каждый формат проектируем отдельно, а не по одному шаблону.
+        </p>
+        <div className={styles.solutionsCards}>
+          <article className={styles.solutionsCard}>
+            <h3 className={styles.solutionsCardTitle}>Лендинги и корпоративные сайты</h3>
+            <ul className={styles.solutionsList}>
+              <li>Дизайн лендинга под одну задачу и целевое действие.</li>
+              <li>Корпоративный сайт с продуманной структурой и навигацией.</li>
+              <li>Единый визуальный стиль под бренд и аудиторию.</li>
+            </ul>
+          </article>
+          <article className={classNames(styles.solutionsCard, styles.accentCard)}>
+            <h3 className={styles.solutionsCardTitle}>Магазины и редизайн</h3>
+            <p className={styles.solutionsCardText}>
+              Проектируем интерфейс интернет-магазина с удобным путём к покупке и обновляем
+              устаревшие сайты. При редизайне сохраняем узнаваемость бренда, но убираем всё, что
+              мешало пользователю доходить до заявки.
+            </p>
+          </article>
+        </div>
+      </section>
+    ),
+    process: (
+      <Why
+        key="process"
+        direction="row"
+        titleJustify="center"
+        titleAlign="center"
+        cardsPerRow={3}
+        title="Этапы работы"
+        counter
+        itemsData={[
+          { icon: '', title: '1', description: 'UX-исследование и анализ конкурентов' },
+          { icon: '', title: '2', description: 'Прототип структуры и согласование логики' },
+          { icon: '', title: '3', description: 'UI-дизайн экранов и визуального стиля' },
+          { icon: '', title: '4', description: 'Адаптив под мобильные и десктоп' },
+          { icon: '', title: '5', description: 'Дизайн-система и передача разработчику' }
+        ]}
+      />
+    ),
+    pricing: (
+      <section key="pricing" className={styles.pricing}>
+        <Heading size="md" className={styles.pricingMainTitle}>Стоимость и сроки</Heading>
+
+        <div className={styles.pricingRow}>
+          <div className={styles.pricingBadge}>
+            <p className={styles.pricingBadgeLabel}>Стоимость дизайна</p>
+            <p className={styles.pricingBadgeValue}>от 80 000 ₽</p>
+          </div>
+          <div className={styles.pricingBadge}>
+            <p className={styles.pricingBadgeLabel}>Срок</p>
+            <p className={styles.pricingBadgeValue}>от 2 недель</p>
+          </div>
+        </div>
+
+        <Heading size="md" className={styles.techTitle}>
+          Инструменты
+        </Heading>
+        <p className={styles.techText}>
+          Работаем в проверенном стеке — макеты удобно согласовывать и передавать в разработку.
+        </p>
+
+        <div className={styles.techGrid}>
+          <div className={styles.techCard}>
+            <p className={styles.techCardTitle}>Дизайн и прототип</p>
+            <ul className={styles.techList}>
+              <li>Figma</li>
+              <li>FigJam</li>
+            </ul>
+          </div>
+          <div className={styles.techCard}>
+            <p className={styles.techCardTitle}>Графика</p>
+            <ul className={styles.techList}>
+              <li>Adobe Photoshop</li>
+              <li>Adobe Illustrator</li>
+            </ul>
+          </div>
+          <div className={styles.techCard}>
+            <p className={styles.techCardTitle}>Сборка и прототипы</p>
+            <ul className={styles.techList}>
+              <li>Tilda</li>
+              <li>Framer</li>
+            </ul>
+          </div>
+        </div>
+      </section>
+    ),
+    form: (
+      <div key="form" id="form">
+        <FormFirst
+          className={styles.formBlock}
+          title="Запишитесь на бесплатную консультацию"
+          paragraph="Разберём задачу, подберём формат сайта и рассчитаем стоимость и сроки дизайна."
+          submitValue="Отправить"
+        />
+      </div>
+    ),
+    cases: (
+      <div key="cases" id="cases" className={styles.casesSection}>
+        <Case />
+      </div>
+    ),
+    clients: <Clients key="clients" title="Наши клиенты" />,
+    stats: (
+      <Why
+        key="stats"
+        counter
+        direction="row"
+        titleJustify="start"
+        titleAlign="start"
+        cardsPerRow={3}
+        title="Об агентстве в цифрах"
+        itemsData={[
+          { icon: '', title: '15', description: 'сотрудников в штате' },
+          { icon: '', title: '5', description: 'отделов' },
+          { icon: '', title: '200+', description: 'реализованных проектов' },
+          { icon: '', title: '10 000+', description: 'приведённых лидов' },
+          { icon: '', title: '7 000+', description: 'пользователей наших решений' },
+          { icon: '', title: '4', description: 'модели ИИ помогают сотрудникам в работе' }
+        ]}
+      />
+    ),
+    faq: <Faq key="faq" faqData={faqData} title="Частые вопросы о веб-дизайне" />,
+    reviews: <Review key="reviews" />,
+    finalForm: (
+      <FormFirst
+        key="finalForm"
+        className={styles.formBlock}
+        title="Готовы обновить дизайн сайта?"
+        paragraph="Оставьте заявку — свяжемся и проведём бесплатную консультацию по вашему проекту."
+        submitValue="Отправить"
+      />
+    )
+  }
+
+  const order = ui?.order ?? Object.keys(sections)
 
   return (
     <>
@@ -130,192 +352,8 @@ const WebDesignPage: FC<WebDesignPageProps> = () => {
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
       />
 
-      <main className={rootClassName}>
-        <IntroWorkUs
-          className={styles.introBlock}
-          title="Веб-дизайн сайтов"
-          text={
-            'Веб-дизайн — это проектирование сайта под задачи бизнеса, а не просто красивая картинка. Мы разбираем, кто ваш клиент и какой путь он проходит, затем собираем структуру, интерфейс и адаптив. Подходит компаниям, которым нужен сайт, понятный пользователю. Результат — сайт, который удерживает внимание и превращает посетителей в заявки.'
-          }
-          highlightedText=""
-          titleClassName={styles.introTitleSmall}
-          buttons={(
-            <div className={styles.introButtonsWrap}>
-              <Button
-                tag="a"
-                href="#form"
-                maxWidth="320px"
-                className={styles.introHeroButton}
-              >
-                Обсудить дизайн
-              </Button>
-            </div>
-          )}
-        />
-
-        <StandartText
-          marginBottom
-          marginTop
-          title="Как мы проектируем дизайн сайта"
-          texts={[
-            'Хороший дизайн начинается не с макета, а с задачи. Сначала мы проводим UX-исследование: разбираем аудиторию, конкурентов и путь пользователя к цели. Дальше собираем прототип — структуру экранов без визуала, чтобы согласовать логику до отрисовки. Затем переходим к UI-дизайну: типографика, цвет, компоненты. Каждый экран прорабатываем в адаптиве под мобильные и десктоп. На выходе — дизайн-система, по которой разработчик соберёт сайт без расхождений.'
-          ]}
-        />
-
-        <Why
-          direction="row"
-          titleJustify="center"
-          titleAlign="center"
-          cardsPerRow={3}
-          title="Что входит в веб-дизайн"
-          itemsData={[
-            { icon: <AcceptIcon />, title: 'UX-исследование аудитории и конкурентов', description: '' },
-            { icon: <AcceptIcon />, title: 'Прототип структуры и пользовательского пути', description: '' },
-            { icon: <AcceptIcon />, title: 'UI-дизайн всех экранов сайта', description: '' },
-            { icon: <AcceptIcon />, title: 'Адаптив под мобильные, планшет и десктоп', description: '' },
-            { icon: <AcceptIcon />, title: 'Дизайн-система и UI-kit компонентов', description: '' },
-            { icon: <AcceptIcon />, title: 'Передача макетов разработчику без потерь', description: '' }
-          ]}
-        />
-
-        <div id="free-consult" className={styles.freeConsultSection}>
-          <FormFirst
-            title="Обсудим ваш проект на бесплатной консультации"
-            paragraph="Оставьте контакт — разберём задачу, подскажем формат сайта и ориентир по срокам и стоимости дизайна."
-            submitValue="Обсудить дизайн"
-          />
-        </div>
-
-        <section className={styles.solutions}>
-          <h2 className={styles.solutionsTitle}>Какие сайты мы оформляем</h2>
-          <p className={styles.solutionsText}>
-            Дизайн подбираем под тип проекта и его цель. Лендингу нужна концентрация на одном
-            действии, корпоративному сайту — структура и доверие, магазину — удобный путь к покупке.
-            Каждый формат проектируем отдельно, а не по одному шаблону.
-          </p>
-          <div className={styles.solutionsCards}>
-            <article className={styles.solutionsCard}>
-              <h3 className={styles.solutionsCardTitle}>Лендинги и корпоративные сайты</h3>
-              <ul className={styles.solutionsList}>
-                <li>Дизайн лендинга под одну задачу и целевое действие.</li>
-                <li>Корпоративный сайт с продуманной структурой и навигацией.</li>
-                <li>Единый визуальный стиль под бренд и аудиторию.</li>
-              </ul>
-            </article>
-            <article className={styles.solutionsCard}>
-              <h3 className={styles.solutionsCardTitle}>Магазины и редизайн</h3>
-              <p className={styles.solutionsCardText}>
-                Проектируем интерфейс интернет-магазина с удобным путём к покупке и обновляем
-                устаревшие сайты. При редизайне сохраняем узнаваемость бренда, но убираем всё, что
-                мешало пользователю доходить до заявки.
-              </p>
-            </article>
-          </div>
-        </section>
-
-        <Why
-          direction="row"
-          titleJustify="center"
-          titleAlign="center"
-          cardsPerRow={3}
-          title="Этапы работы"
-          counter
-          itemsData={[
-            { icon: '', title: '1', description: 'UX-исследование и анализ конкурентов' },
-            { icon: '', title: '2', description: 'Прототип структуры и согласование логики' },
-            { icon: '', title: '3', description: 'UI-дизайн экранов и визуального стиля' },
-            { icon: '', title: '4', description: 'Адаптив под мобильные и десктоп' },
-            { icon: '', title: '5', description: 'Дизайн-система и передача разработчику' }
-          ]}
-        />
-
-        <section className={styles.pricing}>
-          <Heading size="md" className={styles.pricingMainTitle}>Стоимость и сроки</Heading>
-
-          <div className={styles.pricingRow}>
-            <div className={styles.pricingBadge}>
-              <p className={styles.pricingBadgeLabel}>Стоимость дизайна</p>
-              <p className={styles.pricingBadgeValue}>от 80 000 ₽</p>
-            </div>
-            <div className={styles.pricingBadge}>
-              <p className={styles.pricingBadgeLabel}>Срок</p>
-              <p className={styles.pricingBadgeValue}>от 2 недель</p>
-            </div>
-          </div>
-
-          <Heading size="md" className={styles.techTitle}>
-            Инструменты
-          </Heading>
-          <p className={styles.techText}>
-            Работаем в проверенном стеке — макеты удобно согласовывать и передавать в разработку.
-          </p>
-
-          <div className={styles.techGrid}>
-            <div className={styles.techCard}>
-              <p className={styles.techCardTitle}>Дизайн и прототип</p>
-              <ul className={styles.techList}>
-                <li>Figma</li>
-                <li>FigJam</li>
-              </ul>
-            </div>
-            <div className={styles.techCard}>
-              <p className={styles.techCardTitle}>Графика</p>
-              <ul className={styles.techList}>
-                <li>Adobe Photoshop</li>
-                <li>Adobe Illustrator</li>
-              </ul>
-            </div>
-            <div className={styles.techCard}>
-              <p className={styles.techCardTitle}>Сборка и прототипы</p>
-              <ul className={styles.techList}>
-                <li>Tilda</li>
-                <li>Framer</li>
-              </ul>
-            </div>
-          </div>
-        </section>
-
-        <div id="form">
-          <FormFirst
-            className={styles.formBlock}
-            title="Запишитесь на бесплатную консультацию"
-            paragraph="Разберём задачу, подберём формат сайта и рассчитаем стоимость и сроки дизайна."
-            submitValue="Отправить"
-          />
-        </div>
-
-        <div id="cases" className={styles.casesSection}>
-          <Case />
-        </div>
-        <Clients title="Наши клиенты" />
-
-        <Why
-          counter
-          direction="row"
-          titleJustify="start"
-          titleAlign="start"
-          cardsPerRow={3}
-          title="Об агентстве в цифрах"
-          itemsData={[
-            { icon: '', title: '15', description: 'сотрудников в штате' },
-            { icon: '', title: '5', description: 'отделов' },
-            { icon: '', title: '200+', description: 'реализованных проектов' },
-            { icon: '', title: '10 000+', description: 'приведённых лидов' },
-            { icon: '', title: '7 000+', description: 'пользователей наших решений' },
-            { icon: '', title: '4', description: 'модели ИИ помогают сотрудникам в работе' }
-          ]}
-        />
-
-        <Faq faqData={faqData} title="Частые вопросы о веб-дизайне" />
-
-        <Review />
-
-        <FormFirst
-          className={styles.formBlock}
-          title="Готовы обновить дизайн сайта?"
-          paragraph="Оставьте заявку — свяжемся и проведём бесплатную консультацию по вашему проекту."
-          submitValue="Отправить"
-        />
+      <main className={rootClassName} style={accentStyle}>
+        {order.map((key) => sections[key] ?? null)}
       </main>
     </>
   )

@@ -1,16 +1,11 @@
 'use client'
 
-import { FC, useRef } from 'react'
+import { FC, useRef, useLayoutEffect } from 'react'
 import classNames from 'classnames'
-import gsap from 'gsap'
-import { MotionPathPlugin } from 'gsap/MotionPathPlugin'
-import { ScrollTrigger } from 'gsap/ScrollTrigger'
 
 import styles from './conversionTitle.module.scss'
 import { ConversionTitleProps } from './conversionTitle.types'
-import { useGSAP } from '@gsap/react'
-
-gsap.registerPlugin(MotionPathPlugin, ScrollTrigger)
+import { loadGsapWithMotionPath } from '@/shared/lib/gsap'
 
 const ConversionTitle: FC<ConversionTitleProps> = ({ className }) => {
   const rootClassName = classNames(styles.root, className)
@@ -18,8 +13,12 @@ const ConversionTitle: FC<ConversionTitleProps> = ({ className }) => {
   const secondTitleRef = useRef<HTMLSpanElement>(null)
   const thirdTitleRef = useRef<HTMLSpanElement>(null)
 
-  useGSAP(() => {
-    if (iconRef.current) {
+  useLayoutEffect(() => {
+    let cancelled = false
+
+    loadGsapWithMotionPath().then(({ gsap }) => {
+      if (cancelled || !iconRef.current) return
+
       const ball = iconRef.current.querySelector('#ball')
       const path = iconRef.current.querySelector('#path')
       if (ball && path) {
@@ -67,6 +66,10 @@ const ConversionTitle: FC<ConversionTitleProps> = ({ className }) => {
           }
         })
       }
+    })
+
+    return () => {
+      cancelled = true
     }
   }, [])
 

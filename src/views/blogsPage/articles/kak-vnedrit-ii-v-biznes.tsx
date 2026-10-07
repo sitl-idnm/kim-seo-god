@@ -93,7 +93,7 @@ export function KakVnedritIiVBiznesArticle() {
       </p>
 
       <h2 className={styles.sectionTitle}>Содержание</h2>
-      <div className={styles.toc}>
+      <div className={styles.toc} data-toc>
         <a href="#chto">Что такое внедрение ИИ</a>
         <a href="#start">С чего начать</a>
         <a href="#processes">Какие процессы брать первыми</a>
@@ -224,10 +224,7 @@ export function KakVnedritIiVBiznesArticle() {
         Оставить заявку
       </a>
 
-      <h2 className={styles.sectionTitle} id="faq">
-        Частые вопросы
-      </h2>
-      <div className={styles.faqWrap}>
+      <div className={styles.faqWrap} id="faq">
         <Faq faqData={faqData} title="Частые вопросы" />
       </div>
 

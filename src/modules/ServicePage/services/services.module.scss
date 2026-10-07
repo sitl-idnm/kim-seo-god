@@ -28,6 +28,62 @@
 	}
 }
 
+.filter {
+	display: flex;
+	flex-wrap: wrap;
+	gap: 12px;
+	width: 100%;
+	margin-top: -8px;
+
+	@include tablet {
+		gap: 8px;
+		flex-wrap: nowrap;
+		overflow-x: auto;
+		-webkit-overflow-scrolling: touch;
+		scrollbar-width: none;
+
+		&::-webkit-scrollbar {
+			display: none;
+		}
+	}
+
+	&__item {
+		appearance: none;
+		border: 1px solid #e0e0e0;
+		background: #f7f7f7;
+		color: var(--color-black);
+		font-family: var(--font-inter);
+		font-size: 16px;
+		font-weight: 500;
+		line-height: 1;
+		padding: 12px 20px;
+		border-radius: 999px;
+		cursor: pointer;
+		white-space: nowrap;
+		transition: all 0.3s ease;
+
+		&:hover {
+			border-color: var(--color-red-accent);
+			color: var(--color-red-accent);
+		}
+
+		&_active {
+			background: var(--color-red-accent);
+			border-color: var(--color-red-accent);
+			color: #fff;
+
+			&:hover {
+				color: #fff;
+			}
+		}
+
+		@include tablet-small {
+			font-size: 14px;
+			padding: 10px 16px;
+		}
+	}
+}
+
 .root {
 	display: flex;
 	flex-wrap: wrap;

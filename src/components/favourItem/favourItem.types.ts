@@ -20,4 +20,6 @@ export interface FavourItemProps {
   /** Сноска внутри карточки (другой фон). Опционально. */
   footer?: string[]
   footerTitle?: string
+  /** Приоритетная загрузка изображения (для LCP над сгибом). */
+  priority?: boolean
 }

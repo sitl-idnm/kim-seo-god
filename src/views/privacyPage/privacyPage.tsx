@@ -5,7 +5,6 @@ import classNames from 'classnames'
 
 import styles from './privacyPage.module.scss'
 import { PrivacyPageProps } from './privacyPage.types'
-import NewModalContainer from '@/components/newModalContainer/newModalContainer'
 
 const PrivacyPage: FC<PrivacyPageProps> = ({
   className
@@ -14,7 +13,6 @@ const PrivacyPage: FC<PrivacyPageProps> = ({
 
   return (
     <main className={rootClassName}>
-      <NewModalContainer />
       <div className={styles.container}>
         <h1>Политика конфиденциальности</h1>
         <p>Настоящая Политика конфиденциальности персональных данных (далее – Политика конфиденциальности) действует в отношении всей информации, которую сайт <strong>KIM</strong>, расположенный на доменном имени <strong>kim.agency</strong>, может получить о Пользователе во время использования сайта, программ и продуктов сайта.</p>

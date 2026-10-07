@@ -26,5 +26,27 @@ export const smmData: ServiceData = {
     'Яндекс Директ',
     'Senler',
     'Системы аналитики'
-  ]
+  ],
+  uiConfig: {
+    accent: '#FF7A1A',
+    accentSoft: '#FFF1E6',
+    heroVariant: 'bold',
+    heroEyebrow: 'Соцсети под заявки',
+    // Соцсети — про аудиторию и сообщество: клиенты и отзывы выше, кейсы ближе к концу.
+    order: [
+      'intro',
+      'about',
+      'solutions',
+      'includes',
+      'consult',
+      'process',
+      'clients',
+      'stats',
+      'pricing',
+      'cases',
+      'reviews',
+      'faq',
+      'finalForm'
+    ]
+  }
 }

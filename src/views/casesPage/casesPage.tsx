@@ -4,7 +4,6 @@ import classNames from 'classnames'
 import styles from './casesPage.module.scss'
 import { CasesPageProps } from './casesPage.types'
 import { Cases } from '@/modules/cases'
-import NewModalContainer from '@/components/newModalContainer/newModalContainer'
 import { StandartText } from '@/ui/standartText'
 import { FormSecond } from '@/modules/formSecond'
 import Faq from '@/modules/faq/faq'
@@ -75,7 +74,6 @@ const CasesPage: FC<CasesPageProps> = ({
 
   return (
     <main className={rootClassName}>
-      <NewModalContainer />
       <Wrapper>
         <Cases />
         <Why

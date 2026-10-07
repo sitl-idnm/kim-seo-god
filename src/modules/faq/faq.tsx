@@ -1,6 +1,6 @@
 'use client'
 
-import { FC, useState } from 'react'
+import { FC, useId, useState } from 'react'
 import classNames from 'classnames'
 import FaqIcon from '@icons/faq.svg'
 
@@ -13,6 +13,7 @@ const FaqComponent: FC<FaqProps> = ({
   title = 'Часто задаваемые вопросы'
 }) => {
   const [activeIndex, setActiveIndex] = useState<number | null>(null)
+  const uid = useId()
   const rootClassName = classNames(styles.root, className)
 
   const toggleQuestion = (index: number) => {
@@ -26,7 +27,7 @@ const FaqComponent: FC<FaqProps> = ({
         <div className={styles.faqList}>
           {faqData.map((item, index: number) => (
             <div
-              key={index}
+              key={item.title}
               className={classNames(styles.faqItem, {
                 [styles.active]: activeIndex === index
               })}
@@ -34,22 +35,26 @@ const FaqComponent: FC<FaqProps> = ({
               <button
                 className={styles.question}
                 onClick={() => toggleQuestion(index)}
+                aria-expanded={activeIndex === index}
+                aria-controls={`${uid}-faq-${index}`}
               >
                 {item.title}
                 <div className={styles.icon}>
                   <FaqIcon />
                 </div>
               </button>
-              <div className={styles.answer}>
-                {item.content}
-                {item.listItems && item.listItems.length > 0 && (
-                  <ul className={styles.answerList}>
-                    {item.listItems.map((listItem, i) => (
-                      <li key={i} className={styles.answerListItem}>{listItem}</li>
-                    ))}
-                  </ul>
-                )}
-                {item.contentAfter && <p className={styles.answerAfter}>{item.contentAfter}</p>}
+              <div className={styles.answer} id={`${uid}-faq-${index}`} role="region">
+                <div className={styles.answerInner}>
+                  {item.content}
+                  {item.listItems && item.listItems.length > 0 && (
+                    <ul className={styles.answerList}>
+                      {item.listItems.map((listItem) => (
+                        <li key={listItem} className={styles.answerListItem}>{listItem}</li>
+                      ))}
+                    </ul>
+                  )}
+                  {item.contentAfter && <p className={styles.answerAfter}>{item.contentAfter}</p>}
+                </div>
               </div>
             </div>
           ))}

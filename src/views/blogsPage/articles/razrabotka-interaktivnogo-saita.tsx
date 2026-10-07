@@ -60,7 +60,7 @@ export function RazrabotkaInteraktivnogoSaitaArticle() {
       </p>
 
       <h2 className={styles.sectionTitle}>Содержание</h2>
-      <div className={styles.toc}>
+      <div className={styles.toc} data-toc>
         <a href="#interaktivnost">Что такое интерактивность на веб-странице</a>
         <a href="#elements">Какие элементы помогают бизнесу</a>
         <a href="#when">Когда такой формат особенно полезен</a>
